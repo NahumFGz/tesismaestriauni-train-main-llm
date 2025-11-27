@@ -1,0 +1,64 @@
+[
+  {
+    "id": "basic_37",
+    "question": "Cual es la fecha de inicio de actividades y nombre del proveedor con RUC 20483851171",
+    "query": "SELECT fecha_de_inicio_de_actividades FROM transparencia_sunat WHERE ruc_proveedor = '20483851171';",
+    "expected": {
+      "columns": [
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "2001-11-05"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20483851171' LIMIT 1;",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "SERVICIOS GENERALES VIVIANA EIRL"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT fecha_de_inicio_de_actividades, nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20483851171';",
+      "columns": [
+        "fecha_de_inicio_de_actividades",
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "2001-11-05",
+          "SERVICIOS GENERALES VIVIANA EIRL"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT fecha_de_inicio_de_actividades FROM transparencia_sunat WHERE ruc_proveedor = '20483851171';",
+      "columns": [
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "2001-11-05"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T03:56:48.406607",
+    "execution_id": 37
+  }
+]

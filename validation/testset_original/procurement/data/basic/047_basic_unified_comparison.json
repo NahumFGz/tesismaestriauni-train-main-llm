@@ -1,0 +1,70 @@
+[
+  {
+    "id": "basic_47",
+    "question": "¿Cuál es la cantidad de contratos y órdenes de servicio del proveedor con RUC 20100053455 con la entidad contratante MUNICIPALIDAD DISTRITAL DE PARACAS, y cuál es el monto total correspondiente?, quiero las columnas cantidad y monto",
+    "query": "SELECT count(*) as cantidad, sum(monto) as monto FROM contratos_orden_servicio WHERE ruc_proveedor = '20100053455' AND entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE PARACAS' GROUP BY objeto_contrato;",
+    "expected": {
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          103.0,
+          93449.06000000006
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT count(*) as cantidad, sum(monto) as monto FROM contratos_orden_servicio WHERE ruc_proveedor = '20100053455' AND entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE PARACAS' GROUP BY objeto_contrato;",
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          103.0,
+          93449.06000000006
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT COUNT(*) AS cantidad_contratos, SUM(co.monto) AS monto_total FROM contratos_orden_servicio co WHERE co.ruc_proveedor = '20100053455' AND co.entidad_contratante ILIKE '%MUNICIPALIDAD DISTRITAL DE PARACAS%';",
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          103.0,
+          93449.06000000006
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT COUNT(*) as cantidad_contratos_ordenes, SUM(monto) as monto_total, COUNT(CASE WHEN tipo_contrato = 'CONTRATO' THEN 1 END) as cantidad_contratos, COUNT(CASE WHEN tipo_contrato = 'ORDEN SERVICIO' THEN 1 END) as cantidad_ordenes_servicio FROM contratos_orden_servicio WHERE ruc_proveedor = '20100053455' AND entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE PARACAS'",
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          103,
+          93449.06000000006
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-12T09:01:36.495833",
+    "execution_id": 47
+  }
+]

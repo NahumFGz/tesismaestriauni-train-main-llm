@@ -1,0 +1,118 @@
+[
+  {
+    "id": "basic_42",
+    "question": "Dame el conteo por objeto contrato, montos de los contratos y ordenes de servicio, debe ser un ranking descendente del todos los tipos de objetos contrato, limitalo a los 3 más grandes por cantidad",
+    "query": "SELECT objeto_contrato, count(ruc_proveedor) as cantidad, sum(monto) as monto FROM contratos_orden_servicio GROUP BY objeto_contrato ORDER BY cantidad DESC LIMIT 3;",
+    "expected": {
+      "columns": [
+        "objeto_contrato",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "SERVICIO",
+          7059303,
+          2225489074798.079
+        ],
+        [
+          "BIEN",
+          5234495,
+          153188152557143.12
+        ],
+        [
+          "EJECUCIÓN DE OBRA",
+          148468,
+          495595021394.9278
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT objeto_contrato, count(ruc_proveedor) as cantidad, sum(monto) as monto FROM contratos_orden_servicio GROUP BY objeto_contrato ORDER BY cantidad DESC LIMIT 3;",
+      "columns": [
+        "objeto_contrato",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "SERVICIO",
+          7059303,
+          2225489074798.079
+        ],
+        [
+          "BIEN",
+          5234495,
+          153188152557143.12
+        ],
+        [
+          "EJECUCIÓN DE OBRA",
+          148468,
+          495595021394.9278
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.objeto_contrato, COUNT(*) AS cantidad, SUM(co.monto) AS total_monto FROM contratos_orden_servicio co GROUP BY co.objeto_contrato ORDER BY cantidad DESC LIMIT 3;",
+      "columns": [
+        "objeto_contrato",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "SERVICIO",
+          7059303,
+          2225489074798.079
+        ],
+        [
+          "BIEN",
+          5234495,
+          153188152557143.12
+        ],
+        [
+          "EJECUCIÓN DE OBRA",
+          148468,
+          495595021394.9278
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT objeto_contrato, count(ruc_proveedor) as cantidad, sum(monto) as monto FROM contratos_orden_servicio GROUP BY objeto_contrato ORDER BY cantidad DESC LIMIT 3;",
+      "columns": [
+        "objeto_contrato",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "SERVICIO",
+          7059303,
+          2225489074798.079
+        ],
+        [
+          "BIEN",
+          5234495,
+          153188152557143.12
+        ],
+        [
+          "EJECUCIÓN DE OBRA",
+          148468,
+          495595021394.9278
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T08:54:48.097727",
+    "execution_id": 42
+  }
+]

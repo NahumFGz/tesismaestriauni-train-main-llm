@@ -1,0 +1,302 @@
+[
+  {
+    "id": "intermediate_47",
+    "question": "Que ministerio del estado peruano ha firmado en promedio los mayores contratos y ordenes de servicio?, dame el top 10 quiro las columnas entidad_contratante, total_contratos_ordenes, monto_promedio y monto_total, considera buscar por similitud semantica",
+    "query": "SELECT entidad_contratante, COUNT(*) as total_contratos_ordenes, AVG(monto) as monto_promedio, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MINISTERIO%' AND monto IS NOT NULL GROUP BY entidad_contratante ORDER BY monto_promedio DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "entidad_contratante",
+        "total_contratos_ordenes",
+        "monto_promedio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "DIRECCION GENERAL DE ELECTRIFICACION RURAL DEL MINISTERIO DE ENERGÍA Y MINAS",
+          5104,
+          1804904.580705331,
+          9212232979.92001
+        ],
+        [
+          "UNIDAD EJECUTORA 008:PROYECTOS ESPECIALES DEL PLIEGO 003 - MINISTERIO DE CULTURA",
+          2006,
+          691127.0370538387,
+          1386400836.3300004
+        ],
+        [
+          "MINISTERIO PUBLICO - CARPETA FISCAL ELECTRONICA",
+          462,
+          366991.2827272727,
+          169549972.62
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - Administración General",
+          2287,
+          192583.51742457369,
+          440438504.35
+        ],
+        [
+          "PROYECTO FONER  UNIDAD EJECUTORA NO.03 DEL   MINISTERIO DE ENERGIA Y MINAS",
+          100,
+          175044.1735,
+          17504417.35
+        ],
+        [
+          "AUTORIDAD NACIONAL DE CONTROL DEL MINISTERIO PÚBLICO",
+          12,
+          165534.18416666667,
+          1986410.21
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - ADMINISTRACIÓN GENERAL",
+          43011,
+          111791.99224616952,
+          4808285378.499997
+        ],
+        [
+          "MINISTERIO DE CULTURA - UNIDAD EJECUTORA 010 - CHANKILLO, CUNA DE LA ASTRONOMÍA EN CASMA Y NEPEÑA",
+          3,
+          109998.52000000002,
+          329995.56000000006
+        ],
+        [
+          "MINISTERIO PUBLICO",
+          44757,
+          92493.75962419299,
+          4139743199.5000057
+        ],
+        [
+          "MINISTERIO DE AGRICULTURA",
+          1166,
+          91002.65657804461,
+          106109097.57000002
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as total_contratos_ordenes, AVG(monto) as monto_promedio, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MINISTERIO%' AND monto IS NOT NULL GROUP BY entidad_contratante ORDER BY monto_promedio DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos_ordenes",
+        "monto_promedio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "DIRECCION GENERAL DE ELECTRIFICACION RURAL DEL MINISTERIO DE ENERGÍA Y MINAS",
+          5104,
+          1804904.580705331,
+          9212232979.92001
+        ],
+        [
+          "UNIDAD EJECUTORA 008:PROYECTOS ESPECIALES DEL PLIEGO 003 - MINISTERIO DE CULTURA",
+          2006,
+          691127.0370538387,
+          1386400836.3300004
+        ],
+        [
+          "MINISTERIO PUBLICO - CARPETA FISCAL ELECTRONICA",
+          462,
+          366991.2827272727,
+          169549972.62
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - Administración General",
+          2287,
+          192583.51742457369,
+          440438504.35
+        ],
+        [
+          "PROYECTO FONER  UNIDAD EJECUTORA NO.03 DEL   MINISTERIO DE ENERGIA Y MINAS",
+          100,
+          175044.1735,
+          17504417.35
+        ],
+        [
+          "AUTORIDAD NACIONAL DE CONTROL DEL MINISTERIO PÚBLICO",
+          12,
+          165534.18416666667,
+          1986410.21
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - ADMINISTRACIÓN GENERAL",
+          43011,
+          111791.99224616952,
+          4808285378.499997
+        ],
+        [
+          "MINISTERIO DE CULTURA - UNIDAD EJECUTORA 010 - CHANKILLO, CUNA DE LA ASTRONOMÍA EN CASMA Y NEPEÑA",
+          3,
+          109998.52000000002,
+          329995.56000000006
+        ],
+        [
+          "MINISTERIO PUBLICO",
+          44757,
+          92493.75962419299,
+          4139743199.5000057
+        ],
+        [
+          "MINISTERIO DE AGRICULTURA",
+          1166,
+          91002.65657804461,
+          106109097.57000002
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as total_contratos_ordenes, AVG(monto) as monto_promedio, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MINISTERIO%' AND monto IS NOT NULL GROUP BY entidad_contratante ORDER BY monto_promedio DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos_ordenes",
+        "monto_promedio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "DIRECCION GENERAL DE ELECTRIFICACION RURAL DEL MINISTERIO DE ENERGÍA Y MINAS",
+          5104,
+          1804904.580705331,
+          9212232979.92001
+        ],
+        [
+          "UNIDAD EJECUTORA 008:PROYECTOS ESPECIALES DEL PLIEGO 003 - MINISTERIO DE CULTURA",
+          2006,
+          691127.0370538387,
+          1386400836.3300004
+        ],
+        [
+          "MINISTERIO PUBLICO - CARPETA FISCAL ELECTRONICA",
+          462,
+          366991.2827272727,
+          169549972.62
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - Administración General",
+          2287,
+          192583.51742457369,
+          440438504.35
+        ],
+        [
+          "PROYECTO FONER  UNIDAD EJECUTORA NO.03 DEL   MINISTERIO DE ENERGIA Y MINAS",
+          100,
+          175044.1735,
+          17504417.35
+        ],
+        [
+          "AUTORIDAD NACIONAL DE CONTROL DEL MINISTERIO PÚBLICO",
+          12,
+          165534.18416666667,
+          1986410.21
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - ADMINISTRACIÓN GENERAL",
+          43011,
+          111791.99224616952,
+          4808285378.499997
+        ],
+        [
+          "MINISTERIO DE CULTURA - UNIDAD EJECUTORA 010 - CHANKILLO, CUNA DE LA ASTRONOMÍA EN CASMA Y NEPEÑA",
+          3,
+          109998.52000000002,
+          329995.56000000006
+        ],
+        [
+          "MINISTERIO PUBLICO",
+          44757,
+          92493.75962419299,
+          4139743199.5000057
+        ],
+        [
+          "MINISTERIO DE AGRICULTURA",
+          1166,
+          91002.65657804461,
+          106109097.57000002
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as total_contratos_ordenes, AVG(monto) as monto_promedio, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE entidad_contratante ILIKE '%ministerio%' AND monto IS NOT NULL GROUP BY entidad_contratante ORDER BY monto_promedio DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos_ordenes",
+        "monto_promedio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "DIRECCION GENERAL DE ELECTRIFICACION RURAL DEL MINISTERIO DE ENERGÍA Y MINAS",
+          5104,
+          1804904.580705331,
+          9212232979.92001
+        ],
+        [
+          "UNIDAD EJECUTORA 008:PROYECTOS ESPECIALES DEL PLIEGO 003 - MINISTERIO DE CULTURA",
+          2006,
+          691127.0370538387,
+          1386400836.3300004
+        ],
+        [
+          "MINISTERIO PUBLICO - CARPETA FISCAL ELECTRONICA",
+          462,
+          366991.2827272727,
+          169549972.62
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - Administración General",
+          2287,
+          192583.51742457369,
+          440438504.35
+        ],
+        [
+          "PROYECTO FONER  UNIDAD EJECUTORA NO.03 DEL   MINISTERIO DE ENERGIA Y MINAS",
+          100,
+          175044.1735,
+          17504417.35
+        ],
+        [
+          "AUTORIDAD NACIONAL DE CONTROL DEL MINISTERIO PÚBLICO",
+          12,
+          165534.18416666667,
+          1986410.21
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - ADMINISTRACIÓN GENERAL",
+          43011,
+          111791.99224616952,
+          4808285378.499997
+        ],
+        [
+          "MINISTERIO DE CULTURA - UNIDAD EJECUTORA 010 - CHANKILLO, CUNA DE LA ASTRONOMÍA EN CASMA Y NEPEÑA",
+          3,
+          109998.52000000002,
+          329995.56000000006
+        ],
+        [
+          "MINISTERIO PUBLICO",
+          44757,
+          92493.75962419299,
+          4139743199.5000057
+        ],
+        [
+          "MINISTERIO DE AGRICULTURA",
+          1166,
+          91002.65657804461,
+          106109097.57000002
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-17T09:44:15.226422",
+    "execution_id": 47
+  }
+]

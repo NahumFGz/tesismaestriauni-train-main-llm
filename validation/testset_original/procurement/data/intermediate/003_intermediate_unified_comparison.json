@@ -1,0 +1,70 @@
+[
+  {
+    "id": "intermediate_3",
+    "question": "¿Qué moneda tiene más contratos y ordenes de servicio en la entidad contratante MUNICIPALIDAD DISTRITAL DE TORATA?, quiero las columnas de moneda y cantidad_contratos_ordenes",
+    "query": "SELECT moneda, COUNT(*) as cantidad_contratos_ordenes FROM contratos_orden_servicio WHERE entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE TORATA' GROUP BY moneda",
+    "expected": {
+      "columns": [
+        "moneda",
+        "cantidad_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "SOLES",
+          18956
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT moneda, COUNT(*) AS cantidad_contratos_ordenes FROM contratos_orden_servicio WHERE entidad_contratante ILIKE '%MUNICIPALIDAD DISTRITAL DE TORATA%' GROUP BY moneda ORDER BY cantidad_contratos_ordenes DESC LIMIT 1",
+      "columns": [
+        "moneda",
+        "cantidad_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "SOLES",
+          18956
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT moneda, COUNT(*) AS cantidad_contratos_ordenes FROM contratos_orden_servicio WHERE entidad_contratante ILIKE '%MUNICIPALIDAD DISTRITAL DE TORATA%' GROUP BY moneda ORDER BY cantidad_contratos_ordenes DESC LIMIT 1;",
+      "columns": [
+        "moneda",
+        "cantidad_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "SOLES",
+          18956
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT moneda, COUNT(*) as cantidad_contratos_ordenes FROM contratos_orden_servicio WHERE entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE TORATA' GROUP BY moneda ORDER BY cantidad_contratos_ordenes DESC;",
+      "columns": [
+        "moneda",
+        "cantidad_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "SOLES",
+          18956
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-12T10:23:20.725428",
+    "execution_id": 3
+  }
+]

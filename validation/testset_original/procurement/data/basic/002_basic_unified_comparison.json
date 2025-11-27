@@ -1,0 +1,102 @@
+[
+  {
+    "id": "basic_2",
+    "question": "Cual es la cantidad de personas naturales y juridicas disponibles?",
+    "query": "SELECT tipo_empresa_persona_juridica_natural, COUNT(*) AS cantidad FROM transparencia_sunat GROUP BY tipo_empresa_persona_juridica_natural",
+    "expected": {
+      "columns": [
+        "tipo_empresa_persona_juridica_natural",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "PERSONA JURIDICA",
+          124285
+        ],
+        [
+          "PERSONA NATURAL",
+          99210
+        ],
+        [
+          null,
+          276389
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT tipo_empresa_persona_juridica_natural, COUNT(*) AS cantidad FROM transparencia_sunat GROUP BY tipo_empresa_persona_juridica_natural",
+      "columns": [
+        "tipo_empresa_persona_juridica_natural",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "PERSONA JURIDICA",
+          124285
+        ],
+        [
+          "PERSONA NATURAL",
+          99210
+        ],
+        [
+          null,
+          276389
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT tipo_empresa_persona_juridica_natural, COUNT(*) AS cantidad FROM transparencia_sunat GROUP BY tipo_empresa_persona_juridica_natural;",
+      "columns": [
+        "tipo_empresa_persona_juridica_natural",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "PERSONA JURIDICA",
+          124285
+        ],
+        [
+          "PERSONA NATURAL",
+          99210
+        ],
+        [
+          null,
+          276389
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT tipo_empresa_persona_juridica_natural, COUNT(*) as cantidad FROM transparencia_sunat GROUP BY tipo_empresa_persona_juridica_natural ORDER BY cantidad ASC;",
+      "columns": [
+        "tipo_empresa_persona_juridica_natural",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "PERSONA NATURAL",
+          99210
+        ],
+        [
+          "PERSONA JURIDICA",
+          124285
+        ],
+        [
+          null,
+          276389
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-07T23:33:23.881973",
+    "execution_id": 2
+  }
+]

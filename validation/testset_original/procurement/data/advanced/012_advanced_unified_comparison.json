@@ -1,0 +1,170 @@
+[
+  {
+    "id": "advanced_12",
+    "question": "Dame la fecha de inicio de actividades de los 10 proveedores de tipo persona juridica que han firmado mayor monto de ordenes de servicio.",
+    "query": "SELECT A.ruc_proveedor, A.nombre_proveedor, SUM(A.monto) AS monto, B.fecha_de_inicio_de_actividades FROM contratos_orden_servicio A LEFT JOIN transparencia_sunat B ON A.ruc_proveedor = B.ruc_proveedor WHERE B.tipo_empresa_persona_juridica_natural = 'PERSONA JURIDICA' AND A.tipo_contrato = 'ORDEN SERVICIO' GROUP BY A.ruc_proveedor, A.nombre_proveedor, B.fecha_de_inicio_de_actividades ORDER BY monto DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20450326713",
+          "ENGINEERING BUILD S.A.C",
+          674112902.2599999,
+          "2008-05-09"
+        ],
+        [
+          "20100027705",
+          "EMPRESA ELECTRICIDAD DEL PERU - ELECTROPERU S A",
+          467997021.7,
+          "1972-09-05"
+        ],
+        [
+          "20540007668",
+          "SERVICIOS GENERALES JELDER & HNOS S.R.L.",
+          405779021.39,
+          "2013-02-05"
+        ],
+        [
+          "20330791412",
+          "ORYGEN PERU S.A.A.",
+          348472989.2200001,
+          "1996-08-13"
+        ],
+        [
+          "20264742995",
+          "F Y L CONTRATISTAS GENERALES S.A.",
+          263827857.6200001,
+          "2011-10-11"
+        ],
+        [
+          "20267163228",
+          "INGRAM MICRO S.A.C.",
+          187411691.50999993,
+          "1995-05-22"
+        ],
+        [
+          "20529265302",
+          "INGENIEROS CONSTRUCTORES MINEROS Y SERVICIOS MULTIPLES HINOSTROZA & RIVERA SOCIEDAD ANONIMA CERRADA",
+          174214876.26,
+          "2011-08-01"
+        ],
+        [
+          "20100362598",
+          "SERVICIOS INTEGRADOS DE LIMPIEZA SA (SIL SA)",
+          169893137.56000012,
+          "1987-06-08"
+        ],
+        [
+          "20254507874",
+          "INTCOMEX PERU S.A.C",
+          153339348.23,
+          "1994-08-04"
+        ],
+        [
+          "20218339167",
+          "EMPRESA DE GENERACION ELECTRICA MACHUPICCHU SOCIEDAD ANONIMA",
+          121450554.48000011,
+          "1994-04-08"
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ts.fecha_de_inicio_de_actividades FROM transparencia_sunat ts JOIN contratos_orden_servicio co ON co.ruc_proveedor = ts.ruc_proveedor WHERE ts.tipo_empresa_persona_juridica_natural ILIKE '%persona juridica%' AND co.tipo_contrato = 'ORDEN SERVICIO' ORDER BY SUM(co.monto) DESC LIMIT 10;",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "our_agent": {
+      "sql_query": "SELECT ts.ruc_proveedor, ts.nombre_proveedor, ts.fecha_de_inicio_de_actividades, SUM(cos.monto) as monto_total_ordenes_servicio FROM transparencia_sunat ts INNER JOIN contratos_orden_servicio cos ON ts.ruc_proveedor = cos.ruc_proveedor WHERE ts.tipo_empresa_persona_juridica_natural = 'PERSONA JURIDICA' AND cos.tipo_contrato = 'ORDEN SERVICIO' GROUP BY ts.ruc_proveedor, ts.nombre_proveedor, ts.fecha_de_inicio_de_actividades ORDER BY monto_total_ordenes_servicio DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "monto_total_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "20450326713",
+          "ENGINEERING BUILD S.A.C",
+          "2008-05-09",
+          674112902.2599999
+        ],
+        [
+          "20100027705",
+          "EMPRESA ELECTRICIDAD DEL PERU - ELECTROPERU S A",
+          "1972-09-05",
+          467997021.7
+        ],
+        [
+          "20540007668",
+          "SERVICIOS GENERALES JELDER & HNOS S.R.L.",
+          "2013-02-05",
+          405779021.39
+        ],
+        [
+          "20330791412",
+          "ORYGEN PERU S.A.A.",
+          "1996-08-13",
+          348472989.22
+        ],
+        [
+          "20264742995",
+          "F Y L CONTRATISTAS GENERALES S.A.",
+          "2011-10-11",
+          263827857.61999997
+        ],
+        [
+          "20267163228",
+          "INGRAM MICRO S.A.C.",
+          "1995-05-22",
+          187411691.50999996
+        ],
+        [
+          "20529265302",
+          "INGENIEROS CONSTRUCTORES MINEROS Y SERVICIOS MULTIPLES HINOSTROZA & RIVERA SOCIEDAD ANONIMA CERRADA",
+          "2011-08-01",
+          174214876.26
+        ],
+        [
+          "20100362598",
+          "SERVICIOS INTEGRADOS DE LIMPIEZA SA (SIL SA)",
+          "1987-06-08",
+          169893137.56000006
+        ],
+        [
+          "20254507874",
+          "INTCOMEX PERU S.A.C",
+          "1994-08-04",
+          153339348.22999972
+        ],
+        [
+          "20218339167",
+          "EMPRESA DE GENERACION ELECTRICA MACHUPICCHU SOCIEDAD ANONIMA",
+          "1994-04-08",
+          121450554.48000011
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-18T07:58:17.932840",
+    "execution_id": 12
+  }
+]

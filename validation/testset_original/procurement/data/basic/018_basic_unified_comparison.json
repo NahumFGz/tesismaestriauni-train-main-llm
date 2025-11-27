@@ -1,0 +1,458 @@
+[
+  {
+    "id": "basic_18",
+    "question": "Dame los 20 proveedores con menor monto girado, dame el ruc_proveedor, nombre_proveedor y monto_total con ordenado por monto_total de forma ascendente",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) as monto_total FROM transparencia_sunat GROUP BY ruc_proveedor, nombre_proveedor ORDER BY monto_total ASC LIMIT 20;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10254151179",
+          "MENA DE GAMBOA HELENA RADEGUNDE",
+          96750.0
+        ],
+        [
+          "10755784716",
+          "PEREYRA JACAY FIORELLA MELINA",
+          96750.0
+        ],
+        [
+          "10476742493",
+          "ROJAS HUAYTA SONIA VIOLETA",
+          96750.0
+        ],
+        [
+          "20603388454",
+          "BIOZONAS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          96750.0
+        ],
+        [
+          "10465845827",
+          "AREVALO RODRIGUEZ CARLOS EDUARDO",
+          96750.0
+        ],
+        [
+          "10725038980",
+          "ROJAS CORNEJO BRINNER JEANMARCO",
+          96750.0
+        ],
+        [
+          "10471497326",
+          "CAÑAVI MAURICIO MARITZA",
+          96750.0
+        ],
+        [
+          "10469181044",
+          "ZARATE FLORES MELANI KATALIN",
+          96750.0
+        ],
+        [
+          "20602510043",
+          "INGENIERIA CONSTRUCCIONES AZRIEL E.I.R.L.",
+          96750.0
+        ],
+        [
+          "10468761985",
+          "SALAZAR SALAZAR ELIZABETH KATTIA",
+          96750.0
+        ],
+        [
+          "10778065164",
+          "LOPEZ ESPINOZA NATHALY ALAYLA",
+          96750.0
+        ],
+        [
+          "10084554265",
+          "MAURICIO MORALES FRANK ALOMIAS",
+          96750.0
+        ],
+        [
+          "10099223354",
+          "POMA HERMOZA CLAUDIO FELIX",
+          96750.0
+        ],
+        [
+          "10766877490",
+          "VALDERRAMA REYES GIULIANA GERALDINE",
+          96750.0
+        ],
+        [
+          "10255993017",
+          "CACHIQUE CLAUSEN HUDSON",
+          96750.0
+        ],
+        [
+          "10093018554",
+          "CHIRINOS GOMEZ MALENA IBETH",
+          96750.0
+        ],
+        [
+          "10412590851",
+          "CARBONEL ASPIROS MARIA JULIA",
+          96750.0
+        ],
+        [
+          "10764070513",
+          "AYALA PEREZ DIEGO ALONZO",
+          96750.0
+        ],
+        [
+          "20566204607",
+          "INVERSIONES CORPORATIVAS B & CH S.A.C.",
+          96750.55
+        ],
+        [
+          "10447987436",
+          "HORNA CHICOMA ZOILA",
+          96751.0
+        ]
+      ],
+      "row_count": 20,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) as monto_total FROM transparencia_sunat GROUP BY ruc_proveedor, nombre_proveedor ORDER BY monto_total ASC LIMIT 20;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10254151179",
+          "MENA DE GAMBOA HELENA RADEGUNDE",
+          96750.0
+        ],
+        [
+          "10755784716",
+          "PEREYRA JACAY FIORELLA MELINA",
+          96750.0
+        ],
+        [
+          "10476742493",
+          "ROJAS HUAYTA SONIA VIOLETA",
+          96750.0
+        ],
+        [
+          "20603388454",
+          "BIOZONAS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          96750.0
+        ],
+        [
+          "10465845827",
+          "AREVALO RODRIGUEZ CARLOS EDUARDO",
+          96750.0
+        ],
+        [
+          "10725038980",
+          "ROJAS CORNEJO BRINNER JEANMARCO",
+          96750.0
+        ],
+        [
+          "10471497326",
+          "CAÑAVI MAURICIO MARITZA",
+          96750.0
+        ],
+        [
+          "10469181044",
+          "ZARATE FLORES MELANI KATALIN",
+          96750.0
+        ],
+        [
+          "20602510043",
+          "INGENIERIA CONSTRUCCIONES AZRIEL E.I.R.L.",
+          96750.0
+        ],
+        [
+          "10468761985",
+          "SALAZAR SALAZAR ELIZABETH KATTIA",
+          96750.0
+        ],
+        [
+          "10778065164",
+          "LOPEZ ESPINOZA NATHALY ALAYLA",
+          96750.0
+        ],
+        [
+          "10084554265",
+          "MAURICIO MORALES FRANK ALOMIAS",
+          96750.0
+        ],
+        [
+          "10099223354",
+          "POMA HERMOZA CLAUDIO FELIX",
+          96750.0
+        ],
+        [
+          "10766877490",
+          "VALDERRAMA REYES GIULIANA GERALDINE",
+          96750.0
+        ],
+        [
+          "10255993017",
+          "CACHIQUE CLAUSEN HUDSON",
+          96750.0
+        ],
+        [
+          "10093018554",
+          "CHIRINOS GOMEZ MALENA IBETH",
+          96750.0
+        ],
+        [
+          "10412590851",
+          "CARBONEL ASPIROS MARIA JULIA",
+          96750.0
+        ],
+        [
+          "10764070513",
+          "AYALA PEREZ DIEGO ALONZO",
+          96750.0
+        ],
+        [
+          "20566204607",
+          "INVERSIONES CORPORATIVAS B & CH S.A.C.",
+          96750.55
+        ],
+        [
+          "10447987436",
+          "HORNA CHICOMA ZOILA",
+          96751.0
+        ]
+      ],
+      "row_count": 20,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado as monto_total FROM transparencia_sunat ORDER BY monto_girado ASC LIMIT 20;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10254151179",
+          "MENA DE GAMBOA HELENA RADEGUNDE",
+          96750.0
+        ],
+        [
+          "10755784716",
+          "PEREYRA JACAY FIORELLA MELINA",
+          96750.0
+        ],
+        [
+          "10476742493",
+          "ROJAS HUAYTA SONIA VIOLETA",
+          96750.0
+        ],
+        [
+          "20603388454",
+          "BIOZONAS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          96750.0
+        ],
+        [
+          "10465845827",
+          "AREVALO RODRIGUEZ CARLOS EDUARDO",
+          96750.0
+        ],
+        [
+          "10725038980",
+          "ROJAS CORNEJO BRINNER JEANMARCO",
+          96750.0
+        ],
+        [
+          "10471497326",
+          "CAÑAVI MAURICIO MARITZA",
+          96750.0
+        ],
+        [
+          "10469181044",
+          "ZARATE FLORES MELANI KATALIN",
+          96750.0
+        ],
+        [
+          "20602510043",
+          "INGENIERIA CONSTRUCCIONES AZRIEL E.I.R.L.",
+          96750.0
+        ],
+        [
+          "10468761985",
+          "SALAZAR SALAZAR ELIZABETH KATTIA",
+          96750.0
+        ],
+        [
+          "10778065164",
+          "LOPEZ ESPINOZA NATHALY ALAYLA",
+          96750.0
+        ],
+        [
+          "10084554265",
+          "MAURICIO MORALES FRANK ALOMIAS",
+          96750.0
+        ],
+        [
+          "10099223354",
+          "POMA HERMOZA CLAUDIO FELIX",
+          96750.0
+        ],
+        [
+          "10766877490",
+          "VALDERRAMA REYES GIULIANA GERALDINE",
+          96750.0
+        ],
+        [
+          "10255993017",
+          "CACHIQUE CLAUSEN HUDSON",
+          96750.0
+        ],
+        [
+          "10093018554",
+          "CHIRINOS GOMEZ MALENA IBETH",
+          96750.0
+        ],
+        [
+          "10412590851",
+          "CARBONEL ASPIROS MARIA JULIA",
+          96750.0
+        ],
+        [
+          "10764070513",
+          "AYALA PEREZ DIEGO ALONZO",
+          96750.0
+        ],
+        [
+          "20566204607",
+          "INVERSIONES CORPORATIVAS B & CH S.A.C.",
+          96750.55
+        ],
+        [
+          "10447987436",
+          "HORNA CHICOMA ZOILA",
+          96751.0
+        ]
+      ],
+      "row_count": 20,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado as monto_total FROM transparencia_sunat ORDER BY monto_girado ASC LIMIT 20;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10254151179",
+          "MENA DE GAMBOA HELENA RADEGUNDE",
+          96750.0
+        ],
+        [
+          "10755784716",
+          "PEREYRA JACAY FIORELLA MELINA",
+          96750.0
+        ],
+        [
+          "10476742493",
+          "ROJAS HUAYTA SONIA VIOLETA",
+          96750.0
+        ],
+        [
+          "20603388454",
+          "BIOZONAS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          96750.0
+        ],
+        [
+          "10465845827",
+          "AREVALO RODRIGUEZ CARLOS EDUARDO",
+          96750.0
+        ],
+        [
+          "10725038980",
+          "ROJAS CORNEJO BRINNER JEANMARCO",
+          96750.0
+        ],
+        [
+          "10471497326",
+          "CAÑAVI MAURICIO MARITZA",
+          96750.0
+        ],
+        [
+          "10469181044",
+          "ZARATE FLORES MELANI KATALIN",
+          96750.0
+        ],
+        [
+          "20602510043",
+          "INGENIERIA CONSTRUCCIONES AZRIEL E.I.R.L.",
+          96750.0
+        ],
+        [
+          "10468761985",
+          "SALAZAR SALAZAR ELIZABETH KATTIA",
+          96750.0
+        ],
+        [
+          "10778065164",
+          "LOPEZ ESPINOZA NATHALY ALAYLA",
+          96750.0
+        ],
+        [
+          "10084554265",
+          "MAURICIO MORALES FRANK ALOMIAS",
+          96750.0
+        ],
+        [
+          "10099223354",
+          "POMA HERMOZA CLAUDIO FELIX",
+          96750.0
+        ],
+        [
+          "10766877490",
+          "VALDERRAMA REYES GIULIANA GERALDINE",
+          96750.0
+        ],
+        [
+          "10255993017",
+          "CACHIQUE CLAUSEN HUDSON",
+          96750.0
+        ],
+        [
+          "10093018554",
+          "CHIRINOS GOMEZ MALENA IBETH",
+          96750.0
+        ],
+        [
+          "10412590851",
+          "CARBONEL ASPIROS MARIA JULIA",
+          96750.0
+        ],
+        [
+          "10764070513",
+          "AYALA PEREZ DIEGO ALONZO",
+          96750.0
+        ],
+        [
+          "20566204607",
+          "INVERSIONES CORPORATIVAS B & CH S.A.C.",
+          96750.55
+        ],
+        [
+          "10447987436",
+          "HORNA CHICOMA ZOILA",
+          96751.0
+        ]
+      ],
+      "row_count": 20,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T06:18:43.929259",
+    "execution_id": 18
+  }
+]

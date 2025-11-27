@@ -1,0 +1,68 @@
+[
+  {
+    "id": "basic_16",
+    "question": "Cuanto monto girado tiene el BBVA en total en todos estos años?",
+    "query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%BBVA%';",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "BANCO BBVA PERU",
+          2427431339.67
+        ],
+        [
+          "INMUEBLES Y RECUPERACIONES BBVA S.A. - IRBSA",
+          378000.0
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT SUM(monto_girado) AS total_monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%BBVA%';",
+      "columns": [
+        "total_monto_girado"
+      ],
+      "rows": [
+        [
+          2427809339.67
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%BBVA%';",
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "BANCO BBVA PERU",
+          2427431339.67
+        ],
+        [
+          "INMUEBLES Y RECUPERACIONES BBVA S.A. - IRBSA",
+          378000.0
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T06:10:26.536688",
+    "execution_id": 16
+  }
+]

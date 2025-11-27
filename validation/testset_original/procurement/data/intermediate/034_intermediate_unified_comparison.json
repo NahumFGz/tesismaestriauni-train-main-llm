@@ -1,0 +1,102 @@
+[
+  {
+    "id": "intermediate_34",
+    "question": "Con que entidades ha firmado mas ordenes de servicio el proveedor 'IBM DEL PERU S A C', quiero el top 3?",
+    "query": "SELECT entidad_contratante, COUNT(*) as cantidad_ordenes_servicio FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND tipo_contrato = 'ORDEN SERVICIO' GROUP BY entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 3;",
+    "expected": {
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          18
+        ],
+        [
+          "INSTITUTO NACIONAL DE DEFENSA DE LA COMPETENCIA Y DE LA PROTECCION DE LA PROPIEDAD INTELECTUAL",
+          6
+        ],
+        [
+          "EMPRESA DE SERVICIO PUBLICO DE ELECTRICIDAD ELECTRONORTE S.A.",
+          5
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as cantidad_ordenes_servicio FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND tipo_contrato = 'ORDEN SERVICIO' GROUP BY entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 3;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          18
+        ],
+        [
+          "INSTITUTO NACIONAL DE DEFENSA DE LA COMPETENCIA Y DE LA PROTECCION DE LA PROPIEDAD INTELECTUAL",
+          6
+        ],
+        [
+          "EMPRESA DE SERVICIO PUBLICO DE ELECTRICIDAD ELECTRONORTE S.A.",
+          5
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.entidad_contratante, COUNT(*) AS cantidad_ordenes FROM contratos_orden_servicio co WHERE co.nombre_proveedor ILIKE '%IBM DEL PERU S A C%' AND co.tipo_contrato = 'ORDEN SERVICIO' GROUP BY co.entidad_contratante ORDER BY cantidad_ordenes DESC LIMIT 3;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          18
+        ],
+        [
+          "INSTITUTO NACIONAL DE DEFENSA DE LA COMPETENCIA Y DE LA PROTECCION DE LA PROPIEDAD INTELECTUAL",
+          6
+        ],
+        [
+          "EMPRESA DE SERVICIO PUBLICO DE ELECTRICIDAD ELECTRONORTE S.A.",
+          5
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as cantidad_ordenes_servicio FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND tipo_contrato = 'ORDEN SERVICIO' GROUP BY entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 3;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          18
+        ],
+        [
+          "INSTITUTO NACIONAL DE DEFENSA DE LA COMPETENCIA Y DE LA PROTECCION DE LA PROPIEDAD INTELECTUAL",
+          6
+        ],
+        [
+          "EMPRESA DE SERVICIO PUBLICO DE ELECTRICIDAD ELECTRONORTE S.A.",
+          5
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 2
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T08:51:23.838867",
+    "execution_id": 34
+  }
+]

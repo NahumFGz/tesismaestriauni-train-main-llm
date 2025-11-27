@@ -1,0 +1,70 @@
+[
+  {
+    "id": "intermediate_31",
+    "question": "En que año firmo el proveedor 'IBM DEL PERU S A C' su ultimo contrato?, quiero las columnas fecha_inicio y año_contrato",
+    "query": "SELECT fecha_inicio, EXTRACT(YEAR FROM fecha_inicio) as año_contrato FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' ORDER BY fecha_inicio DESC LIMIT 1;",
+    "expected": {
+      "columns": [
+        "fecha_inicio",
+        "año_contrato"
+      ],
+      "rows": [
+        [
+          "2022-07-19",
+          2022
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT fecha_inicio, EXTRACT(YEAR FROM fecha_inicio) as año_contrato FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' ORDER BY fecha_inicio DESC LIMIT 1;",
+      "columns": [
+        "fecha_inicio",
+        "año_contrato"
+      ],
+      "rows": [
+        [
+          "2022-07-19",
+          2022
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT fecha_inicio, EXTRACT(YEAR FROM MAX(co.fecha_inicio)) AS año_contrato FROM contratos_orden_servicio co WHERE co.nombre_proveedor ILIKE '%IBM DEL PERU S A C%';",
+      "columns": [
+        "fecha_inicio",
+        "año_contrato"
+      ],
+      "rows": [
+        [
+          "2022-07-19",
+          2022
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT fecha_inicio, EXTRACT(YEAR FROM fecha_inicio) as año_contrato FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' ORDER BY fecha_inicio DESC LIMIT 1;",
+      "columns": [
+        "fecha_inicio",
+        "año_contrato"
+      ],
+      "rows": [
+        [
+          "2022-07-19",
+          2022
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T04:55:02.859974",
+    "execution_id": 31
+  }
+]

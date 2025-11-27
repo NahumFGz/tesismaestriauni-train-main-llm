@@ -1,0 +1,236 @@
+[
+  {
+    "id": "advanced_6",
+    "question": "Cuales son las 10 municipalidades que han firmado mayor numero de ordenes de servicio en el año 2024, pero quiero aquellas que tengan el 2 primeros digitos del ruc del proveedor en 10, solo quiero la entidad contratante, la cantidad de ordenes de servicio, el monto total de las ordenes de servicio y el monto medio de las ordenes de servicio.",
+    "query": "SELECT entidad_contratante, COUNT(*) AS total_contratos, SUM(monto) AS monto_total, SUM(monto)/COUNT(*) AS monto_medio FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2024 AND entidad_contratante ILIKE '%MUNICIPALIDAD%' AND LEFT(ruc_proveedor::text, 2) = '10' GROUP BY entidad_contratante ORDER BY total_contratos DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "entidad_contratante",
+        "total_contratos",
+        "monto_total",
+        "monto_medio"
+      ],
+      "rows": [
+        [
+          "MUNICIPALIDAD PROVINCIAL DEL CALLAO",
+          4505,
+          46725929.00999999,
+          10372.015318534959
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          4222,
+          75620213.13999999,
+          17910.99316437707
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE KIMBIRI",
+          3122,
+          36262083.11999999,
+          11615.017014734141
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE MEGANTONI",
+          2186,
+          57528781.09,
+          26316.917241537056
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          2075,
+          35972164.33,
+          17335.982809638554
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE SANTIAGO DE SURCO",
+          2043,
+          24911008.330000002,
+          12193.34720019579
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE ECHARATI",
+          1854,
+          20944662.92,
+          11297.013441208199
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE VENTANILLA",
+          1814,
+          15969684.719999999,
+          8803.574818081586
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CHANCAY - HUARAL",
+          1796,
+          6430684.599999999,
+          3580.5593541202666
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE SAN ISIDRO - LIMA",
+          1719,
+          34252818.120000005,
+          19926.014031413615
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.entidad_contratante, COUNT(*) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto_total_ordenes_servicio, AVG(co.monto) AS monto_medio_ordenes_servicio FROM contratos_orden_servicio co WHERE EXTRACT(YEAR FROM co.fecha_inicio) = 2024 AND co.ruc_proveedor ILIKE '10%' AND co.tipo_contrato = 'ORDEN SERVICIO' GROUP BY co.entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio",
+        "monto_medio_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          6089,
+          27527694.18,
+          4520.889173920184
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          5796,
+          96171083.39000002,
+          16592.6644910283
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DEL CALLAO",
+          4489,
+          33464686.3,
+          7454.819848518601
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          4376,
+          74673569.19000001,
+          17064.343964808046
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          4080,
+          40090680.089999996,
+          9826.147080882352
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          3959,
+          47553909.03,
+          12011.596117706491
+        ],
+        [
+          "SEGURO SOCIAL DE SALUD",
+          3616,
+          45001059.42,
+          12444.983246681417
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - ADMINISTRACIÓN GENERAL",
+          3067,
+          60855043.150000006,
+          19841.87908379524
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE KIMBIRI",
+          3057,
+          23705017.580000002,
+          7754.340065423618
+        ],
+        [
+          "MINISTERIO DE SALUD",
+          3006,
+          53989441.44,
+          17960.559361277443
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as cantidad_ordenes_servicio, SUM(monto) as monto_total, AVG(monto) as monto_medio FROM contratos_orden_servicio WHERE tipo_contrato = 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM fecha_inicio) = 2024 AND LEFT(ruc_proveedor, 2) = '10' AND LOWER(entidad_contratante) LIKE '%municipalidad%' GROUP BY entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio",
+        "monto_total",
+        "monto_medio"
+      ],
+      "rows": [
+        [
+          "MUNICIPALIDAD PROVINCIAL DEL CALLAO",
+          4489,
+          33464686.299999997,
+          7454.8198485186
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          4080,
+          40090680.09,
+          9826.147080882354
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE KIMBIRI",
+          3057,
+          23705017.580000013,
+          7754.340065423622
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE MEGANTONI",
+          2079,
+          25964412.09,
+          12488.894704184704
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          2047,
+          24837146.449999996,
+          12133.437445041522
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE SANTIAGO DE SURCO",
+          2035,
+          20587943.389999993,
+          10116.925498771496
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE ECHARATI",
+          1812,
+          16382711.600000003,
+          9041.23156732892
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE VENTANILLA",
+          1800,
+          11079513.669999998,
+          6155.285372222221
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CHANCAY - HUARAL",
+          1792,
+          5710185.589999998,
+          3186.4874944196417
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE SAN ISIDRO - LIMA",
+          1713,
+          13528361.480000002,
+          7897.467297139523
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-17T12:51:40.233623",
+    "execution_id": 6
+  }
+]

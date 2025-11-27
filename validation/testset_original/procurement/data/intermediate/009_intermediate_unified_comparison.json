@@ -1,0 +1,98 @@
+[
+  {
+    "id": "intermediate_9",
+    "question": "¿Qué tipos de contrato maneja PFIZER S A?, quiero las columnas tipo_contrato, cantidad_contratos y monto_total",
+    "query": "SELECT tipo_contrato, COUNT(*) AS cantidad_contratos, SUM(monto) AS monto_total FROM contratos_orden_servicio WHERE nombre_proveedor = 'PFIZER S A' GROUP BY tipo_contrato;",
+    "expected": {
+      "columns": [
+        "tipo_contrato",
+        "cantidad_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          29,
+          65121906.12
+        ],
+        [
+          "ORDEN SERVICIO",
+          471,
+          13340043.940000052
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT tipo_contrato, COUNT(*) AS cantidad_contratos, SUM(monto) AS monto_total FROM contratos_orden_servicio WHERE nombre_proveedor = 'PFIZER S A' GROUP BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "cantidad_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          29,
+          65121906.12
+        ],
+        [
+          "ORDEN SERVICIO",
+          471,
+          13340043.940000052
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT tipo_contrato, COUNT(*) AS cantidad_contratos, SUM(monto) AS monto_total FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%PFIZER S A%' GROUP BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "cantidad_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          29,
+          65121906.12
+        ],
+        [
+          "ORDEN SERVICIO",
+          471,
+          13340043.940000052
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT tipo_contrato, COUNT(*) AS cantidad_contratos, SUM(monto) AS monto_total FROM contratos_orden_servicio WHERE nombre_proveedor = 'PFIZER S A' GROUP BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "cantidad_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          29,
+          65121906.12
+        ],
+        [
+          "ORDEN SERVICIO",
+          471,
+          13340043.940000052
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-14T10:36:39.937483",
+    "execution_id": 9
+  }
+]

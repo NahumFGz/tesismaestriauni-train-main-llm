@@ -1,0 +1,213 @@
+[
+  {
+    "id": "advanced_1",
+    "question": "Cuantos proveedores que iniciaron sus actividades en febrero del 2020 en adelante han firmado ordenes de servicio con la municipalidad distrital de los olivos, quiero el top 5 ordenados por la cantidad de ordenes de servicio y el monto total ordenes de servicio, considera buscar nombre silmares a la entidad contratante.",
+    "query": "SELECT t.ruc_proveedor, t.nombre_proveedor, t.fecha_de_inicio_de_actividades, COUNT(c.ruc_proveedor) AS cantidad_ordenes_servicio, SUM(c.monto) AS monto_total_ordenes_servicio FROM transparencia_sunat t INNER JOIN contratos_orden_servicio c ON t.ruc_proveedor = c.ruc_proveedor WHERE t.fecha_de_inicio_de_actividades >= '2020-02-01' AND c.tipo_contrato = 'ORDEN SERVICIO' AND UPPER(c.entidad_contratante) LIKE '%MUNICIPALIDAD%DISTRITAL%OLIVOS%' GROUP BY t.ruc_proveedor, t.nombre_proveedor, t.fecha_de_inicio_de_actividades ORDER BY cantidad_ordenes_servicio DESC, monto_total_ordenes_servicio DESC LIMIT 5;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "10102940861",
+          "GARCIA CALDERON JULIA JUDITH",
+          "2024-03-14",
+          24,
+          219220.5
+        ],
+        [
+          "10407260894",
+          "FLORES VELASQUEZ VLADIMIRO",
+          "2023-06-15",
+          22,
+          106573.0
+        ],
+        [
+          "10108610510",
+          "MONTES VILLANUEVA ROSARIO JESSICA",
+          "2021-11-17",
+          22,
+          76510.0
+        ],
+        [
+          "20535649171",
+          "CORPORACION EDUCATIVA CULTURA NASCA S.A.C.",
+          "2023-09-06",
+          21,
+          243909.80000000002
+        ],
+        [
+          "10157203059",
+          "MOYA PACHECO ROSA ELENA",
+          "2020-08-31",
+          21,
+          198723.0
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 5
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, COUNT(*) as num_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = CAST('2020' AS INTEGER) GROUP BY nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "nombre_proveedor",
+        "num_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "QUISPE SULCA JULIA",
+          13,
+          150910802513592.2
+        ],
+        [
+          "REPUESTOS Y LUBRICANTES LA FLORIDA EIRL",
+          20,
+          206023352742.0
+        ],
+        [
+          "WONG LOGISTIC S.A.C.",
+          49,
+          20606636800.040005
+        ],
+        [
+          "GRUPO SURCONET S.A.C.",
+          11,
+          20606019000.559994
+        ],
+        [
+          "TIZIANNI LOGISTICS SOCIEDAD ANONIMA - TIZIANNI LOGISTICS S.A.",
+          103,
+          20603509922.949993
+        ],
+        [
+          "R & T QUINTANAS E.I.R.L.",
+          4,
+          20603275057.0
+        ],
+        [
+          "GRUPO SOLMIT EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA - GRUPO SOLMIT E.I.R.L.",
+          111,
+          20602695164.069996
+        ],
+        [
+          "GRUPO VITESSE INGENIEROS & ABOGADOS S.A.C.",
+          33,
+          20563309598.52
+        ],
+        [
+          "RAMIREZ MEZA RAUL",
+          9,
+          10756993421.0
+        ],
+        [
+          "MONJE JARA RENZO D'ANGELO",
+          33,
+          10483093582.75
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.ruc_proveedor, co.nombre_proveedor, COUNT(*) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto_total_ordenes_servicio FROM contratos_orden_servicio co JOIN transparencia_sunat ts ON co.ruc_proveedor = ts.ruc_proveedor WHERE ts.fecha_de_inicio_de_actividades >= '2020-02-01' AND co.entidad_contratante ILIKE '%municipalidad distrital de los olivos%' AND co.tipo_contrato = 'ORDEN SERVICIO' GROUP BY co.ruc_proveedor, co.nombre_proveedor ORDER BY cantidad_ordenes_servicio DESC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "10102940861",
+          "GARCIA CALDERON JULIA JUDITH",
+          24,
+          219220.5
+        ],
+        [
+          "10108610510",
+          "MONTES VILLANUEVA ROSARIO JESSICA",
+          22,
+          76510.0
+        ],
+        [
+          "10407260894",
+          "FLORES VELASQUEZ VLADIMIRO",
+          22,
+          106573.0
+        ],
+        [
+          "10157203059",
+          "MOYA PACHECO ROSA ELENA",
+          21,
+          198723.0
+        ],
+        [
+          "20535649171",
+          "CORPORACION EDUCATIVA CULTURA NASCA S.A.C.",
+          21,
+          243909.80000000002
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT t.ruc_proveedor, t.nombre_proveedor, t.fecha_de_inicio_de_actividades, COUNT(c.ruc_proveedor) as cantidad_ordenes_servicio, SUM(c.monto) as monto_total_ordenes_servicio FROM transparencia_sunat t INNER JOIN contratos_orden_servicio c ON t.ruc_proveedor = c.ruc_proveedor WHERE t.fecha_de_inicio_de_actividades >= '2020-02-01' AND c.tipo_contrato = 'ORDEN SERVICIO' AND UPPER(c.entidad_contratante) LIKE '%MUNICIPALIDAD%DISTRITAL%LOS%OLIVOS%' GROUP BY t.ruc_proveedor, t.nombre_proveedor, t.fecha_de_inicio_de_actividades ORDER BY cantidad_ordenes_servicio DESC, monto_total_ordenes_servicio DESC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "10102940861",
+          "GARCIA CALDERON JULIA JUDITH",
+          "2024-03-14",
+          24,
+          219220.5
+        ],
+        [
+          "10407260894",
+          "FLORES VELASQUEZ VLADIMIRO",
+          "2023-06-15",
+          22,
+          106573.0
+        ],
+        [
+          "10108610510",
+          "MONTES VILLANUEVA ROSARIO JESSICA",
+          "2021-11-17",
+          22,
+          76510.0
+        ],
+        [
+          "20535649171",
+          "CORPORACION EDUCATIVA CULTURA NASCA S.A.C.",
+          "2023-09-06",
+          21,
+          243909.80000000002
+        ],
+        [
+          "10157203059",
+          "MOYA PACHECO ROSA ELENA",
+          "2020-08-31",
+          21,
+          198723.0
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 5
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-16T11:24:38.797193",
+    "execution_id": 1
+  }
+]

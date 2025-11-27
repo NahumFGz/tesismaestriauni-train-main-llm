@@ -1,0 +1,82 @@
+[
+  {
+    "id": "intermediate_13",
+    "question": "Contratos en dólares del proveedor BANCO AGROPECUARIO en 2023",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, entidad_contratante, objeto_contrato, descripcion, moneda, monto, fecha_inicio, fecha_fin, tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BANCO AGROPECUARIO%' AND moneda = 'DOLARES' AND EXTRACT(YEAR FROM fecha_inicio) = 2023 ORDER BY fecha_inicio;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "entidad_contratante",
+        "objeto_contrato",
+        "descripcion",
+        "moneda",
+        "monto",
+        "fecha_inicio",
+        "fecha_fin",
+        "tipo_contrato"
+      ],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 10
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, entidad_contratante, objeto_contrato, descripcion, moneda, monto, fecha_inicio, fecha_fin, tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BANCO AGROPECUARIO%' AND EXTRACT(YEAR FROM fecha_inicio) = CAST('2023' AS INTEGER) ORDER BY fecha_inicio DESC LIMIT 100;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "entidad_contratante",
+        "objeto_contrato",
+        "descripcion",
+        "moneda",
+        "monto",
+        "fecha_inicio",
+        "fecha_fin",
+        "tipo_contrato"
+      ],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 10
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT * FROM contratos_orden_servicio co WHERE co.nombre_proveedor ILIKE '%BANCO AGROPECUARIO%' AND co.moneda ILIKE '%dólar%' AND EXTRACT(YEAR FROM co.fecha_inicio) = 2023;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "entidad_contratante",
+        "objeto_contrato",
+        "descripcion",
+        "moneda",
+        "monto",
+        "fecha_inicio",
+        "fecha_fin",
+        "tipo_contrato"
+      ],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 10
+    },
+    "our_agent": {
+      "sql_query": "SELECT c.ruc_proveedor, c.nombre_proveedor, c.entidad_contratante, c.objeto_contrato, c.descripcion, c.moneda, c.monto, c.fecha_inicio, c.fecha_fin, c.tipo_contrato FROM contratos_orden_servicio c WHERE c.nombre_proveedor ILIKE '%BANCO AGROPECUARIO%' AND c.moneda = 'DOLARES' AND EXTRACT(YEAR FROM c.fecha_inicio) = 2023 ORDER BY c.fecha_inicio;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "entidad_contratante",
+        "objeto_contrato",
+        "descripcion",
+        "moneda",
+        "monto",
+        "fecha_inicio",
+        "fecha_fin",
+        "tipo_contrato"
+      ],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 10
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-15T05:52:12.207475",
+    "execution_id": 13
+  }
+]

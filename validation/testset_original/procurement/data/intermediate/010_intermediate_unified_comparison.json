@@ -1,0 +1,158 @@
+[
+  {
+    "id": "intermediate_10",
+    "question": "¿Qué tipos de contrato maneja PFIZER S A?, quiero las columnas nombre_proveedor, tipo_contrato, cantidad_contratos y monto_total",
+    "query": "SELECT nombre_proveedor, tipo_contrato, COUNT(*) as cantidad_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE UPPER(nombre_proveedor) LIKE '%PFIZER%' GROUP BY nombre_proveedor, tipo_contrato ORDER BY cantidad_contratos DESC;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "PFIZER S A",
+          "ORDEN SERVICIO",
+          471,
+          13340043.940000044
+        ],
+        [
+          "PFIZER PFE PERU S.R.L.",
+          "ORDEN SERVICIO",
+          457,
+          12099767.639999934
+        ],
+        [
+          "PFIZER PFE PERU S.R.L.",
+          "CONTRATO",
+          43,
+          103226340.30000001
+        ],
+        [
+          "PFIZER S A",
+          "CONTRATO",
+          29,
+          65121906.12
+        ]
+      ],
+      "row_count": 4,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, tipo_contrato, COUNT(*) as cantidad_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE UPPER(nombre_proveedor) LIKE '%PFIZER%' GROUP BY nombre_proveedor, tipo_contrato ORDER BY cantidad_contratos DESC;",
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "PFIZER S A",
+          "ORDEN SERVICIO",
+          471,
+          13340043.940000044
+        ],
+        [
+          "PFIZER PFE PERU S.R.L.",
+          "ORDEN SERVICIO",
+          457,
+          12099767.639999934
+        ],
+        [
+          "PFIZER PFE PERU S.R.L.",
+          "CONTRATO",
+          43,
+          103226340.30000001
+        ],
+        [
+          "PFIZER S A",
+          "CONTRATO",
+          29,
+          65121906.12
+        ]
+      ],
+      "row_count": 4,
+      "column_count": 4
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor, tipo_contrato, COUNT(*) as cantidad_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE UPPER(nombre_proveedor) LIKE '%PFIZER%' GROUP BY nombre_proveedor, tipo_contrato ORDER BY cantidad_contratos DESC;",
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "PFIZER S A",
+          "ORDEN SERVICIO",
+          471,
+          13340043.940000044
+        ],
+        [
+          "PFIZER PFE PERU S.R.L.",
+          "ORDEN SERVICIO",
+          457,
+          12099767.639999934
+        ],
+        [
+          "PFIZER PFE PERU S.R.L.",
+          "CONTRATO",
+          43,
+          103226340.30000001
+        ],
+        [
+          "PFIZER S A",
+          "CONTRATO",
+          29,
+          65121906.12
+        ]
+      ],
+      "row_count": 4,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, tipo_contrato, COUNT(*) as cantidad_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE UPPER(nombre_proveedor) LIKE '%PFIZER%' GROUP BY nombre_proveedor, tipo_contrato ORDER BY cantidad_contratos DESC;",
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "PFIZER S A",
+          "ORDEN SERVICIO",
+          471,
+          13340043.940000044
+        ],
+        [
+          "PFIZER PFE PERU S.R.L.",
+          "ORDEN SERVICIO",
+          457,
+          12099767.639999934
+        ],
+        [
+          "PFIZER PFE PERU S.R.L.",
+          "CONTRATO",
+          43,
+          103226340.30000001
+        ],
+        [
+          "PFIZER S A",
+          "CONTRATO",
+          29,
+          65121906.12
+        ]
+      ],
+      "row_count": 4,
+      "column_count": 4
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-14T10:39:16.049260",
+    "execution_id": 10
+  }
+]

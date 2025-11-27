@@ -1,0 +1,62 @@
+[
+  {
+    "id": "basic_14",
+    "question": "Dame la cantidad de empresas que son SOCIEDAD ANONIMA",
+    "query": "SELECT count(ruc_proveedor) as cantidad FROM transparencia_sunat WHERE tipo_contribuyente = 'SOCIEDAD ANONIMA';",
+    "expected": {
+      "columns": [
+        "cantidad"
+      ],
+      "rows": [
+        [
+          4163
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT COUNT(DISTINCT ruc_proveedor) FROM transparencia_sunat WHERE tipo_empresa_persona_juridica_natural ILIKE '%SOCIEDAD ANONIMA%';",
+      "columns": [
+        "count"
+      ],
+      "rows": [
+        [
+          0
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT COUNT(DISTINCT ruc_proveedor) FROM transparencia_sunat WHERE tipo_empresa_persona_juridica_natural ILIKE '%SOCIEDAD ANONIMA%';",
+      "columns": [
+        "count"
+      ],
+      "rows": [
+        [
+          0
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT COUNT(*) as cantidad_empresas FROM transparencia_sunat WHERE tipo_contribuyente = 'SOCIEDAD ANONIMA';",
+      "columns": [
+        "cantidad_empresas"
+      ],
+      "rows": [
+        [
+          4163
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:46:59.139337",
+    "execution_id": 14
+  }
+]

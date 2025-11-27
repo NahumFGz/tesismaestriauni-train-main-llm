@@ -1,0 +1,122 @@
+[
+  {
+    "id": "intermediate_42",
+    "question": "Dame los 3 contratos y ordenes de servicio más altos del proveedor BBVA, quiero las columnas nombre_proveedor, monto, fecha_inicio, entidad_contratante, tipo_contrato",
+    "query": "SELECT nombre_proveedor, monto, fecha_inicio, entidad_contratante, tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' ORDER BY monto DESC LIMIT 3;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "monto",
+        "fecha_inicio",
+        "entidad_contratante",
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "BANCO BBVA PERU",
+          28264874.39,
+          "2016-09-20",
+          "UNIDAD EJECUTORA 032: DIRECCION GENERAL DE INFRAESTRUCTURA",
+          "CONTRATO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          9208000.0,
+          "2009-12-15",
+          "INSTITUTO METROPOLITANO PROTRANSPORTE DE LIMA",
+          "CONTRATO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          781200.0,
+          "2011-07-27",
+          "SERVICIO DE AGUA POTABLE Y ALCANTARILLADO DE LIMA - SEDAPAL",
+          "CONTRATO"
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 5
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor, monto, fecha_inicio, entidad_contratante, tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' ORDER BY monto DESC LIMIT 3;",
+      "columns": [
+        "nombre_proveedor",
+        "monto",
+        "fecha_inicio",
+        "entidad_contratante",
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "BANCO BBVA PERU",
+          28264874.39,
+          "2016-09-20",
+          "UNIDAD EJECUTORA 032: DIRECCION GENERAL DE INFRAESTRUCTURA",
+          "CONTRATO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          9208000.0,
+          "2009-12-15",
+          "INSTITUTO METROPOLITANO PROTRANSPORTE DE LIMA",
+          "CONTRATO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          781200.0,
+          "2011-07-27",
+          "SERVICIO DE AGUA POTABLE Y ALCANTARILLADO DE LIMA - SEDAPAL",
+          "CONTRATO"
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 5
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, monto, fecha_inicio, entidad_contratante, tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' ORDER BY monto DESC LIMIT 3;",
+      "columns": [
+        "nombre_proveedor",
+        "monto",
+        "fecha_inicio",
+        "entidad_contratante",
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "BANCO BBVA PERU",
+          28264874.39,
+          "2016-09-20",
+          "UNIDAD EJECUTORA 032: DIRECCION GENERAL DE INFRAESTRUCTURA",
+          "CONTRATO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          9208000.0,
+          "2009-12-15",
+          "INSTITUTO METROPOLITANO PROTRANSPORTE DE LIMA",
+          "CONTRATO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          781200.0,
+          "2011-07-27",
+          "SERVICIO DE AGUA POTABLE Y ALCANTARILLADO DE LIMA - SEDAPAL",
+          "CONTRATO"
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 5
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-17T09:30:08.464049",
+    "execution_id": 42
+  }
+]

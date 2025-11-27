@@ -1,0 +1,249 @@
+[
+  {
+    "id": "intermediate_41",
+    "question": "Puedes darme los proveedores que han firmado ordenes de servicio con la municipalidad distrital de los olivos, quiero el top 5 ordenados por la cantidad de ordenes de servicio y el monto total ordenes de servicio. agrega el tipo de contrato, la cantidad y el monto total de los contratos y el monto de ordenes de servicio y la fecha de inicio de actividades del proveedor.",
+    "query": "SELECT c.ruc_proveedor, c.nombre_proveedor, COUNT(CASE WHEN c.tipo_contrato = 'ORDEN SERVICIO' THEN 1 END) AS cantidad_ordenes_servicio, COALESCE(SUM(CASE WHEN c.tipo_contrato = 'ORDEN SERVICIO' THEN c.monto END), 0) AS monto_total_ordenes_servicio, COUNT(CASE WHEN c.tipo_contrato = 'CONTRATO' THEN 1 END) AS cantidad_contratos, COALESCE(SUM(CASE WHEN c.tipo_contrato = 'CONTRATO' THEN c.monto END), 0) AS monto_total_contratos, t.fecha_de_inicio_de_actividades FROM contratos_orden_servicio c LEFT JOIN transparencia_sunat t ON t.ruc_proveedor = c.ruc_proveedor WHERE UPPER(c.entidad_contratante) LIKE '%MUNICIPALIDAD DISTRITAL DE LOS OLIVOS%' GROUP BY c.ruc_proveedor, c.nombre_proveedor, t.fecha_de_inicio_de_actividades HAVING COUNT(CASE WHEN c.tipo_contrato = 'ORDEN SERVICIO' THEN 1 END) > 0 ORDER BY cantidad_ordenes_servicio DESC, monto_total_ordenes_servicio DESC LIMIT 5;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio",
+        "cantidad_contratos",
+        "monto_total_contratos",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20131368667",
+          "MUNICIPALIDAD DISTRITAL DE LOS OLIVOS",
+          329,
+          4456909.630000001,
+          0,
+          0.0,
+          "1990-01-01"
+        ],
+        [
+          "20100053455",
+          "BANCO INTERNACIONAL DEL PERU-INTERBANK",
+          212,
+          5282078.530000001,
+          0,
+          0.0,
+          "1897-05-01"
+        ],
+        [
+          "20100043140",
+          "SCOTIABANK PERU SAA",
+          143,
+          5696244.62,
+          0,
+          0.0,
+          "1943-02-04"
+        ],
+        [
+          "10061856965",
+          "GONZALES BERMUDEZ MAGNOLIA",
+          101,
+          220930.24000000005,
+          0,
+          0.0,
+          "1991-11-05"
+        ],
+        [
+          "10107459893",
+          "ROQUE CASTILLO HEBERT",
+          79,
+          862155.3999999999,
+          0,
+          0.0,
+          "2008-10-01"
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 7
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, COUNT(*) as num_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio GROUP BY nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "nombre_proveedor",
+        "num_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "CONSTRUCCION Y ADMINISTRACION S.A.",
+          54,
+          6872845256.59
+        ],
+        [
+          "INGENIEROS CIVILES Y CONTRATISTAS GENERALES S.A.",
+          46,
+          6595272035.06
+        ],
+        [
+          "OBRAS DE INGENIERIA S.A.C.",
+          35,
+          6292824083.490001
+        ],
+        [
+          "COSAPI S A",
+          57,
+          6219671870.069999
+        ],
+        [
+          "MOTA-ENGIL PERU S.A.",
+          26,
+          4088163133.4199996
+        ],
+        [
+          "CONSTRUCTORA M.P.M. S.A.",
+          36,
+          3879839670.14
+        ],
+        [
+          "CONSTRUCTORA MALAGA HNOS S.A.",
+          26,
+          3660901022.6299996
+        ],
+        [
+          "CUMBRA PERÚ S.A.",
+          40,
+          3467268486.060001
+        ],
+        [
+          "CMO GROUP S.A.C.",
+          25,
+          3451856424.68
+        ],
+        [
+          "JOHE SA",
+          17,
+          3290535374.33
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.ruc_proveedor, co.nombre_proveedor, COUNT(co.tipo_contrato) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto_total_ordenes_servicio, SUM(CASE WHEN co.tipo_contrato = 'CONTRATO' THEN co.monto ELSE 0 END) AS monto_total_contratos, ts.fecha_de_inicio_de_actividades FROM contratos_orden_servicio co JOIN transparencia_sunat ts ON co.ruc_proveedor = ts.ruc_proveedor WHERE co.entidad_contratante ILIKE '%municipalidad distrital de los olivos%' GROUP BY co.ruc_proveedor, co.nombre_proveedor, ts.fecha_de_inicio_de_actividades ORDER BY cantidad_ordenes_servicio DESC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio",
+        "monto_total_contratos",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20131368667",
+          "MUNICIPALIDAD DISTRITAL DE LOS OLIVOS",
+          329,
+          4456909.629999999,
+          0.0,
+          "1990-01-01"
+        ],
+        [
+          "20100053455",
+          "BANCO INTERNACIONAL DEL PERU-INTERBANK",
+          212,
+          5282078.529999999,
+          0.0,
+          "1897-05-01"
+        ],
+        [
+          "20100043140",
+          "SCOTIABANK PERU SAA",
+          143,
+          5696244.62,
+          0.0,
+          "1943-02-04"
+        ],
+        [
+          "10061856965",
+          "GONZALES BERMUDEZ MAGNOLIA",
+          101,
+          220930.24000000005,
+          0.0,
+          "1991-11-05"
+        ],
+        [
+          "10107459893",
+          "ROQUE CASTILLO HEBERT",
+          79,
+          862155.4,
+          0.0,
+          "2008-10-01"
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 6
+    },
+    "our_agent": {
+      "sql_query": "WITH proveedor_stats AS ( SELECT c.ruc_proveedor, c.nombre_proveedor, COUNT(CASE WHEN c.tipo_contrato = 'ORDEN SERVICIO' THEN 1 END) as cantidad_ordenes_servicio, COALESCE(SUM(CASE WHEN c.tipo_contrato = 'ORDEN SERVICIO' THEN c.monto END), 0) as monto_total_ordenes_servicio, COUNT(CASE WHEN c.tipo_contrato = 'CONTRATO' THEN 1 END) as cantidad_contratos, COALESCE(SUM(CASE WHEN c.tipo_contrato = 'CONTRATO' THEN c.monto END), 0) as monto_total_contratos FROM contratos_orden_servicio c WHERE UPPER(c.entidad_contratante) LIKE '%MUNICIPALIDAD DISTRITAL DE LOS OLIVOS%' GROUP BY c.ruc_proveedor, c.nombre_proveedor HAVING COUNT(CASE WHEN c.tipo_contrato = 'ORDEN SERVICIO' THEN 1 END) > 0 ) SELECT ps.ruc_proveedor, ps.nombre_proveedor, ps.cantidad_ordenes_servicio, ps.monto_total_ordenes_servicio, ps.cantidad_contratos, ps.monto_total_contratos, t.fecha_de_inicio_de_actividades FROM proveedor_stats ps LEFT JOIN transparencia_sunat t ON ps.ruc_proveedor = t.ruc_proveedor ORDER BY ps.cantidad_ordenes_servicio DESC, ps.monto_total_ordenes_servicio DESC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio",
+        "cantidad_contratos",
+        "monto_total_contratos",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20131368667",
+          "MUNICIPALIDAD DISTRITAL DE LOS OLIVOS",
+          329,
+          4456909.630000001,
+          0,
+          0.0,
+          "1990-01-01"
+        ],
+        [
+          "20100053455",
+          "BANCO INTERNACIONAL DEL PERU-INTERBANK",
+          212,
+          5282078.53,
+          0,
+          0.0,
+          "1897-05-01"
+        ],
+        [
+          "20100043140",
+          "SCOTIABANK PERU SAA",
+          143,
+          5696244.62,
+          0,
+          0.0,
+          "1943-02-04"
+        ],
+        [
+          "10061856965",
+          "GONZALES BERMUDEZ MAGNOLIA",
+          101,
+          220930.24000000002,
+          0,
+          0.0,
+          "1991-11-05"
+        ],
+        [
+          "10107459893",
+          "ROQUE CASTILLO HEBERT",
+          79,
+          862155.4,
+          0,
+          0.0,
+          "2008-10-01"
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 7
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-17T09:12:58.933583",
+    "execution_id": 41
+  }
+]

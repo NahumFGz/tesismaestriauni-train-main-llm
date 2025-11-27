@@ -1,0 +1,182 @@
+[
+  {
+    "id": "advanced_16",
+    "question": "Dame un ranking detallado con percentiles de proveedores que hayan contratado con la municipalidad distrital de los olivos en el año 2023. Quiero las columnas de tipo_contrato, cantidad, monto_promedio, desviacion_estandar, monto_minimo, monto_maximo, percentil_25, mediana, percentil_75 y percentil_95.",
+    "query": "SELECT tipo_contrato, COUNT(*) as cantidad, AVG(monto) as monto_promedio, STDDEV(monto) as desviacion_estandar, MIN(monto) as monto_minimo, MAX(monto) as monto_maximo, PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY monto) as percentil_25, PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY monto) as mediana, PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY monto) as percentil_75, PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY monto) as percentil_95 FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 AND entidad_contratante ILIKE '%MUNICIPALIDAD DISTRITAL DE LOS OLIVOS%' GROUP BY tipo_contrato;",
+    "expected": {
+      "columns": [
+        "tipo_contrato",
+        "cantidad",
+        "monto_promedio",
+        "desviacion_estandar",
+        "monto_minimo",
+        "monto_maximo",
+        "percentil_25",
+        "mediana",
+        "percentil_75",
+        "percentil_95"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          53,
+          1874802.9786792456,
+          8448171.241123252,
+          80038.39,
+          61749459.0,
+          163132.48,
+          225000.0,
+          990022.0,
+          3892132.6159999995
+        ],
+        [
+          "ORDEN SERVICIO",
+          1172,
+          5733.326305460747,
+          7618.936808229726,
+          79.0,
+          49502.18,
+          1959.0,
+          3000.0,
+          6000.0,
+          23380.199999999997
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 10
+    },
+    "baseline_template": {
+      "sql_query": "SELECT tipo_contrato, COUNT(*) as cantidad, AVG(monto) as monto_promedio, STDDEV(monto) as desviacion_estandar, MIN(monto) as monto_minimo, MAX(monto) as monto_maximo, PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY monto) as percentil_25, PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY monto) as mediana, PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY monto) as percentil_75, PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY monto) as percentil_95 FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 AND entidad_contratante ILIKE '%MUNICIPALIDAD DISTRITAL DE LOS OLIVOS%' GROUP BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "cantidad",
+        "monto_promedio",
+        "desviacion_estandar",
+        "monto_minimo",
+        "monto_maximo",
+        "percentil_25",
+        "mediana",
+        "percentil_75",
+        "percentil_95"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          53,
+          1874802.9786792456,
+          8448171.241123252,
+          80038.39,
+          61749459.0,
+          163132.48,
+          225000.0,
+          990022.0,
+          3892132.6159999995
+        ],
+        [
+          "ORDEN SERVICIO",
+          1172,
+          5733.326305460747,
+          7618.936808229726,
+          79.0,
+          49502.18,
+          1959.0,
+          3000.0,
+          6000.0,
+          23380.199999999997
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 10
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT tipo_contrato, COUNT(*) as cantidad, AVG(monto) as monto_promedio, STDDEV(monto) as desviacion_estandar, MIN(monto) as monto_minimo, MAX(monto) as monto_maximo, PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY monto) as percentil_25, PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY monto) as mediana, PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY monto) as percentil_75, PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY monto) as percentil_95 FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 AND entidad_contratante ILIKE '%MUNICIPALIDAD DISTRITAL DE LOS OLIVOS%' GROUP BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "cantidad",
+        "monto_promedio",
+        "desviacion_estandar",
+        "monto_minimo",
+        "monto_maximo",
+        "percentil_25",
+        "mediana",
+        "percentil_75",
+        "percentil_95"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          53,
+          1874802.9786792456,
+          8448171.241123252,
+          80038.39,
+          61749459.0,
+          163132.48,
+          225000.0,
+          990022.0,
+          3892132.6159999995
+        ],
+        [
+          "ORDEN SERVICIO",
+          1172,
+          5733.326305460747,
+          7618.936808229726,
+          79.0,
+          49502.18,
+          1959.0,
+          3000.0,
+          6000.0,
+          23380.199999999997
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 10
+    },
+    "our_agent": {
+      "sql_query": "SELECT tipo_contrato, COUNT(*) as cantidad, AVG(monto) as monto_promedio, STDDEV(monto) as desviacion_estandar, MIN(monto) as monto_minimo, MAX(monto) as monto_maximo, PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY monto) as percentil_25, PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY monto) as mediana, PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY monto) as percentil_75, PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY monto) as percentil_95 FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 AND entidad_contratante ILIKE '%MUNICIPALIDAD DISTRITAL DE LOS OLIVOS%' GROUP BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "cantidad",
+        "monto_promedio",
+        "desviacion_estandar",
+        "monto_minimo",
+        "monto_maximo",
+        "percentil_25",
+        "mediana",
+        "percentil_75",
+        "percentil_95"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          53,
+          1874802.9786792456,
+          8448171.241123252,
+          80038.39,
+          61749459.0,
+          163132.48,
+          225000.0,
+          990022.0,
+          3892132.6159999995
+        ],
+        [
+          "ORDEN SERVICIO",
+          1172,
+          5733.326305460747,
+          7618.936808229726,
+          79.0,
+          49502.18,
+          1959.0,
+          3000.0,
+          6000.0,
+          23380.199999999997
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 10
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-18T09:14:49.609296",
+    "execution_id": 16
+  }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "id": "basic_15",
+    "question": "Dame las 3 empresas con mayor monto girado que es de tipo contribuyente sociedad anonima, quiero ruc_proveedor, nombre_proveedor y total_monto",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) AS total_monto FROM transparencia_sunat WHERE tipo_contribuyente = 'SOCIEDAD ANONIMA' GROUP BY ruc_proveedor, nombre_proveedor ORDER BY total_monto DESC LIMIT 3;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "total_monto"
+      ],
+      "rows": [
+        [
+          "20557410008",
+          "METRO DE LIMA LINEA 2 S.A.",
+          9649129064.13
+        ],
+        [
+          "20100047218",
+          "BANCO DE CREDITO DEL PERU",
+          8015071213.5
+        ],
+        [
+          "20511004251",
+          "CONCESIONARIA IIRSA NORTE S.A.",
+          6680126248.24
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) AS total_monto FROM transparencia_sunat WHERE tipo_contribuyente = 'SOCIEDAD ANONIMA' GROUP BY ruc_proveedor, nombre_proveedor ORDER BY total_monto DESC LIMIT 3;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "total_monto"
+      ],
+      "rows": [
+        [
+          "20557410008",
+          "METRO DE LIMA LINEA 2 S.A.",
+          9649129064.13
+        ],
+        [
+          "20100047218",
+          "BANCO DE CREDITO DEL PERU",
+          8015071213.5
+        ],
+        [
+          "20511004251",
+          "CONCESIONARIA IIRSA NORTE S.A.",
+          6680126248.24
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor, SUM(monto_girado) AS total_girado FROM transparencia_sunat WHERE tipo_contribuyente ILIKE '%sociedad anonima%' GROUP BY nombre_proveedor ORDER BY total_girado DESC LIMIT 3;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "total_monto"
+      ],
+      "rows": [
+        [
+          "20557410008",
+          "METRO DE LIMA LINEA 2 S.A.",
+          9649129064.13
+        ],
+        [
+          "20100047218",
+          "BANCO DE CREDITO DEL PERU",
+          8015071213.5
+        ],
+        [
+          "20511004251",
+          "CONCESIONARIA IIRSA NORTE S.A.",
+          6680126248.24
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE tipo_contribuyente = 'SOCIEDAD ANONIMA' ORDER BY monto_girado DESC LIMIT 3;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20557410008",
+          "METRO DE LIMA LINEA 2 S.A.",
+          9649129064.13
+        ],
+        [
+          "20100047218",
+          "BANCO DE CREDITO DEL PERU",
+          8015071213.5
+        ],
+        [
+          "20511004251",
+          "CONCESIONARIA IIRSA NORTE S.A.",
+          6680126248.24
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:53:15.561726",
+    "execution_id": 15
+  }
+]

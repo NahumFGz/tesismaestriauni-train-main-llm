@@ -1,0 +1,102 @@
+[
+  {
+    "id": "intermediate_33",
+    "question": "Con que entidades ha firmado mas ordenes de servicio el proveedor 'IBM DEL PERU S A C', quiero el top 1?",
+    "query": "SELECT nombre_proveedor, monto, fecha_inicio, EXTRACT(YEAR FROM fecha_inicio) as año_firma, objeto_contrato, entidad_contratante FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' ORDER BY monto ASC LIMIT 1;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "monto",
+        "fecha_inicio",
+        "año_firma",
+        "objeto_contrato",
+        "entidad_contratante"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          176.17,
+          "2019-12-31",
+          2019.0,
+          "SERVICIO",
+          "EMPRESA DE GENERACION ELECTRICA SAN GABAN S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, monto, fecha_inicio, EXTRACT(YEAR FROM fecha_inicio) as año_firma, objeto_contrato, entidad_contratante FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' ORDER BY monto ASC LIMIT 1;",
+      "columns": [
+        "nombre_proveedor",
+        "monto",
+        "fecha_inicio",
+        "año_firma",
+        "objeto_contrato",
+        "entidad_contratante"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          176.17,
+          "2019-12-31",
+          2019.0,
+          "SERVICIO",
+          "EMPRESA DE GENERACION ELECTRICA SAN GABAN S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor, monto, fecha_inicio, EXTRACT(YEAR FROM fecha_inicio) as año_firma, objeto_contrato, entidad_contratante FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' ORDER BY monto ASC LIMIT 1;",
+      "columns": [
+        "nombre_proveedor",
+        "monto",
+        "fecha_inicio",
+        "año_firma",
+        "objeto_contrato",
+        "entidad_contratante"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          176.17,
+          "2019-12-31",
+          2019.0,
+          "SERVICIO",
+          "EMPRESA DE GENERACION ELECTRICA SAN GABAN S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, monto, fecha_inicio, EXTRACT(YEAR FROM fecha_inicio) as año_firma, objeto_contrato, entidad_contratante FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' ORDER BY monto ASC LIMIT 1;",
+      "columns": [
+        "nombre_proveedor",
+        "monto",
+        "fecha_inicio",
+        "año_firma",
+        "objeto_contrato",
+        "entidad_contratante"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          176.17,
+          "2019-12-31",
+          2019.0,
+          "SERVICIO",
+          "EMPRESA DE GENERACION ELECTRICA SAN GABAN S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T08:46:36.370339",
+    "execution_id": 33
+  }
+]

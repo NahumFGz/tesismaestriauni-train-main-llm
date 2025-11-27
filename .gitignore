@@ -1,0 +1,24 @@
+# Ambientes Virtuales de Python
+venv_*/
+
+# Ignorar datasets
+data/*.parquet
+
+# Ignorar postgres
+postgres/
+
+# Ignorar .env
+.env
+
+# Ignorar .rar, .zip
+*.zip
+*.7z
+*.parquet
+
+# Ignorar DS_Store
+.DS_Store
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+.ipynb_checkpoints

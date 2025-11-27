@@ -1,0 +1,98 @@
+[
+  {
+    "id": "basic_28",
+    "question": "Cuantos contratos y ordenes de servicio tiene el ruc 20100127670, quiero las columnas proveedor, tipo_contrato y cantidad",
+    "query": "SELECT nombre_proveedor, tipo_contrato, count(ruc_proveedor) as cantidad FROM contratos_orden_servicio  WHERE ruc_proveedor = '20100127670' GROUP BY nombre_proveedor, tipo_contrato;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "PFIZER S A",
+          "CONTRATO",
+          29
+        ],
+        [
+          "PFIZER S A",
+          "ORDEN SERVICIO",
+          471
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, tipo_contrato, count(ruc_proveedor) as cantidad FROM contratos_orden_servicio  WHERE ruc_proveedor = '20100127670' GROUP BY nombre_proveedor, tipo_contrato;",
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "PFIZER S A",
+          "CONTRATO",
+          29
+        ],
+        [
+          "PFIZER S A",
+          "ORDEN SERVICIO",
+          471
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.nombre_proveedor, co.tipo_contrato, COUNT(*) AS cantidad FROM contratos_orden_servicio co WHERE co.ruc_proveedor = '20100127670' GROUP BY co.nombre_proveedor, co.tipo_contrato;",
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "PFIZER S A",
+          "CONTRATO",
+          29
+        ],
+        [
+          "PFIZER S A",
+          "ORDEN SERVICIO",
+          471
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT t.nombre_proveedor as nombre_proveedor, c.tipo_contrato, COUNT(*) as cantidad FROM contratos_orden_servicio c JOIN transparencia_sunat t ON c.ruc_proveedor = t.ruc_proveedor WHERE c.ruc_proveedor = '20100127670' GROUP BY t.nombre_proveedor, c.tipo_contrato ORDER BY c.tipo_contrato;",
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "PFIZER S A",
+          "CONTRATO",
+          29
+        ],
+        [
+          "PFIZER S A",
+          "ORDEN SERVICIO",
+          471
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T03:11:33.239670",
+    "execution_id": 28
+  }
+]

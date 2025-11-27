@@ -1,0 +1,86 @@
+[
+  {
+    "id": "basic_27",
+    "question": "Cuantos contratos y ordenes de servicio tiene el ruc 20100030595",
+    "query": "SELECT nombre_proveedor, tipo_contrato, count(ruc_proveedor) as cantidad FROM contratos_orden_servicio WHERE ruc_proveedor = '20100030595' GROUP BY nombre_proveedor, tipo_contrato;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "BANCO DE LA NACION",
+          "CONTRATO",
+          4
+        ],
+        [
+          "BANCO DE LA NACION",
+          "ORDEN SERVICIO",
+          496
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, tipo_contrato, count(ruc_proveedor) as cantidad FROM contratos_orden_servicio WHERE ruc_proveedor = '20100030595' GROUP BY nombre_proveedor, tipo_contrato;",
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "BANCO DE LA NACION",
+          "CONTRATO",
+          4
+        ],
+        [
+          "BANCO DE LA NACION",
+          "ORDEN SERVICIO",
+          496
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT COUNT(*) AS total_contratos FROM contratos_orden_servicio co WHERE co.ruc_proveedor = '20100030595';",
+      "columns": [
+        "total_contratos"
+      ],
+      "rows": [
+        [
+          500
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT tipo_contrato, COUNT(*) as cantidad FROM contratos_orden_servicio WHERE ruc_proveedor = '20100030595' GROUP BY tipo_contrato ORDER BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          4
+        ],
+        [
+          "ORDEN SERVICIO",
+          496
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T03:10:30.401388",
+    "execution_id": 27
+  }
+]

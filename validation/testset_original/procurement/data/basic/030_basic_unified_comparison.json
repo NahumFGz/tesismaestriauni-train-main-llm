@@ -1,0 +1,214 @@
+[
+  {
+    "id": "basic_30",
+    "question": "Dame el conteo por objeto contrato de los contratos y ordenes de servicio, debe ser un ranking descendente de todos los tipos de objetos contrato",
+    "query": "SELECT objeto_contrato, count(ruc_proveedor) as cantidad FROM contratos_orden_servicio GROUP BY objeto_contrato ORDER BY cantidad DESC;",
+    "expected": {
+      "columns": [
+        "objeto_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "SERVICIO",
+          7059303
+        ],
+        [
+          "BIEN",
+          5234495
+        ],
+        [
+          "EJECUCIÓN DE OBRA",
+          148468
+        ],
+        [
+          "CONSULTORÍA DE OBRA",
+          134833
+        ],
+        [
+          "SERVICIO EN GENERAL",
+          32549
+        ],
+        [
+          "SERVICIO DE CONSULTORÍA",
+          7333
+        ],
+        [
+          "None",
+          3936
+        ],
+        [
+          "ARRENDAMIENTO DE BIENES",
+          1303
+        ],
+        [
+          "SUMINISTRO",
+          1135
+        ],
+        [
+          "SEGURO",
+          62
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT objeto_contrato, count(ruc_proveedor) as cantidad FROM contratos_orden_servicio GROUP BY objeto_contrato ORDER BY cantidad DESC;",
+      "columns": [
+        "objeto_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "SERVICIO",
+          7059303
+        ],
+        [
+          "BIEN",
+          5234495
+        ],
+        [
+          "EJECUCIÓN DE OBRA",
+          148468
+        ],
+        [
+          "CONSULTORÍA DE OBRA",
+          134833
+        ],
+        [
+          "SERVICIO EN GENERAL",
+          32549
+        ],
+        [
+          "SERVICIO DE CONSULTORÍA",
+          7333
+        ],
+        [
+          "None",
+          3936
+        ],
+        [
+          "ARRENDAMIENTO DE BIENES",
+          1303
+        ],
+        [
+          "SUMINISTRO",
+          1135
+        ],
+        [
+          "SEGURO",
+          62
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT objeto_contrato, COUNT(*) AS conteo FROM contratos_orden_servicio GROUP BY objeto_contrato ORDER BY conteo DESC;",
+      "columns": [
+        "objeto_contrato",
+        "conteo"
+      ],
+      "rows": [
+        [
+          "SERVICIO",
+          7059303
+        ],
+        [
+          "BIEN",
+          5234495
+        ],
+        [
+          "EJECUCIÓN DE OBRA",
+          148468
+        ],
+        [
+          "CONSULTORÍA DE OBRA",
+          134833
+        ],
+        [
+          "SERVICIO EN GENERAL",
+          32549
+        ],
+        [
+          "SERVICIO DE CONSULTORÍA",
+          7333
+        ],
+        [
+          "None",
+          3936
+        ],
+        [
+          "ARRENDAMIENTO DE BIENES",
+          1303
+        ],
+        [
+          "SUMINISTRO",
+          1135
+        ],
+        [
+          "SEGURO",
+          62
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT objeto_contrato, COUNT(*) as cantidad FROM contratos_orden_servicio GROUP BY objeto_contrato ORDER BY cantidad DESC;",
+      "columns": [
+        "objeto_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "SERVICIO",
+          7059303
+        ],
+        [
+          "BIEN",
+          5234495
+        ],
+        [
+          "EJECUCIÓN DE OBRA",
+          148468
+        ],
+        [
+          "CONSULTORÍA DE OBRA",
+          134833
+        ],
+        [
+          "SERVICIO EN GENERAL",
+          32549
+        ],
+        [
+          "SERVICIO DE CONSULTORÍA",
+          7333
+        ],
+        [
+          "None",
+          3936
+        ],
+        [
+          "ARRENDAMIENTO DE BIENES",
+          1303
+        ],
+        [
+          "SUMINISTRO",
+          1135
+        ],
+        [
+          "SEGURO",
+          62
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T03:14:12.749163",
+    "execution_id": 30
+  }
+]

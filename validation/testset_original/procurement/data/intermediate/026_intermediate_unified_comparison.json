@@ -1,0 +1,86 @@
+[
+  {
+    "id": "intermediate_26",
+    "question": "Dame el perfil completo del proveedor de ruc 10295936318, quiero todas las columnas disponibles",
+    "query": "SELECT * FROM transparencia_sunat WHERE ruc_proveedor = '10295936318';",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "tipo_empresa_persona_juridica_natural",
+        "tipo_contribuyente",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "10295936318",
+          "HERRERA ORE PALERMO",
+          25863604.43,
+          "PERSONA NATURAL",
+          "PERSONA NATURAL CON NEGOCIO",
+          "2006-08-07"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT * FROM transparencia_sunat WHERE ruc_proveedor = '10295936318';",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "tipo_empresa_persona_juridica_natural",
+        "tipo_contribuyente",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "10295936318",
+          "HERRERA ORE PALERMO",
+          25863604.43,
+          "PERSONA NATURAL",
+          "PERSONA NATURAL CON NEGOCIO",
+          "2006-08-07"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "our_agent": {
+      "sql_query": "SELECT * FROM transparencia_sunat WHERE ruc_proveedor = '10295936318'",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "tipo_empresa_persona_juridica_natural",
+        "tipo_contribuyente",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "10295936318",
+          "HERRERA ORE PALERMO",
+          25863604.43,
+          "PERSONA NATURAL",
+          "PERSONA NATURAL CON NEGOCIO",
+          "2006-08-07"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T04:30:55.391919",
+    "execution_id": 26
+  }
+]

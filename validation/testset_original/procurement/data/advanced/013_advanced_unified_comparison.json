@@ -1,0 +1,182 @@
+[
+  {
+    "id": "advanced_13",
+    "question": "Dame los estadisticos de los montos de los contratos y ordenes de servicio en 2023. Solo quiero el tipo de contrato, la cantidad, el monto promedio, la desviacion estandar, el monto minimo, el monto maximo, el percentil 25, la mediana, el percentil 75 y el percentil 95.",
+    "query": "SELECT tipo_contrato, COUNT(*) as cantidad, AVG(monto) as monto_promedio, STDDEV(monto) as desviacion_estandar, MIN(monto) as monto_minimo, MAX(monto) as monto_maximo, PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY monto) as percentil_25, PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY monto) as mediana, PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY monto) as percentil_75, PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY monto) as percentil_95 FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY tipo_contrato ORDER BY tipo_contrato;",
+    "expected": {
+      "columns": [
+        "tipo_contrato",
+        "cantidad",
+        "monto_promedio",
+        "desviacion_estandar",
+        "monto_minimo",
+        "monto_maximo",
+        "percentil_25",
+        "mediana",
+        "percentil_75",
+        "percentil_95"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          62568,
+          1073898.6852221582,
+          7244202.953735412,
+          1.0,
+          581731894.5,
+          75079.7175,
+          164991.29,
+          449000.0,
+          3713797.9634999987
+        ],
+        [
+          "ORDEN SERVICIO",
+          1615252,
+          9101.372037291465,
+          60933.84188562336,
+          0.1,
+          35406591.56,
+          1400.0,
+          3960.0,
+          10521.789999999999,
+          34400.0
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 10
+    },
+    "baseline_template": {
+      "sql_query": "SELECT tipo_contrato, COUNT(*) as cantidad, AVG(monto) as monto_promedio, STDDEV(monto) as desviacion_estandar, MIN(monto) as monto_minimo, MAX(monto) as monto_maximo, PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY monto) as percentil_25, PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY monto) as mediana, PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY monto) as percentil_75, PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY monto) as percentil_95 FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY tipo_contrato ORDER BY tipo_contrato LIMIT 50;",
+      "columns": [
+        "tipo_contrato",
+        "cantidad",
+        "monto_promedio",
+        "desviacion_estandar",
+        "monto_minimo",
+        "monto_maximo",
+        "percentil_25",
+        "mediana",
+        "percentil_75",
+        "percentil_95"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          62568,
+          1073898.6852221582,
+          7244202.953735412,
+          1.0,
+          581731894.5,
+          75079.7175,
+          164991.29,
+          449000.0,
+          3713797.9634999987
+        ],
+        [
+          "ORDEN SERVICIO",
+          1615252,
+          9101.372037291465,
+          60933.84188562336,
+          0.1,
+          35406591.56,
+          1400.0,
+          3960.0,
+          10521.789999999999,
+          34400.0
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 10
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT tipo_contrato, COUNT(*) as cantidad, AVG(monto) as monto_promedio, STDDEV(monto) as desviacion_estandar, MIN(monto) as monto_minimo, MAX(monto) as monto_maximo, PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY monto) as percentil_25, PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY monto) as mediana, PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY monto) as percentil_75, PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY monto) as percentil_95 FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY tipo_contrato ORDER BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "cantidad",
+        "monto_promedio",
+        "desviacion_estandar",
+        "monto_minimo",
+        "monto_maximo",
+        "percentil_25",
+        "mediana",
+        "percentil_75",
+        "percentil_95"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          62568,
+          1073898.6852221582,
+          7244202.953735412,
+          1.0,
+          581731894.5,
+          75079.7175,
+          164991.29,
+          449000.0,
+          3713797.9634999987
+        ],
+        [
+          "ORDEN SERVICIO",
+          1615252,
+          9101.372037291465,
+          60933.84188562336,
+          0.1,
+          35406591.56,
+          1400.0,
+          3960.0,
+          10521.789999999999,
+          34400.0
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 10
+    },
+    "our_agent": {
+      "sql_query": "SELECT tipo_contrato, COUNT(*) as cantidad, AVG(monto) as monto_promedio, STDDEV(monto) as desviacion_estandar, MIN(monto) as monto_minimo, MAX(monto) as monto_maximo, PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY monto) as percentil_25, PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY monto) as mediana, PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY monto) as percentil_75, PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY monto) as percentil_95 FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY tipo_contrato ORDER BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "cantidad",
+        "monto_promedio",
+        "desviacion_estandar",
+        "monto_minimo",
+        "monto_maximo",
+        "percentil_25",
+        "mediana",
+        "percentil_75",
+        "percentil_95"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          62568,
+          1073898.6852221582,
+          7244202.953735412,
+          1.0,
+          581731894.5,
+          75079.7175,
+          164991.29,
+          449000.0,
+          3713797.9634999987
+        ],
+        [
+          "ORDEN SERVICIO",
+          1615252,
+          9101.372037291465,
+          60933.84188562336,
+          0.1,
+          35406591.56,
+          1400.0,
+          3960.0,
+          10521.789999999999,
+          34400.0
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 10
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-18T08:56:45.897684",
+    "execution_id": 13
+  }
+]

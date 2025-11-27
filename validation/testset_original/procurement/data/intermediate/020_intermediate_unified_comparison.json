@@ -1,0 +1,206 @@
+[
+  {
+    "id": "intermediate_20",
+    "question": "Contratos y ordenes de servicio del proveedor 'CESEL S A' en 2007, quiero las columnas nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto",
+    "query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'CESEL S A' AND EXTRACT(YEAR FROM fecha_inicio) = 2007 ORDER BY fecha_inicio;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "CESEL S A",
+          "ELECTRICIDAD DEL PERU S.A.",
+          "CONTRATO",
+          "SERVICIO DE CONSULTORÍA",
+          "2007-01-17",
+          "SOLES",
+          96772.96
+        ],
+        [
+          "CESEL S A",
+          "EMPRESA DE GENERACION ELECTRICA MACHUPICCHU",
+          "CONTRATO",
+          "CONSULTORÍA DE OBRA",
+          "2007-05-23",
+          "SOLES",
+          249000.0
+        ],
+        [
+          "CESEL S A",
+          "EMPRESA REGIONAL DE SERVICIOS PUBLICOS DE ELECTRICIDAD DEL SUR ESTE S.A.",
+          "CONTRATO",
+          "CONSULTORÍA DE OBRA",
+          "2007-06-26",
+          "DOLARES",
+          1134371.75
+        ],
+        [
+          "CESEL S A",
+          "EMPRESA DE GENERACION ELECTRICA SAN GABAN S.A.",
+          "CONTRATO",
+          "SERVICIO DE CONSULTORÍA",
+          "2007-11-29",
+          "DOLARES",
+          388064.95
+        ],
+        [
+          "CESEL S A",
+          "ELECTRICIDAD DEL PERU S.A.",
+          "CONTRATO",
+          "SERVICIO DE CONSULTORÍA",
+          "2007-12-07",
+          "SOLES",
+          763490.35
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 7
+    },
+    "baseline_template": {
+      "sql_query": "SELECT fecha_de_inicio_de_actividades FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%CESEL S A%' LIMIT 1;",
+      "columns": [
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "1972-09-02"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'CESEL S A' AND EXTRACT(YEAR FROM fecha_inicio) = 2007 ORDER BY fecha_inicio;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "CESEL S A",
+          "ELECTRICIDAD DEL PERU S.A.",
+          "CONTRATO",
+          "SERVICIO DE CONSULTORÍA",
+          "2007-01-17",
+          "SOLES",
+          96772.96
+        ],
+        [
+          "CESEL S A",
+          "EMPRESA DE GENERACION ELECTRICA MACHUPICCHU",
+          "CONTRATO",
+          "CONSULTORÍA DE OBRA",
+          "2007-05-23",
+          "SOLES",
+          249000.0
+        ],
+        [
+          "CESEL S A",
+          "EMPRESA REGIONAL DE SERVICIOS PUBLICOS DE ELECTRICIDAD DEL SUR ESTE S.A.",
+          "CONTRATO",
+          "CONSULTORÍA DE OBRA",
+          "2007-06-26",
+          "DOLARES",
+          1134371.75
+        ],
+        [
+          "CESEL S A",
+          "EMPRESA DE GENERACION ELECTRICA SAN GABAN S.A.",
+          "CONTRATO",
+          "SERVICIO DE CONSULTORÍA",
+          "2007-11-29",
+          "DOLARES",
+          388064.95
+        ],
+        [
+          "CESEL S A",
+          "ELECTRICIDAD DEL PERU S.A.",
+          "CONTRATO",
+          "SERVICIO DE CONSULTORÍA",
+          "2007-12-07",
+          "SOLES",
+          763490.35
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 7
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'CESEL S A' AND EXTRACT(YEAR FROM fecha_inicio) = 2007 ORDER BY fecha_inicio;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "CESEL S A",
+          "ELECTRICIDAD DEL PERU S.A.",
+          "CONTRATO",
+          "SERVICIO DE CONSULTORÍA",
+          "2007-01-17",
+          "SOLES",
+          96772.96
+        ],
+        [
+          "CESEL S A",
+          "EMPRESA DE GENERACION ELECTRICA MACHUPICCHU",
+          "CONTRATO",
+          "CONSULTORÍA DE OBRA",
+          "2007-05-23",
+          "SOLES",
+          249000.0
+        ],
+        [
+          "CESEL S A",
+          "EMPRESA REGIONAL DE SERVICIOS PUBLICOS DE ELECTRICIDAD DEL SUR ESTE S.A.",
+          "CONTRATO",
+          "CONSULTORÍA DE OBRA",
+          "2007-06-26",
+          "DOLARES",
+          1134371.75
+        ],
+        [
+          "CESEL S A",
+          "EMPRESA DE GENERACION ELECTRICA SAN GABAN S.A.",
+          "CONTRATO",
+          "SERVICIO DE CONSULTORÍA",
+          "2007-11-29",
+          "DOLARES",
+          388064.95
+        ],
+        [
+          "CESEL S A",
+          "ELECTRICIDAD DEL PERU S.A.",
+          "CONTRATO",
+          "SERVICIO DE CONSULTORÍA",
+          "2007-12-07",
+          "SOLES",
+          763490.35
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 7
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-15T06:11:34.822117",
+    "execution_id": 20
+  }
+]

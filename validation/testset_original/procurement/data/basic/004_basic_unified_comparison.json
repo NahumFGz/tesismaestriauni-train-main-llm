@@ -1,0 +1,84 @@
+[
+  {
+    "id": "basic_4",
+    "question": "Cuanto monto girado tiene el BCP en total en todos estos años?",
+    "query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%BCP%'",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "BCP ASOCIADOS S.A.C.",
+          3421741.79
+        ],
+        [
+          "EMPRESA DE MANTENIMIENTO Y CONSTRUCCION BCP EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          388944.39
+        ],
+        [
+          "CONSORCIO \" BCP \"",
+          212287.99
+        ],
+        [
+          "SINDICATO UNICO DE PESCADORES ARTESANALES - BUZOS CIVILES DEL PUERTO DE ILO - SUPABCPI",
+          148582.02
+        ]
+      ],
+      "row_count": 4,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT SUM(monto_girado) AS total_monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%BCP%';",
+      "columns": [
+        "total_monto_girado"
+      ],
+      "rows": [
+        [
+          4171556.1900000004
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%BCP%';",
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "BCP ASOCIADOS S.A.C.",
+          3421741.79
+        ],
+        [
+          "EMPRESA DE MANTENIMIENTO Y CONSTRUCCION BCP EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          388944.39
+        ],
+        [
+          "CONSORCIO \" BCP \"",
+          212287.99
+        ],
+        [
+          "SINDICATO UNICO DE PESCADORES ARTESANALES - BUZOS CIVILES DEL PUERTO DE ILO - SUPABCPI",
+          148582.02
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-09T21:45:34.166930",
+    "execution_id": 4
+  }
+]

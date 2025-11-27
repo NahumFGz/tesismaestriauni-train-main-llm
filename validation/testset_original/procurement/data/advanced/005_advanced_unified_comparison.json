@@ -1,0 +1,302 @@
+[
+  {
+    "id": "advanced_5",
+    "question": "Cuales son las 10 municipalidades que han firmado mayor numero de ordenes de servicio en el año 2024, solo quiero la entidad contratante, la cantidad de ordenes de servicio, el monto total de las ordenes de servicio y el monto medio de las ordenes de servicio.",
+    "query": "SELECT entidad_contratante, COUNT(*) AS total_contratos, SUM(monto) AS monto_total, SUM(monto)/COUNT(*) AS monto_medio FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2024 AND entidad_contratante ILIKE '%MUNICIPALIDAD%' GROUP BY entidad_contratante ORDER BY total_contratos DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "entidad_contratante",
+        "total_contratos",
+        "monto_total",
+        "monto_medio"
+      ],
+      "rows": [
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          6081,
+          206499567.57000002,
+          33958.1594425259
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DEL CALLAO",
+          5679,
+          235871693.3,
+          41534.01889417151
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE KIMBIRI",
+          4325,
+          84396997.65999995,
+          19513.75668439305
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE MEGANTONI",
+          3559,
+          371045351.00000006,
+          104255.50744591179
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE TORATA",
+          3443,
+          57267888.45000001,
+          16633.13634911415
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE SAN ROMAN - JULIACA",
+          3287,
+          80269566.72000001,
+          24420.31235777305
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          3159,
+          545170909.0400002,
+          172577.05256093707
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE SANTIAGO DE SURCO",
+          2959,
+          179903250.3,
+          60798.66519094289
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CERRO COLORADO",
+          2956,
+          104592113.15999997,
+          35382.988213802426
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE ECHARATI",
+          2915,
+          37881371.10000002,
+          12995.32456260721
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) AS total_contratos, SUM(monto) AS monto_total, SUM(monto)/COUNT(*) AS monto_medio FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2024 AND entidad_contratante ILIKE '%MUNICIPALIDAD%' GROUP BY entidad_contratante ORDER BY total_contratos DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos",
+        "monto_total",
+        "monto_medio"
+      ],
+      "rows": [
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          6081,
+          206499567.57000002,
+          33958.1594425259
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DEL CALLAO",
+          5679,
+          235871693.3,
+          41534.01889417151
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE KIMBIRI",
+          4325,
+          84396997.65999995,
+          19513.75668439305
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE MEGANTONI",
+          3559,
+          371045351.00000006,
+          104255.50744591179
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE TORATA",
+          3443,
+          57267888.45000001,
+          16633.13634911415
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE SAN ROMAN - JULIACA",
+          3287,
+          80269566.72000001,
+          24420.31235777305
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          3159,
+          545170909.0400002,
+          172577.05256093707
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE SANTIAGO DE SURCO",
+          2959,
+          179903250.3,
+          60798.66519094289
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CERRO COLORADO",
+          2956,
+          104592113.15999997,
+          35382.988213802426
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE ECHARATI",
+          2915,
+          37881371.10000002,
+          12995.32456260721
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.entidad_contratante, COUNT(*) AS total_contratos, SUM(co.monto) AS monto_total, AVG(co.monto) AS monto_medio FROM contratos_orden_servicio co WHERE EXTRACT(YEAR FROM co.fecha_inicio) = 2024 AND co.tipo_contrato = 'ORDEN SERVICIO' GROUP BY co.entidad_contratante ORDER BY total_contratos DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos",
+        "monto_total",
+        "monto_medio"
+      ],
+      "rows": [
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          6081,
+          206499567.57000002,
+          33958.1594425259
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DEL CALLAO",
+          5679,
+          235871693.3,
+          41534.01889417151
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE KIMBIRI",
+          4325,
+          84396997.65999995,
+          19513.75668439305
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE MEGANTONI",
+          3559,
+          371045351.00000006,
+          104255.50744591179
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE TORATA",
+          3443,
+          57267888.45000001,
+          16633.13634911415
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE SAN ROMAN - JULIACA",
+          3287,
+          80269566.72000001,
+          24420.31235777305
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          3159,
+          545170909.0400002,
+          172577.05256093707
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE SANTIAGO DE SURCO",
+          2959,
+          179903250.3,
+          60798.66519094289
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CERRO COLORADO",
+          2956,
+          104592113.15999997,
+          35382.988213802426
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE ECHARATI",
+          2915,
+          37881371.10000002,
+          12995.32456260721
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as total_contratos, SUM(monto) as monto_total, AVG(monto) as monto_medio FROM contratos_orden_servicio WHERE tipo_contrato = 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM fecha_inicio) = 2024 AND entidad_contratante ILIKE '%municipalidad%' GROUP BY entidad_contratante ORDER BY total_contratos DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos",
+        "monto_total",
+        "monto_medio"
+      ],
+      "rows": [
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          6081,
+          206499567.57000002,
+          33958.1594425259
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DEL CALLAO",
+          5679,
+          235871693.3,
+          41534.01889417151
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE KIMBIRI",
+          4325,
+          84396997.65999995,
+          19513.75668439305
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE MEGANTONI",
+          3559,
+          371045351.00000006,
+          104255.50744591179
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE TORATA",
+          3443,
+          57267888.45000001,
+          16633.13634911415
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE SAN ROMAN - JULIACA",
+          3287,
+          80269566.72000001,
+          24420.31235777305
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          3159,
+          545170909.0400002,
+          172577.05256093707
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE SANTIAGO DE SURCO",
+          2959,
+          179903250.3,
+          60798.66519094289
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CERRO COLORADO",
+          2956,
+          104592113.15999997,
+          35382.988213802426
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE ECHARATI",
+          2915,
+          37881371.10000002,
+          12995.32456260721
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-17T12:49:13.584814",
+    "execution_id": 5
+  }
+]

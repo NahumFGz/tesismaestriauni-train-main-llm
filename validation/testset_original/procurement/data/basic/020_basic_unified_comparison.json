@@ -1,0 +1,182 @@
+[
+  {
+    "id": "basic_20",
+    "question": "Dame los 5 proveedores con menor monto girado que iniciaron sus actividades en 2002, dame el nombre de la empresa, el ruc, la fecha de inicio de actividades y el monto girado",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, fecha_de_inicio_de_actividades, SUM(monto_girado) as monto_total FROM transparencia_sunat WHERE EXTRACT(YEAR FROM fecha_de_inicio_de_actividades) = 2002 GROUP BY ruc_proveedor, nombre_proveedor, fecha_de_inicio_de_actividades ORDER BY monto_total ASC LIMIT 5;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20447358655",
+          "SERVICIOS ELECTRICOS THALES S.R.L.",
+          "2002-02-01",
+          258131.0
+        ],
+        [
+          "10060315642",
+          "GARCIA DAVILA GUILLERMO",
+          "2002-03-26",
+          258170.0
+        ],
+        [
+          "10015563252",
+          "AQUINO CUTIPA JESUS MANUEL",
+          "2002-04-24",
+          258311.0
+        ],
+        [
+          "10282811311",
+          "RIVEROS GARAY RUBEN TEODORO",
+          "2002-11-05",
+          258318.08
+        ],
+        [
+          "10245827933",
+          "VARGAS RADO CIRILA",
+          "2002-08-02",
+          258338.5
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, fecha_de_inicio_de_actividades, SUM(monto_girado) as monto_total FROM transparencia_sunat WHERE EXTRACT(YEAR FROM fecha_de_inicio_de_actividades) = 2002 GROUP BY ruc_proveedor, nombre_proveedor, fecha_de_inicio_de_actividades ORDER BY monto_total ASC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20447358655",
+          "SERVICIOS ELECTRICOS THALES S.R.L.",
+          "2002-02-01",
+          258131.0
+        ],
+        [
+          "10060315642",
+          "GARCIA DAVILA GUILLERMO",
+          "2002-03-26",
+          258170.0
+        ],
+        [
+          "10015563252",
+          "AQUINO CUTIPA JESUS MANUEL",
+          "2002-04-24",
+          258311.0
+        ],
+        [
+          "10282811311",
+          "RIVEROS GARAY RUBEN TEODORO",
+          "2002-11-05",
+          258318.08
+        ],
+        [
+          "10245827933",
+          "VARGAS RADO CIRILA",
+          "2002-08-02",
+          258338.5
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 4
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT  nombre_proveedor,ruc_proveedor, fecha_de_inicio_de_actividades, monto_girado as monto_total FROM transparencia_sunat WHERE EXTRACT(YEAR FROM fecha_de_inicio_de_actividades) = 2002 ORDER BY 4 ASC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20447358655",
+          "SERVICIOS ELECTRICOS THALES S.R.L.",
+          "2002-02-01",
+          258131.0
+        ],
+        [
+          "10060315642",
+          "GARCIA DAVILA GUILLERMO",
+          "2002-03-26",
+          258170.0
+        ],
+        [
+          "10015563252",
+          "AQUINO CUTIPA JESUS MANUEL",
+          "2002-04-24",
+          258311.0
+        ],
+        [
+          "10282811311",
+          "RIVEROS GARAY RUBEN TEODORO",
+          "2002-11-05",
+          258318.08
+        ],
+        [
+          "10245827933",
+          "VARGAS RADO CIRILA",
+          "2002-08-02",
+          258338.5
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor,fecha_de_inicio_de_actividades, monto_girado as monto_total FROM transparencia_sunat WHERE EXTRACT(YEAR FROM fecha_de_inicio_de_actividades) = 2002 ORDER BY monto_girado ASC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20447358655",
+          "SERVICIOS ELECTRICOS THALES S.R.L.",
+          "2002-02-01",
+          258131.0
+        ],
+        [
+          "10060315642",
+          "GARCIA DAVILA GUILLERMO",
+          "2002-03-26",
+          258170.0
+        ],
+        [
+          "10015563252",
+          "AQUINO CUTIPA JESUS MANUEL",
+          "2002-04-24",
+          258311.0
+        ],
+        [
+          "10282811311",
+          "RIVEROS GARAY RUBEN TEODORO",
+          "2002-11-05",
+          258318.08
+        ],
+        [
+          "10245827933",
+          "VARGAS RADO CIRILA",
+          "2002-08-02",
+          258338.5
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 4
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T06:35:45.191483",
+    "execution_id": 20
+  }
+]

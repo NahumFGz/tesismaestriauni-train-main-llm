@@ -1,0 +1,120 @@
+[
+  {
+    "id": "intermediate_48",
+    "question": "Contratos en soles del proveedor BBVA en 2008",
+    "query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' AND EXTRACT(YEAR FROM fecha_inicio) = 2008 AND moneda = 'SOLES' AND tipo_contrato = 'CONTRATO' ORDER BY fecha_inicio;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "BANCO BBVA PERU",
+          "SERVICIO DE AGUA POTABLE Y ALCANTARILLADO DE LIMA - SEDAPAL",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-10-03",
+          "SOLES",
+          743702.4
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 7
+    },
+    "baseline_template": {
+      "sql_query": "SELECT entidad_contratante, objeto_contrato, monto, moneda, fecha_inicio, fecha_fin FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' AND EXTRACT(YEAR FROM fecha_inicio) = CAST('2008' AS INTEGER) ORDER BY fecha_inicio DESC LIMIT 100;",
+      "columns": [
+        "entidad_contratante",
+        "objeto_contrato",
+        "monto",
+        "moneda",
+        "fecha_inicio",
+        "fecha_fin"
+      ],
+      "rows": [
+        [
+          "SERVICIO DE AGUA POTABLE Y ALCANTARILLADO DE LIMA - SEDAPAL",
+          "SERVICIO EN GENERAL",
+          743702.4,
+          "SOLES",
+          "2008-10-03",
+          null
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.* FROM contratos_orden_servicio co WHERE co.nombre_proveedor ILIKE '%BBVA%' AND EXTRACT(YEAR FROM co.fecha_inicio) = 2008 AND co.moneda ILIKE '%soles%';",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "entidad_contratante",
+        "objeto_contrato",
+        "descripcion",
+        "moneda",
+        "monto",
+        "fecha_inicio",
+        "fecha_fin",
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "20100130204",
+          "BANCO BBVA PERU",
+          "SERVICIO DE AGUA POTABLE Y ALCANTARILLADO DE LIMA - SEDAPAL",
+          "SERVICIO EN GENERAL",
+          "SIN DESCRIPCION",
+          "SOLES",
+          743702.4,
+          "2008-10-03",
+          null,
+          "CONTRATO"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 10
+    },
+    "our_agent": {
+      "sql_query": "SELECT c.ruc_proveedor, c.nombre_proveedor, c.entidad_contratante, c.objeto_contrato, c.descripcion, c.moneda, c.monto, c.fecha_inicio, c.fecha_fin, c.tipo_contrato FROM contratos_orden_servicio c WHERE c.nombre_proveedor ILIKE '%BBVA%' AND c.moneda = 'SOLES' AND EXTRACT(YEAR FROM c.fecha_inicio) = 2008 ORDER BY c.fecha_inicio, c.monto DESC;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "entidad_contratante",
+        "objeto_contrato",
+        "descripcion",
+        "moneda",
+        "monto",
+        "fecha_inicio",
+        "fecha_fin",
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "20100130204",
+          "BANCO BBVA PERU",
+          "SERVICIO DE AGUA POTABLE Y ALCANTARILLADO DE LIMA - SEDAPAL",
+          "SERVICIO EN GENERAL",
+          "SIN DESCRIPCION",
+          "SOLES",
+          743702.4,
+          "2008-10-03",
+          null,
+          "CONTRATO"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 10
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-17T09:50:53.816689",
+    "execution_id": 48
+  }
+]

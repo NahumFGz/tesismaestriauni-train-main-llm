@@ -1,0 +1,302 @@
+[
+  {
+    "id": "advanced_2",
+    "question": "Proveedores que trabajan con más de 5 entidades diferentes, solo quiero los 10 primeros de mayor monto total. Dame las columnas de ruc_proveedor, nombre_proveedor, num_entidades y monto_total",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, COUNT(DISTINCT entidad_contratante) as num_entidades, SUM(monto) as monto_total FROM contratos_orden_servicio GROUP BY ruc_proveedor, nombre_proveedor HAVING COUNT(DISTINCT entidad_contratante) > 5 ORDER BY SUM(monto) DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "num_entidades",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20109565017",
+          "CONSTRUCCION Y ADMINISTRACION S.A.",
+          12,
+          6872845256.590002
+        ],
+        [
+          "20100114187",
+          "INGENIEROS CIVILES Y CONTRATISTAS GENERALES S.A.",
+          13,
+          6595272035.060001
+        ],
+        [
+          "20501439020",
+          "OBRAS DE INGENIERIA S.A.C.",
+          11,
+          6292824083.49
+        ],
+        [
+          "20100082391",
+          "COSAPI S A",
+          16,
+          6219671870.070001
+        ],
+        [
+          "20100995108",
+          "CONSTRUCTORA M.P.M. S.A.",
+          17,
+          3879839670.140001
+        ],
+        [
+          "20102297581",
+          "CONSTRUCTORA MALAGA HNOS S.A.",
+          13,
+          3660901022.6299996
+        ],
+        [
+          "20100154057",
+          "CUMBRA PERÚ S.A.",
+          15,
+          3467268486.0599985
+        ],
+        [
+          "20536612972",
+          "CMO GROUP S.A.C.",
+          16,
+          3451856424.68
+        ],
+        [
+          "20602979173",
+          "SINOHYDRO CORPORATION LIMITED, SUCURSAL DEL PERU",
+          12,
+          3079724315.989999
+        ],
+        [
+          "20601116082",
+          "CHINA RAILWAY N° 10 ENGINEERING GROUP CO., LTD SUCURSAL DEL PERU",
+          15,
+          3064702294.370001
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, COUNT(DISTINCT entidad_contratante) as num_entidades, SUM(monto) as monto_total FROM contratos_orden_servicio GROUP BY ruc_proveedor, nombre_proveedor HAVING COUNT(DISTINCT entidad_contratante) > 5 ORDER BY SUM(monto) DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "num_entidades",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20109565017",
+          "CONSTRUCCION Y ADMINISTRACION S.A.",
+          12,
+          6872845256.590002
+        ],
+        [
+          "20100114187",
+          "INGENIEROS CIVILES Y CONTRATISTAS GENERALES S.A.",
+          13,
+          6595272035.060001
+        ],
+        [
+          "20501439020",
+          "OBRAS DE INGENIERIA S.A.C.",
+          11,
+          6292824083.49
+        ],
+        [
+          "20100082391",
+          "COSAPI S A",
+          16,
+          6219671870.070001
+        ],
+        [
+          "20100995108",
+          "CONSTRUCTORA M.P.M. S.A.",
+          17,
+          3879839670.140001
+        ],
+        [
+          "20102297581",
+          "CONSTRUCTORA MALAGA HNOS S.A.",
+          13,
+          3660901022.6299996
+        ],
+        [
+          "20100154057",
+          "CUMBRA PERÚ S.A.",
+          15,
+          3467268486.0599985
+        ],
+        [
+          "20536612972",
+          "CMO GROUP S.A.C.",
+          16,
+          3451856424.68
+        ],
+        [
+          "20602979173",
+          "SINOHYDRO CORPORATION LIMITED, SUCURSAL DEL PERU",
+          12,
+          3079724315.989999
+        ],
+        [
+          "20601116082",
+          "CHINA RAILWAY N° 10 ENGINEERING GROUP CO., LTD SUCURSAL DEL PERU",
+          15,
+          3064702294.370001
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, COUNT(DISTINCT entidad_contratante) as num_entidades, SUM(monto) as monto_total FROM contratos_orden_servicio GROUP BY ruc_proveedor, nombre_proveedor HAVING COUNT(DISTINCT entidad_contratante) > 5 ORDER BY SUM(monto) DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "num_entidades",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20109565017",
+          "CONSTRUCCION Y ADMINISTRACION S.A.",
+          12,
+          6872845256.590002
+        ],
+        [
+          "20100114187",
+          "INGENIEROS CIVILES Y CONTRATISTAS GENERALES S.A.",
+          13,
+          6595272035.060001
+        ],
+        [
+          "20501439020",
+          "OBRAS DE INGENIERIA S.A.C.",
+          11,
+          6292824083.49
+        ],
+        [
+          "20100082391",
+          "COSAPI S A",
+          16,
+          6219671870.070001
+        ],
+        [
+          "20100995108",
+          "CONSTRUCTORA M.P.M. S.A.",
+          17,
+          3879839670.140001
+        ],
+        [
+          "20102297581",
+          "CONSTRUCTORA MALAGA HNOS S.A.",
+          13,
+          3660901022.6299996
+        ],
+        [
+          "20100154057",
+          "CUMBRA PERÚ S.A.",
+          15,
+          3467268486.0599985
+        ],
+        [
+          "20536612972",
+          "CMO GROUP S.A.C.",
+          16,
+          3451856424.68
+        ],
+        [
+          "20602979173",
+          "SINOHYDRO CORPORATION LIMITED, SUCURSAL DEL PERU",
+          12,
+          3079724315.989999
+        ],
+        [
+          "20601116082",
+          "CHINA RAILWAY N° 10 ENGINEERING GROUP CO., LTD SUCURSAL DEL PERU",
+          15,
+          3064702294.370001
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT c.ruc_proveedor, c.nombre_proveedor, COUNT(DISTINCT c.entidad_contratante) as num_entidades, SUM(c.monto) as monto_total FROM contratos_orden_servicio c GROUP BY c.ruc_proveedor, c.nombre_proveedor HAVING COUNT(DISTINCT c.entidad_contratante) > 5 ORDER BY SUM(c.monto) DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "num_entidades",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20109565017",
+          "CONSTRUCCION Y ADMINISTRACION S.A.",
+          12,
+          6872845256.590002
+        ],
+        [
+          "20100114187",
+          "INGENIEROS CIVILES Y CONTRATISTAS GENERALES S.A.",
+          13,
+          6595272035.060001
+        ],
+        [
+          "20501439020",
+          "OBRAS DE INGENIERIA S.A.C.",
+          11,
+          6292824083.49
+        ],
+        [
+          "20100082391",
+          "COSAPI S A",
+          16,
+          6219671870.070001
+        ],
+        [
+          "20100995108",
+          "CONSTRUCTORA M.P.M. S.A.",
+          17,
+          3879839670.140001
+        ],
+        [
+          "20102297581",
+          "CONSTRUCTORA MALAGA HNOS S.A.",
+          13,
+          3660901022.6299996
+        ],
+        [
+          "20100154057",
+          "CUMBRA PERÚ S.A.",
+          15,
+          3467268486.0599985
+        ],
+        [
+          "20536612972",
+          "CMO GROUP S.A.C.",
+          16,
+          3451856424.68
+        ],
+        [
+          "20602979173",
+          "SINOHYDRO CORPORATION LIMITED, SUCURSAL DEL PERU",
+          12,
+          3079724315.989999
+        ],
+        [
+          "20601116082",
+          "CHINA RAILWAY N° 10 ENGINEERING GROUP CO., LTD SUCURSAL DEL PERU",
+          15,
+          3064702294.370001
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-17T10:01:31.119043",
+    "execution_id": 2
+  }
+]

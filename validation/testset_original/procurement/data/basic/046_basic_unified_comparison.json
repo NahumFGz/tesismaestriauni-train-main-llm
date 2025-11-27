@@ -1,0 +1,70 @@
+[
+  {
+    "id": "basic_46",
+    "question": "Dame la cantidad de contratos y ordenes de servicio que tiene el proveedor 20100053455 con entidad contratante MUNICIPALIDAD DISTRITAL DE PARACAS, quiero las columnas cantidad y monto",
+    "query": "SELECT count(*) as cantidad, sum(monto) as monto FROM contratos_orden_servicio WHERE ruc_proveedor = '20100053455' AND entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE PARACAS' GROUP BY objeto_contrato;",
+    "expected": {
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          103.0,
+          93449.06000000001
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT count(*) as cantidad, sum(monto) as monto FROM contratos_orden_servicio WHERE ruc_proveedor = '20100053455' AND entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE PARACAS' GROUP BY objeto_contrato;",
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          103.0,
+          93449.06000000001
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT count(*) as cantidad, sum(monto) as monto FROM contratos_orden_servicio WHERE ruc_proveedor = '20100053455' AND entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE PARACAS' GROUP BY objeto_contrato;",
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          103.0,
+          93449.06000000001
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT count(*) as cantidad, sum(monto) as monto FROM contratos_orden_servicio WHERE ruc_proveedor = '20100053455' AND entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE PARACAS' GROUP BY objeto_contrato;",
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          103.0,
+          93449.06000000001
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-12T08:58:15.319923",
+    "execution_id": 46
+  }
+]

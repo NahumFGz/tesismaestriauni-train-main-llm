@@ -1,0 +1,182 @@
+[
+  {
+    "id": "intermediate_16",
+    "question": "Contratos en soles del proveedor 'IBM DEL PERU S A C' en 2008, quiero las columnas nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto",
+    "query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND EXTRACT(YEAR FROM fecha_inicio) = 2008 AND moneda = 'SOLES' AND tipo_contrato = 'CONTRATO' ORDER BY fecha_inicio;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          "OFICINA NACIONAL DE PROCESOS ELECTORALES",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-04-22",
+          "SOLES",
+          12688.68
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "SUPERINTENDENCIA NACIONAL DE LOS REGISTROS PUBLICOS",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-11-26",
+          "SOLES",
+          829818.0
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "OFICINA NACIONAL DE PROCESOS ELECTORALES",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-22",
+          "SOLES",
+          145143.06
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 7
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND moneda = 'SOLES' AND EXTRACT(YEAR FROM fecha_inicio) = 2008 ORDER BY fecha_inicio;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          "OFICINA NACIONAL DE PROCESOS ELECTORALES",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-04-22",
+          "SOLES",
+          12688.68
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "SUPERINTENDENCIA NACIONAL DE LOS REGISTROS PUBLICOS",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-11-26",
+          "SOLES",
+          829818.0
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "OFICINA NACIONAL DE PROCESOS ELECTORALES",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-22",
+          "SOLES",
+          145143.06
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 7
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND moneda = 'SOLES' AND EXTRACT(YEAR FROM fecha_inicio) = 2008 ORDER BY fecha_inicio;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          "OFICINA NACIONAL DE PROCESOS ELECTORALES",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-04-22",
+          "SOLES",
+          12688.68
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "SUPERINTENDENCIA NACIONAL DE LOS REGISTROS PUBLICOS",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-11-26",
+          "SOLES",
+          829818.0
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "OFICINA NACIONAL DE PROCESOS ELECTORALES",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-22",
+          "SOLES",
+          145143.06
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 7
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND moneda = 'SOLES' AND EXTRACT(YEAR FROM fecha_inicio) = 2008 ORDER BY fecha_inicio;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          "OFICINA NACIONAL DE PROCESOS ELECTORALES",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-04-22",
+          "SOLES",
+          12688.68
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "SUPERINTENDENCIA NACIONAL DE LOS REGISTROS PUBLICOS",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-11-26",
+          "SOLES",
+          829818.0
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "OFICINA NACIONAL DE PROCESOS ELECTORALES",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-22",
+          "SOLES",
+          145143.06
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 7
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-15T06:08:24.117315",
+    "execution_id": 16
+  }
+]

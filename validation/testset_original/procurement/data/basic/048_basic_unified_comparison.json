@@ -1,0 +1,182 @@
+[
+  {
+    "id": "basic_48",
+    "question": "Dame el monto total de los contratos y ordenes de servicio por moneda, quiero las columnas moneda y monto ordenado por monto de forma descendente por monto",
+    "query": "SELECT moneda, SUM(monto) as monto FROM contratos_orden_servicio GROUP BY moneda ORDER BY monto DESC;",
+    "expected": {
+      "columns": [
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "SOLES",
+          155925111232803.03
+        ],
+        [
+          "DOLARES",
+          35914283348.87992
+        ],
+        [
+          "EUROS",
+          51781159.499999985
+        ],
+        [
+          "LIBRAS ESTERLINAS",
+          138179.75
+        ],
+        [
+          "YENES",
+          120031.64
+        ],
+        [
+          "FRANCOS SUIZOS",
+          103035.9
+        ],
+        [
+          "YUANS",
+          66381.16
+        ],
+        [
+          "DOLARES CANADIENSES",
+          59741.14
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT moneda, sum(monto) as monto FROM contratos_orden_servicio GROUP BY moneda ORDER BY monto DESC;",
+      "columns": [
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "SOLES",
+          155925111232803.03
+        ],
+        [
+          "DOLARES",
+          35914283348.87992
+        ],
+        [
+          "EUROS",
+          51781159.499999985
+        ],
+        [
+          "LIBRAS ESTERLINAS",
+          138179.75
+        ],
+        [
+          "YENES",
+          120031.64
+        ],
+        [
+          "FRANCOS SUIZOS",
+          103035.9
+        ],
+        [
+          "YUANS",
+          66381.16
+        ],
+        [
+          "DOLARES CANADIENSES",
+          59741.14
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT moneda, SUM(monto) as monto FROM contratos_orden_servicio GROUP BY moneda ORDER BY monto DESC;",
+      "columns": [
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "SOLES",
+          155925111232803.03
+        ],
+        [
+          "DOLARES",
+          35914283348.87992
+        ],
+        [
+          "EUROS",
+          51781159.499999985
+        ],
+        [
+          "LIBRAS ESTERLINAS",
+          138179.75
+        ],
+        [
+          "YENES",
+          120031.64
+        ],
+        [
+          "FRANCOS SUIZOS",
+          103035.9
+        ],
+        [
+          "YUANS",
+          66381.16
+        ],
+        [
+          "DOLARES CANADIENSES",
+          59741.14
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT moneda, SUM(monto) as monto FROM contratos_orden_servicio GROUP BY moneda ORDER BY monto DESC;",
+      "columns": [
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "SOLES",
+          155925111232803.03
+        ],
+        [
+          "DOLARES",
+          35914283348.87992
+        ],
+        [
+          "EUROS",
+          51781159.499999985
+        ],
+        [
+          "LIBRAS ESTERLINAS",
+          138179.75
+        ],
+        [
+          "YENES",
+          120031.64
+        ],
+        [
+          "FRANCOS SUIZOS",
+          103035.9
+        ],
+        [
+          "YUANS",
+          66381.16
+        ],
+        [
+          "DOLARES CANADIENSES",
+          59741.14
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-12T09:08:00.295195",
+    "execution_id": 48
+  }
+]

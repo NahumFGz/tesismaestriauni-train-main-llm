@@ -1,0 +1,62 @@
+[
+  {
+    "id": "basic_44",
+    "question": "Dame la cantidad empresas que tienen objeto contrato BIEN y entidad contratante MUNICIPALIDAD DISTRITAL DE PARACAS, quiero la cantidad y el monto total",
+    "query": "SELECT count(distinct ruc_proveedor) as cantidad, sum(monto) as monto FROM contratos_orden_servicio WHERE objeto_contrato = 'BIEN' AND entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE PARACAS' GROUP BY objeto_contrato;",
+    "expected": {
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          314.0,
+          23784683.73999998
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT COUNT(DISTINCT co.ruc_proveedor) AS cantidad_empresas, SUM(co.monto) AS monto_total FROM contratos_orden_servicio co WHERE co.objeto_contrato ILIKE '%BIEN%' AND co.entidad_contratante ILIKE '%MUNICIPALIDAD DISTRITAL DE PARACAS%' AND co.tipo_contrato IN ('CONTRATO', 'ORDEN SERVICIO');",
+      "columns": [
+        "cantidad_empresas",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          314.0,
+          23784683.73999998
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT COUNT(DISTINCT ruc_proveedor) as cantidad_empresas, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE objeto_contrato = 'BIEN' AND entidad_contratante = 'MUNICIPALIDAD DISTRITAL DE PARACAS'",
+      "columns": [
+        "cantidad_empresas",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          314,
+          23784683.73999999
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-12T08:51:03.512005",
+    "execution_id": 44
+  }
+]

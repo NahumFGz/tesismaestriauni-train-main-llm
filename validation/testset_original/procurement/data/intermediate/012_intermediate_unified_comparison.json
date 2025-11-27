@@ -1,0 +1,166 @@
+[
+  {
+    "id": "intermediate_12",
+    "question": "Dame los 3 contratos mas altos de la entidad contratante BANCO AGROPECUARIO en 2009, quiero las columnas nombre_proveedor, entidad_contratante, objeto_contrato, fecha_inicio, fecha_fin, monto",
+    "query": "SELECT nombre_proveedor, entidad_contratante, objeto_contrato, fecha_inicio, fecha_fin, monto FROM contratos_orden_servicio WHERE entidad_contratante = 'BANCO AGROPECUARIO' AND tipo_contrato = 'CONTRATO' AND EXTRACT(YEAR FROM fecha_inicio) = 2009 ORDER BY monto DESC LIMIT 3;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "objeto_contrato",
+        "fecha_inicio",
+        "fecha_fin",
+        "monto"
+      ],
+      "rows": [
+        [
+          "COSAPISOFT S.A",
+          "BANCO AGROPECUARIO",
+          "SERVICIO",
+          "2009-09-07",
+          null,
+          200000.0
+        ],
+        [
+          "INVERSIONES LUCIANA S.A",
+          "BANCO AGROPECUARIO",
+          "SERVICIO",
+          "2009-04-28",
+          null,
+          79874.1
+        ],
+        [
+          "SISTEMAS ELECTRICOS INTEGRADOS S.A.C.",
+          "BANCO AGROPECUARIO",
+          "BIEN",
+          "2009-09-28",
+          null,
+          19971.0
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 6
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, objeto_contrato, fecha_inicio, fecha_fin, monto FROM contratos_orden_servicio WHERE entidad_contratante = 'BANCO AGROPECUARIO' AND tipo_contrato = 'CONTRATO' AND EXTRACT(YEAR FROM fecha_inicio) = 2009 ORDER BY monto DESC LIMIT 3;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "objeto_contrato",
+        "fecha_inicio",
+        "fecha_fin",
+        "monto"
+      ],
+      "rows": [
+        [
+          "COSAPISOFT S.A",
+          "BANCO AGROPECUARIO",
+          "SERVICIO",
+          "2009-09-07",
+          null,
+          200000.0
+        ],
+        [
+          "INVERSIONES LUCIANA S.A",
+          "BANCO AGROPECUARIO",
+          "SERVICIO",
+          "2009-04-28",
+          null,
+          79874.1
+        ],
+        [
+          "SISTEMAS ELECTRICOS INTEGRADOS S.A.C.",
+          "BANCO AGROPECUARIO",
+          "BIEN",
+          "2009-09-28",
+          null,
+          19971.0
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 6
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.nombre_proveedor, co.entidad_contratante, co.objeto_contrato, co.fecha_inicio, co.fecha_fin, co.monto FROM contratos_orden_servicio co WHERE co.entidad_contratante ILIKE '%BANCO AGROPECUARIO%' AND EXTRACT(YEAR FROM co.fecha_inicio) = 2009 ORDER BY co.monto DESC LIMIT 3;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "objeto_contrato",
+        "fecha_inicio",
+        "fecha_fin",
+        "monto"
+      ],
+      "rows": [
+        [
+          "COSAPISOFT S.A",
+          "BANCO AGROPECUARIO",
+          "SERVICIO",
+          "2009-09-07",
+          null,
+          200000.0
+        ],
+        [
+          "INVERSIONES LUCIANA S.A",
+          "BANCO AGROPECUARIO",
+          "SERVICIO",
+          "2009-04-28",
+          null,
+          79874.1
+        ],
+        [
+          "SISTEMAS ELECTRICOS INTEGRADOS S.A.C.",
+          "BANCO AGROPECUARIO",
+          "BIEN",
+          "2009-09-28",
+          null,
+          19971.0
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 6
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, objeto_contrato, fecha_inicio, fecha_fin, monto FROM contratos_orden_servicio WHERE entidad_contratante = 'BANCO AGROPECUARIO' AND EXTRACT(YEAR FROM fecha_inicio) = 2009 AND tipo_contrato = 'CONTRATO' ORDER BY monto DESC LIMIT 3;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "objeto_contrato",
+        "fecha_inicio",
+        "fecha_fin",
+        "monto"
+      ],
+      "rows": [
+        [
+          "COSAPISOFT S.A",
+          "BANCO AGROPECUARIO",
+          "SERVICIO",
+          "2009-09-07",
+          null,
+          200000.0
+        ],
+        [
+          "INVERSIONES LUCIANA S.A",
+          "BANCO AGROPECUARIO",
+          "SERVICIO",
+          "2009-04-28",
+          null,
+          79874.1
+        ],
+        [
+          "SISTEMAS ELECTRICOS INTEGRADOS S.A.C.",
+          "BANCO AGROPECUARIO",
+          "BIEN",
+          "2009-09-28",
+          null,
+          19971.0
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 6
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-15T05:50:26.075629",
+    "execution_id": 12
+  }
+]

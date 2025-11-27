@@ -1,0 +1,62 @@
+[
+  {
+    "id": "basic_8",
+    "question": "¿Cuál es el ruc del proveedor con nombre AIDECA-PERU?",
+    "query": "SELECT ruc_proveedor FROM transparencia_sunat WHERE nombre_proveedor = 'AIDECA-PERU';",
+    "expected": {
+      "columns": [
+        "ruc_proveedor"
+      ],
+      "rows": [
+        [
+          "20386495158"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "¿Cuál es el ruc del proveedor con nombre AIDECA-PERU?",
+      "columns": [
+        "ruc_proveedor"
+      ],
+      "rows": [
+        [
+          "20386495158"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%AIDECA-PERU%';",
+      "columns": [
+        "ruc_proveedor"
+      ],
+      "rows": [
+        [
+          "20386495158"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor FROM transparencia_sunat WHERE nombre_proveedor = 'AIDECA-PERU';",
+      "columns": [
+        "ruc_proveedor"
+      ],
+      "rows": [
+        [
+          "20386495158"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:11:39.977061",
+    "execution_id": 8
+  }
+]

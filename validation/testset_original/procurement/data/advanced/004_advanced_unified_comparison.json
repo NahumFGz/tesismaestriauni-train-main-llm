@@ -1,0 +1,258 @@
+[
+  {
+    "id": "advanced_4",
+    "question": "Dame las 10 empresas que han firmado más contratos en los años 2022, 2023 y 2024, solo quiero el nombre de la empresa, la cantidad de contratos y el monto total de los contratos.",
+    "query": "SELECT entidad_contratante, COUNT(*) AS total_contratos, SUM(monto) AS monto_total FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) IN (2022, 2023, 2024) GROUP BY entidad_contratante ORDER BY total_contratos DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "entidad_contratante",
+        "total_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          96250,
+          6309542145.879973
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          27467,
+          822036046.9700005
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          26002,
+          416373310.7099997
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          21866,
+          568463748.8800001
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          20723,
+          822031950.3800001
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          20584,
+          484643279.1700001
+        ],
+        [
+          "MARINA DE GUERRA DEL PERU",
+          19336,
+          602430304.0599998
+        ],
+        [
+          "UNIVERSIDAD NACIONAL DE INGENIERIA",
+          18845,
+          204476719.9799998
+        ],
+        [
+          "GOBIERNO REGIONAL DE PIURA SEDE CENTRAL",
+          17569,
+          2066387013.0500011
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          17440,
+          1037720328.6700006
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) AS total_contratos, SUM(monto) AS monto_total FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) IN (2022, 2023, 2024) GROUP BY entidad_contratante ORDER BY total_contratos DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          96250,
+          6309542145.879973
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          27467,
+          822036046.9700005
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          26002,
+          416373310.7099997
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          21866,
+          568463748.8800001
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          20723,
+          822031950.3800001
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          20584,
+          484643279.1700001
+        ],
+        [
+          "MARINA DE GUERRA DEL PERU",
+          19336,
+          602430304.0599998
+        ],
+        [
+          "UNIVERSIDAD NACIONAL DE INGENIERIA",
+          18845,
+          204476719.9799998
+        ],
+        [
+          "GOBIERNO REGIONAL DE PIURA SEDE CENTRAL",
+          17569,
+          2066387013.0500011
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          17440,
+          1037720328.6700006
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) AS total_contratos, SUM(monto) AS monto_total FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) IN (2022, 2023, 2024) GROUP BY entidad_contratante ORDER BY total_contratos DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          96250,
+          6309542145.879973
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          27467,
+          822036046.9700005
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          26002,
+          416373310.7099997
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          21866,
+          568463748.8800001
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          20723,
+          822031950.3800001
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          20584,
+          484643279.1700001
+        ],
+        [
+          "MARINA DE GUERRA DEL PERU",
+          19336,
+          602430304.0599998
+        ],
+        [
+          "UNIVERSIDAD NACIONAL DE INGENIERIA",
+          18845,
+          204476719.9799998
+        ],
+        [
+          "GOBIERNO REGIONAL DE PIURA SEDE CENTRAL",
+          17569,
+          2066387013.0500011
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          17440,
+          1037720328.6700006
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) AS total_contratos, SUM(monto) AS monto_total FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) IN (2022, 2023, 2024) GROUP BY entidad_contratante ORDER BY total_contratos DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          96250,
+          6309542145.879973
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          27467,
+          822036046.9700005
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          26002,
+          416373310.7099997
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE PICHARI",
+          21866,
+          568463748.8800001
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          20723,
+          822031950.3800001
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          20584,
+          484643279.1700001
+        ],
+        [
+          "MARINA DE GUERRA DEL PERU",
+          19336,
+          602430304.0599998
+        ],
+        [
+          "UNIVERSIDAD NACIONAL DE INGENIERIA",
+          18845,
+          204476719.9799998
+        ],
+        [
+          "GOBIERNO REGIONAL DE PIURA SEDE CENTRAL",
+          17569,
+          2066387013.0500011
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          17440,
+          1037720328.6700006
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-17T12:42:39.517312",
+    "execution_id": 4
+  }
+]

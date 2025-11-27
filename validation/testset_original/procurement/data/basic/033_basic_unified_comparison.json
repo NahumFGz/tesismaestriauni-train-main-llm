@@ -1,0 +1,92 @@
+[
+  {
+    "id": "basic_33",
+    "question": "Cuanto monto girado tiene el proveedor con RUC 20331898008, quiero todas las columnas que tengas disponibles",
+    "query": "SELECT * FROM transparencia_sunat WHERE ruc_proveedor = '20331898008';",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "tipo_empresa_persona_juridica_natural",
+        "tipo_contribuyente",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20331898008",
+          "LUZ DEL SUR S.A.A.",
+          2336059214.89,
+          "PERSONA JURIDICA",
+          "SOCIEDAD ANONIMA ABIERTA",
+          "1996-08-26"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "baseline_template": {
+      "sql_query": "SELECT monto_girado FROM transparencia_sunat WHERE ruc_proveedor = '20331898008' LIMIT 1;",
+      "columns": [
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          2336059214.89
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT * FROM transparencia_sunat WHERE ruc_proveedor = '20331898008';",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "tipo_empresa_persona_juridica_natural",
+        "tipo_contribuyente",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20331898008",
+          "LUZ DEL SUR S.A.A.",
+          2336059214.89,
+          "PERSONA JURIDICA",
+          "SOCIEDAD ANONIMA ABIERTA",
+          "1996-08-26"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "our_agent": {
+      "sql_query": "SELECT * FROM transparencia_sunat WHERE ruc_proveedor = '20331898008'",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "tipo_empresa_persona_juridica_natural",
+        "tipo_contribuyente",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20331898008",
+          "LUZ DEL SUR S.A.A.",
+          2336059214.89,
+          "PERSONA JURIDICA",
+          "SOCIEDAD ANONIMA ABIERTA",
+          "1996-08-26"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T03:27:42.780938",
+    "execution_id": 33
+  }
+]

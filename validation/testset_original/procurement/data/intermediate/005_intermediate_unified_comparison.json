@@ -1,0 +1,214 @@
+[
+  {
+    "id": "intermediate_5",
+    "question": "¿Dame las 10 entidades que contrataron más proveedores en 2023?",
+    "query": "SELECT entidad_contratante, COUNT(DISTINCT ruc_proveedor) as cantidad_proveedores FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY entidad_contratante ORDER BY cantidad_proveedores DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "entidad_contratante",
+        "cantidad_proveedores"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          3635
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          3186
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          2768
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          2426
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - ADMINISTRACIÓN GENERAL",
+          2296
+        ],
+        [
+          "MINISTERIO DE SALUD",
+          2212
+        ],
+        [
+          "UNIVERSIDAD NACIONAL DE INGENIERIA",
+          2072
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          1869
+        ],
+        [
+          "MTC-PROYECTO ESPECIAL DE INFRAESTRUCTURA DE TRANSPORTE NACIONAL (PROVIAS NACIONAL)",
+          1814
+        ],
+        [
+          "MINISTERIO DE CULTURA",
+          1790
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT entidad_contratante, COUNT(DISTINCT ruc_proveedor) as cantidad_proveedores FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY entidad_contratante ORDER BY cantidad_proveedores DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_proveedores"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          3635
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          3186
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          2768
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          2426
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - ADMINISTRACIÓN GENERAL",
+          2296
+        ],
+        [
+          "MINISTERIO DE SALUD",
+          2212
+        ],
+        [
+          "UNIVERSIDAD NACIONAL DE INGENIERIA",
+          2072
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          1869
+        ],
+        [
+          "MTC-PROYECTO ESPECIAL DE INFRAESTRUCTURA DE TRANSPORTE NACIONAL (PROVIAS NACIONAL)",
+          1814
+        ],
+        [
+          "MINISTERIO DE CULTURA",
+          1790
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.entidad_contratante, COUNT(DISTINCT co.ruc_proveedor) AS cantidad_proveedores FROM contratos_orden_servicio co WHERE EXTRACT(YEAR FROM co.fecha_inicio) = 2023 GROUP BY co.entidad_contratante ORDER BY cantidad_proveedores DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_proveedores"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          3635
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          3186
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          2768
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          2426
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - ADMINISTRACIÓN GENERAL",
+          2296
+        ],
+        [
+          "MINISTERIO DE SALUD",
+          2212
+        ],
+        [
+          "UNIVERSIDAD NACIONAL DE INGENIERIA",
+          2072
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          1869
+        ],
+        [
+          "MTC-PROYECTO ESPECIAL DE INFRAESTRUCTURA DE TRANSPORTE NACIONAL (PROVIAS NACIONAL)",
+          1814
+        ],
+        [
+          "MINISTERIO DE CULTURA",
+          1790
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT entidad_contratante, COUNT(DISTINCT ruc_proveedor) as cantidad_proveedores FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY entidad_contratante ORDER BY cantidad_proveedores DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_proveedores"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          3635
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          3186
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          2768
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          2426
+        ],
+        [
+          "MINISTERIO DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO - ADMINISTRACIÓN GENERAL",
+          2296
+        ],
+        [
+          "MINISTERIO DE SALUD",
+          2212
+        ],
+        [
+          "UNIVERSIDAD NACIONAL DE INGENIERIA",
+          2072
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          1869
+        ],
+        [
+          "MTC-PROYECTO ESPECIAL DE INFRAESTRUCTURA DE TRANSPORTE NACIONAL (PROVIAS NACIONAL)",
+          1814
+        ],
+        [
+          "MINISTERIO DE CULTURA",
+          1790
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 2
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-13T21:43:37.437621",
+    "execution_id": 5
+  }
+]

@@ -1,0 +1,269 @@
+[
+  {
+    "id": "advanced_9",
+    "question": "10 proveedores cuyos 2 primeros digitos del ruc del proveedor sean 10 con mayor crecimiento interanual",
+    "query": "WITH yearly AS ( SELECT c.ruc_proveedor, c.nombre_proveedor, EXTRACT(YEAR FROM c.fecha_inicio)::int AS anio, SUM(c.monto) AS monto_anual FROM contratos_orden_servicio c WHERE c.fecha_inicio IS NOT NULL AND EXTRACT(YEAR FROM c.fecha_inicio) BETWEEN 2020 AND 2023 AND SUBSTRING(c.ruc_proveedor::text, 1, 2) = '10' GROUP BY c.ruc_proveedor, c.nombre_proveedor, anio ), bordes AS ( SELECT ruc_proveedor, MIN(anio) AS anio_ini, MAX(anio) AS anio_fin FROM yearly GROUP BY ruc_proveedor HAVING MIN(anio) <> MAX(anio) ), ini_fin AS ( SELECT y0.ruc_proveedor, y0.nombre_proveedor, b.anio_ini, b.anio_fin, y0.monto_anual AS monto_ini, y1.monto_anual AS monto_fin, (b.anio_fin - b.anio_ini) AS n_years FROM bordes b JOIN yearly y0 ON y0.ruc_proveedor = b.ruc_proveedor AND y0.anio = b.anio_ini JOIN yearly y1 ON y1.ruc_proveedor = b.ruc_proveedor AND y1.anio = b.anio_fin ), score AS ( SELECT ruc_proveedor, nombre_proveedor, anio_ini, anio_fin, monto_ini, monto_fin, n_years, CASE WHEN monto_ini <= 0 THEN NULL ELSE POWER(monto_fin / monto_ini, 1.0 / NULLIF(n_years, 0)) - 1 END AS cagr FROM ini_fin ) SELECT ruc_proveedor, nombre_proveedor, anio_ini, anio_fin, ROUND(monto_ini::numeric, 2) AS monto_ini, ROUND(monto_fin::numeric, 2) AS monto_fin, ROUND((cagr * 100)::numeric, 2) AS crecimiento_interanual_pct FROM score WHERE cagr IS NOT NULL ORDER BY cagr DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "anio_ini",
+        "anio_fin",
+        "monto_ini",
+        "monto_fin",
+        "crecimiento_interanual_pct"
+      ],
+      "rows": [
+        [
+          "10446359563",
+          "PRADO BELLIDO HENRRY PETER",
+          2020,
+          2021,
+          6.44,
+          156600.0,
+          2431577.02
+        ],
+        [
+          "10415672409",
+          "SIFUENTES BARCA HERNAN TOMAS",
+          2020,
+          2021,
+          1.0,
+          9500.0,
+          949900.0
+        ],
+        [
+          "10079413564",
+          "JARA MORILLO ROLANDO JUAN",
+          2021,
+          2023,
+          0.01,
+          78000.0,
+          279184.8
+        ],
+        [
+          "10440540711",
+          "GONZALES AYMARA SILVIA",
+          2020,
+          2021,
+          5.95,
+          14494.99,
+          243513.28
+        ],
+        [
+          "10726039971",
+          "SALAZAR HORQQUE MARIO ANTONIO",
+          2022,
+          2023,
+          160.0,
+          176658.0,
+          110311.25
+        ],
+        [
+          "10267186192",
+          "LOBATO YARANGO JUAN ELEUTERIO",
+          2020,
+          2021,
+          150.0,
+          161530.68,
+          107587.12
+        ],
+        [
+          "10010455168",
+          "RODRIGUEZ CHAVEZ TEDY",
+          2022,
+          2023,
+          873.0,
+          894360.0,
+          102346.74
+        ],
+        [
+          "10447847111",
+          "HUERTA QUISPE ALDO JOSEPH",
+          2021,
+          2022,
+          108.0,
+          106705.04,
+          98700.96
+        ],
+        [
+          "10448888067",
+          "ROJAS CORDERO EDUARDO",
+          2022,
+          2023,
+          103.0,
+          90000.0,
+          87278.64
+        ],
+        [
+          "10401342023",
+          "PANTOJA NATIVIDAD PEDRO ALCIDES",
+          2020,
+          2021,
+          240.0,
+          180000.0,
+          74900.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 7
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ts.ruc_proveedor, ts.nombre_proveedor, SUM(ts.monto_girado) AS total_monto_girado, EXTRACT(YEAR FROM ts.fecha_de_inicio_de_actividades) AS anio FROM transparencia_sunat ts WHERE ts.ruc_proveedor ILIKE '10%' GROUP BY ts.ruc_proveedor, ts.nombre_proveedor, anio ORDER BY total_monto_girado DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "total_monto_girado",
+        "anio"
+      ],
+      "rows": [
+        [
+          "10164660775",
+          "CASTILLO RUIZ JOSE HUMBERTO",
+          202001756.48,
+          1993.0
+        ],
+        [
+          "10282707069",
+          "BELLIDO VILCHEZ JORGE POMPEYO",
+          200905005.9,
+          1994.0
+        ],
+        [
+          "10012050017",
+          "SUCA MAMANI FERNAN TEODORO",
+          175758024.74,
+          2024.0
+        ],
+        [
+          "10282883576",
+          "JUAREZ CORONADO EFRAIN",
+          161270061.62,
+          1999.0
+        ],
+        [
+          "10266418898",
+          "GARCIA IDROGO LAURIANO",
+          149740856.46,
+          2001.0
+        ],
+        [
+          "10166241141",
+          "CUBAS RUIZ JORGE NAPOLEON",
+          79363482.36,
+          1993.0
+        ],
+        [
+          "10157044414",
+          "CARBAJAL ALZAMORA VICTOR HUGO",
+          76729078.3,
+          1996.0
+        ],
+        [
+          "10024021861",
+          "CARDENAS MAYTA ANTONIO ELISEO",
+          69991610.71,
+          1991.0
+        ],
+        [
+          "10410713506",
+          "GARAGONDO BALBOA HERNAN",
+          67135625.8,
+          2006.0
+        ],
+        [
+          "10283044748",
+          "BELLIDO AEDO ROLANDO",
+          64768871.83,
+          1997.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "WITH montos_anuales AS ( SELECT c.ruc_proveedor, c.nombre_proveedor, EXTRACT(YEAR FROM c.fecha_inicio) as año, SUM(c.monto) as monto_total_año FROM contratos_orden_servicio c WHERE c.ruc_proveedor LIKE '10%' AND c.fecha_inicio IS NOT NULL AND c.monto IS NOT NULL GROUP BY c.ruc_proveedor, c.nombre_proveedor, EXTRACT(YEAR FROM c.fecha_inicio) ), crecimiento_interanual AS ( SELECT ma1.ruc_proveedor, ma1.nombre_proveedor, ma1.año as año_actual, ma2.año as año_anterior, ma1.monto_total_año as monto_actual, ma2.monto_total_año as monto_anterior, CASE WHEN ma2.monto_total_año > 0 THEN ((ma1.monto_total_año - ma2.monto_total_año) / ma2.monto_total_año) * 100 ELSE NULL END as crecimiento_porcentual FROM montos_anuales ma1 JOIN montos_anuales ma2 ON ma1.ruc_proveedor = ma2.ruc_proveedor AND ma1.año = ma2.año + 1 ), mejor_crecimiento AS ( SELECT ruc_proveedor, nombre_proveedor, MAX(crecimiento_porcentual) as mejor_crecimiento_porcentual, SUM(monto_actual) as monto_total_proveedor FROM crecimiento_interanual WHERE crecimiento_porcentual IS NOT NULL GROUP BY ruc_proveedor, nombre_proveedor ) SELECT ruc_proveedor, nombre_proveedor, mejor_crecimiento_porcentual as crecimiento_porcentual, monto_total_proveedor as monto_total FROM mejor_crecimiento ORDER BY mejor_crecimiento_porcentual DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "crecimiento_porcentual",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10079413564",
+          "JARA MORILLO ROLANDO JUAN",
+          922899900.0,
+          241790.0
+        ],
+        [
+          "10181248641",
+          "UGAZ MORO JUAN CARLOS",
+          780966700.0,
+          145486.68
+        ],
+        [
+          "10469378301",
+          "DIAZ OLAYA ORLANDO BRYAN",
+          624399900.0,
+          525178.13
+        ],
+        [
+          "10413652338",
+          "OJEDA ARNICA JIMMY RENZO",
+          619999900.0,
+          62000.0
+        ],
+        [
+          "10451963509",
+          "VALERA CARDENAS MARTHA YANE",
+          583199900.0,
+          142273.01
+        ],
+        [
+          "10266789152",
+          "FERNANDEZ ZEVALLOS JOSE LUIS",
+          527849900.0,
+          208432.57
+        ],
+        [
+          "10451290725",
+          "CASTILLO ALBIS MANUEL ALEJANDRO",
+          437235100.0,
+          713578.92
+        ],
+        [
+          "10086790730",
+          "VILA BENITES CARMELITA",
+          386999899.99999994,
+          154900.0
+        ],
+        [
+          "10095984628",
+          "SAAVEDRA RIOS KARINA",
+          341159899.99999994,
+          540153.0
+        ],
+        [
+          "10098718848",
+          "ORBEGOSO RODRIGUEZ CLORINDA NATIVIDAD",
+          323899900.0,
+          71990.01
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-17T13:18:01.944736",
+    "execution_id": 9
+  }
+]

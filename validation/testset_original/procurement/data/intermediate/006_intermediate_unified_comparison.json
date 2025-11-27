@@ -1,0 +1,390 @@
+[
+  {
+    "id": "intermediate_6",
+    "question": "¿Qué proveedores trabajan exclusivamente con el MINISTERIO DE SALUD?, quiero los 10 primeros, agrega la cantidad y el monto total de los contratos y el monto de ordenes de servicio, las columnas deben ser ruc_proveedor, nombre_proveedor, cantidad_contratos_ordenes, monto_total_contratos, monto_total_ordenes_servicio, monto_total_general",
+    "query": "WITH proveedores_ministerio_salud AS ( SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante = 'MINISTERIO DE SALUD' ), proveedores_otras_entidades AS ( SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante != 'MINISTERIO DE SALUD' ), proveedores_exclusivos AS ( SELECT ruc_proveedor FROM proveedores_ministerio_salud WHERE ruc_proveedor NOT IN (SELECT ruc_proveedor FROM proveedores_otras_entidades WHERE ruc_proveedor IS NOT NULL) ) SELECT pe.ruc_proveedor, MAX(cos.nombre_proveedor) as nombre_proveedor, COUNT(*) as cantidad_contratos_ordenes, SUM(CASE WHEN cos.tipo_contrato = 'CONTRATO' THEN cos.monto ELSE 0 END) as monto_total_contratos, SUM(CASE WHEN cos.tipo_contrato = 'ORDEN SERVICIO' THEN cos.monto ELSE 0 END) as monto_total_ordenes_servicio, SUM(cos.monto) as monto_total_general FROM proveedores_exclusivos pe JOIN contratos_orden_servicio cos ON pe.ruc_proveedor = cos.ruc_proveedor WHERE cos.entidad_contratante = 'MINISTERIO DE SALUD' GROUP BY pe.ruc_proveedor ORDER BY monto_total_general DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_contratos_ordenes",
+        "monto_total_contratos",
+        "monto_total_ordenes_servicio",
+        "monto_total_general"
+      ],
+      "rows": [
+        [
+          "20511862494",
+          "INMOBILIARIA CHIEN MAU S.A",
+          2,
+          12623823.0,
+          350661.75,
+          12974484.75
+        ],
+        [
+          "20101260888",
+          "ELIMEN S.A.",
+          4,
+          3449643.2399999998,
+          0.0,
+          3449643.2399999998
+        ],
+        [
+          "20600282418",
+          "OCAMPOTEX E.I.R.L",
+          2,
+          1800000.0,
+          0.0,
+          1800000.0
+        ],
+        [
+          "20100328497",
+          "IQVIA SOLUTIONS DEL PERU S.A.",
+          7,
+          1719090.02,
+          31000.0,
+          1750090.02
+        ],
+        [
+          "20563222566",
+          "CREACIONES Y CONFECCIONES DAMIR E.I.R.L.",
+          2,
+          1680000.0,
+          0.0,
+          1680000.0
+        ],
+        [
+          "20550330050",
+          "TEXTILE SOURCING COMPANY S.A.C. BIC",
+          1,
+          1513350.0,
+          0.0,
+          1513350.0
+        ],
+        [
+          "20602649599",
+          "FIL EXPORT S.A.C.",
+          1,
+          1244310.0,
+          0.0,
+          1244310.0
+        ],
+        [
+          "20606932031",
+          "HEALTH SOLUTIONS DRUGSTORE S.A.C.",
+          1,
+          1107000.0,
+          0.0,
+          1107000.0
+        ],
+        [
+          "20522737659",
+          "REALTY & INVESTMENT SOCIEDAD ANONIMA CERRADA",
+          17,
+          684000.0,
+          407680.0,
+          1091680.0
+        ],
+        [
+          "20101362702",
+          "CONFECCIONES TEXTIMAX S A",
+          1,
+          1055982.0,
+          0.0,
+          1055982.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 6
+    },
+    "baseline_template": {
+      "sql_query": "SELECT pe.ruc_proveedor, MAX(cos.nombre_proveedor) AS nombre_proveedor, COUNT(*) AS cantidad_contratos_ordenes, SUM(CASE WHEN cos.tipo_contrato = 'CONTRATO' THEN cos.monto ELSE 0 END) AS monto_total_contratos, SUM(CASE WHEN cos.tipo_contrato = 'ORDEN SERVICIO' THEN cos.monto ELSE 0 END) AS monto_total_ordenes_servicio, SUM(cos.monto) AS monto_total_general FROM (SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante = 'MINISTERIO DE SALUD' AND ruc_proveedor NOT IN (SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante != 'MINISTERIO DE SALUD' AND ruc_proveedor IS NOT NULL)) pe JOIN contratos_orden_servicio cos ON pe.ruc_proveedor = cos.ruc_proveedor WHERE cos.entidad_contratante = 'MINISTERIO DE SALUD' GROUP BY pe.ruc_proveedor ORDER BY monto_total_general DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_contratos_ordenes",
+        "monto_total_contratos",
+        "monto_total_ordenes_servicio",
+        "monto_total_general"
+      ],
+      "rows": [
+        [
+          "20511862494",
+          "INMOBILIARIA CHIEN MAU S.A",
+          2,
+          12623823.0,
+          350661.75,
+          12974484.75
+        ],
+        [
+          "20101260888",
+          "ELIMEN S.A.",
+          4,
+          3449643.2399999998,
+          0.0,
+          3449643.2399999998
+        ],
+        [
+          "20600282418",
+          "OCAMPOTEX E.I.R.L",
+          2,
+          1800000.0,
+          0.0,
+          1800000.0
+        ],
+        [
+          "20100328497",
+          "IQVIA SOLUTIONS DEL PERU S.A.",
+          7,
+          1719090.02,
+          31000.0,
+          1750090.02
+        ],
+        [
+          "20563222566",
+          "CREACIONES Y CONFECCIONES DAMIR E.I.R.L.",
+          2,
+          1680000.0,
+          0.0,
+          1680000.0
+        ],
+        [
+          "20550330050",
+          "TEXTILE SOURCING COMPANY S.A.C. BIC",
+          1,
+          1513350.0,
+          0.0,
+          1513350.0
+        ],
+        [
+          "20602649599",
+          "FIL EXPORT S.A.C.",
+          1,
+          1244310.0,
+          0.0,
+          1244310.0
+        ],
+        [
+          "20606932031",
+          "HEALTH SOLUTIONS DRUGSTORE S.A.C.",
+          1,
+          1107000.0,
+          0.0,
+          1107000.0
+        ],
+        [
+          "20522737659",
+          "REALTY & INVESTMENT SOCIEDAD ANONIMA CERRADA",
+          17,
+          684000.0,
+          407680.0,
+          1091680.0
+        ],
+        [
+          "20101362702",
+          "CONFECCIONES TEXTIMAX S A",
+          1,
+          1055982.0,
+          0.0,
+          1055982.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 6
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT pe.ruc_proveedor, MAX(cos.nombre_proveedor) AS nombre_proveedor, COUNT(*) AS cantidad_contratos_ordenes, SUM(CASE WHEN cos.tipo_contrato = 'CONTRATO' THEN cos.monto ELSE 0 END) AS monto_total_contratos, SUM(CASE WHEN cos.tipo_contrato = 'ORDEN SERVICIO' THEN cos.monto ELSE 0 END) AS monto_total_ordenes_servicio, SUM(cos.monto) AS monto_total_general FROM (SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante = 'MINISTERIO DE SALUD' AND ruc_proveedor NOT IN (SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante != 'MINISTERIO DE SALUD' AND ruc_proveedor IS NOT NULL)) pe JOIN contratos_orden_servicio cos ON pe.ruc_proveedor = cos.ruc_proveedor WHERE cos.entidad_contratante = 'MINISTERIO DE SALUD' GROUP BY pe.ruc_proveedor ORDER BY monto_total_general DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_contratos_ordenes",
+        "monto_total_contratos",
+        "monto_total_ordenes_servicio",
+        "monto_total_general"
+      ],
+      "rows": [
+        [
+          "20511862494",
+          "INMOBILIARIA CHIEN MAU S.A",
+          2,
+          12623823.0,
+          350661.75,
+          12974484.75
+        ],
+        [
+          "20101260888",
+          "ELIMEN S.A.",
+          4,
+          3449643.2399999998,
+          0.0,
+          3449643.2399999998
+        ],
+        [
+          "20600282418",
+          "OCAMPOTEX E.I.R.L",
+          2,
+          1800000.0,
+          0.0,
+          1800000.0
+        ],
+        [
+          "20100328497",
+          "IQVIA SOLUTIONS DEL PERU S.A.",
+          7,
+          1719090.02,
+          31000.0,
+          1750090.02
+        ],
+        [
+          "20563222566",
+          "CREACIONES Y CONFECCIONES DAMIR E.I.R.L.",
+          2,
+          1680000.0,
+          0.0,
+          1680000.0
+        ],
+        [
+          "20550330050",
+          "TEXTILE SOURCING COMPANY S.A.C. BIC",
+          1,
+          1513350.0,
+          0.0,
+          1513350.0
+        ],
+        [
+          "20602649599",
+          "FIL EXPORT S.A.C.",
+          1,
+          1244310.0,
+          0.0,
+          1244310.0
+        ],
+        [
+          "20606932031",
+          "HEALTH SOLUTIONS DRUGSTORE S.A.C.",
+          1,
+          1107000.0,
+          0.0,
+          1107000.0
+        ],
+        [
+          "20522737659",
+          "REALTY & INVESTMENT SOCIEDAD ANONIMA CERRADA",
+          17,
+          684000.0,
+          407680.0,
+          1091680.0
+        ],
+        [
+          "20101362702",
+          "CONFECCIONES TEXTIMAX S A",
+          1,
+          1055982.0,
+          0.0,
+          1055982.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 6
+    },
+    "our_agent": {
+      "sql_query": "WITH proveedores_ministerio_salud AS ( SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante = 'MINISTERIO DE SALUD' ), proveedores_otras_entidades AS ( SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante != 'MINISTERIO DE SALUD' ), proveedores_exclusivos AS ( SELECT ruc_proveedor FROM proveedores_ministerio_salud WHERE ruc_proveedor NOT IN (SELECT ruc_proveedor FROM proveedores_otras_entidades WHERE ruc_proveedor IS NOT NULL) ) SELECT pe.ruc_proveedor, MAX(cos.nombre_proveedor) as nombre_proveedor, COUNT(*) as cantidad_contratos_ordenes, SUM(CASE WHEN cos.tipo_contrato = 'CONTRATO' THEN cos.monto ELSE 0 END) as monto_total_contratos, SUM(CASE WHEN cos.tipo_contrato = 'ORDEN SERVICIO' THEN cos.monto ELSE 0 END) as monto_total_ordenes_servicio, SUM(cos.monto) as monto_total_general FROM proveedores_exclusivos pe JOIN contratos_orden_servicio cos ON pe.ruc_proveedor = cos.ruc_proveedor WHERE cos.entidad_contratante = 'MINISTERIO DE SALUD' GROUP BY pe.ruc_proveedor ORDER BY monto_total_general DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_contratos_ordenes",
+        "monto_total_contratos",
+        "monto_total_ordenes_servicio",
+        "monto_total_general"
+      ],
+      "rows": [
+        [
+          "20511862494",
+          "INMOBILIARIA CHIEN MAU S.A",
+          2,
+          12623823.0,
+          350661.75,
+          12974484.75
+        ],
+        [
+          "20101260888",
+          "ELIMEN S.A.",
+          4,
+          3449643.2399999998,
+          0.0,
+          3449643.2399999998
+        ],
+        [
+          "20600282418",
+          "OCAMPOTEX E.I.R.L",
+          2,
+          1800000.0,
+          0.0,
+          1800000.0
+        ],
+        [
+          "20100328497",
+          "IQVIA SOLUTIONS DEL PERU S.A.",
+          7,
+          1719090.02,
+          31000.0,
+          1750090.02
+        ],
+        [
+          "20563222566",
+          "CREACIONES Y CONFECCIONES DAMIR E.I.R.L.",
+          2,
+          1680000.0,
+          0.0,
+          1680000.0
+        ],
+        [
+          "20550330050",
+          "TEXTILE SOURCING COMPANY S.A.C. BIC",
+          1,
+          1513350.0,
+          0.0,
+          1513350.0
+        ],
+        [
+          "20602649599",
+          "FIL EXPORT S.A.C.",
+          1,
+          1244310.0,
+          0.0,
+          1244310.0
+        ],
+        [
+          "20606932031",
+          "HEALTH SOLUTIONS DRUGSTORE S.A.C.",
+          1,
+          1107000.0,
+          0.0,
+          1107000.0
+        ],
+        [
+          "20522737659",
+          "REALTY & INVESTMENT SOCIEDAD ANONIMA CERRADA",
+          17,
+          684000.0,
+          407680.0,
+          1091680.0
+        ],
+        [
+          "20101362702",
+          "CONFECCIONES TEXTIMAX S A",
+          1,
+          1055982.0,
+          0.0,
+          1055982.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 6
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-14T10:19:15.636405",
+    "execution_id": 6
+  }
+]

@@ -1,0 +1,108 @@
+[
+  {
+    "id": "basic_25",
+    "question": "Dame el tipo de contribuyente, la cantidad y el monto de empresas que son  de tipo contribuyente INSTITUCIONES PUBLICAS y SOCIEDAD ANONIMA",
+    "query": "SELECT tipo_contribuyente, count(ruc_proveedor) as cantidad, sum(monto_girado) as monto FROM transparencia_sunat WHERE tipo_contribuyente in ('INSTITUCIONES PUBLICAS','SOCIEDAD ANONIMA') GROUP BY tipo_contribuyente;",
+    "expected": {
+      "columns": [
+        "tipo_contribuyente",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "INSTITUCIONES PUBLICAS",
+          808,
+          30215386002.449963
+        ],
+        [
+          "SOCIEDAD ANONIMA",
+          4163,
+          175461325508.23996
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT tipo_contribuyente, count(ruc_proveedor) as cantidad, sum(monto_girado) as monto FROM transparencia_sunat WHERE tipo_contribuyente in ('INSTITUCIONES PUBLICAS','SOCIEDAD ANONIMA') GROUP BY tipo_contribuyente",
+      "columns": [
+        "tipo_contribuyente",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "INSTITUCIONES PUBLICAS",
+          808,
+          30215386002.449963
+        ],
+        [
+          "SOCIEDAD ANONIMA",
+          4163,
+          175461325508.23996
+        ]
+      ],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ts.tipo_contribuyente, COUNT(*) AS cantidad, SUM(co.monto) AS monto FROM transparencia_sunat ts JOIN contratos_orden_servicio co ON co.ruc_proveedor = ts.ruc_proveedor WHERE ts.tipo_contribuyente ILIKE '%INSTITUCIONES PUBLICAS%' OR ts.tipo_contribuyente ILIKE '%SOCIEDAD ANONIMA%' GROUP BY ts.tipo_contribuyente;",
+      "columns": [
+        "tipo_contribuyente",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "INSTITUCIONES PUBLICAS",
+          26812,
+          20912791111.250137
+        ],
+        [
+          "SOCIEDAD ANONIMA",
+          323532,
+          281748683530.4183
+        ],
+        [
+          "SOCIEDAD ANONIMA ABIERTA",
+          4523,
+          695593160.9499981
+        ],
+        [
+          "SOCIEDAD ANONIMA CERRADA",
+          2194394,
+          1063528129381.6699
+        ]
+      ],
+      "row_count": 4,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT tipo_contribuyente, COUNT(*) as cantidad_empresas, SUM(monto_girado) as monto_total FROM transparencia_sunat WHERE tipo_contribuyente IN ('INSTITUCIONES PUBLICAS', 'SOCIEDAD ANONIMA') GROUP BY tipo_contribuyente ORDER BY tipo_contribuyente;",
+      "columns": [
+        "tipo_contribuyente",
+        "cantidad_empresas",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "INSTITUCIONES PUBLICAS",
+          808,
+          30215386002.449966
+        ],
+        [
+          "SOCIEDAD ANONIMA",
+          4163,
+          175461325508.2401
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T06:52:49.774549",
+    "execution_id": 25
+  }
+]

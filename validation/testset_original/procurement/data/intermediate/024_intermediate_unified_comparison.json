@@ -1,0 +1,83 @@
+[
+  {
+    "id": "intermediate_24",
+    "question": "Alguna vez el PODER JUDICIAL contrato o generó una orden de servicio consigo mismo?, quiero el tipo de contrato, el monto total y la cantidad de contratos y ordenes de servicio",
+    "query": "SELECT tipo_contrato, SUM(monto) AS monto, COUNT(*) AS total_contratos_ordenes FROM contratos_orden_servicio WHERE entidad_contratante ILIKE '%PODER JUDICIAL%' AND nombre_proveedor ILIKE '%PODER JUDICIAL%' GROUP BY tipo_contrato;",
+    "expected": {
+      "columns": [
+        "tipo_contrato",
+        "monto",
+        "total_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          159702.0,
+          7
+        ],
+        [
+          "ORDEN SERVICIO",
+          6123941.85,
+          108
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT tipo_contrato, SUM(monto) AS monto, COUNT(*) AS total_contratos_ordenes FROM contratos_orden_servicio WHERE entidad_contratante ILIKE '%PODER JUDICIAL%' AND nombre_proveedor ILIKE '%PODER JUDICIAL%' GROUP BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "monto",
+        "total_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          159702.0,
+          7
+        ],
+        [
+          "ORDEN SERVICIO",
+          6123941.85,
+          108
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT tipo_contrato, SUM(monto) AS monto, COUNT(*) AS total_contratos_ordenes FROM contratos_orden_servicio WHERE entidad_contratante ILIKE '%PODER JUDICIAL%' AND nombre_proveedor ILIKE '%PODER JUDICIAL%' GROUP BY tipo_contrato;",
+      "columns": [
+        "tipo_contrato",
+        "monto",
+        "total_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "CONTRATO",
+          159702.0,
+          7
+        ],
+        [
+          "ORDEN SERVICIO",
+          6123941.85,
+          108
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T04:09:30.506623",
+    "execution_id": 24
+  }
+]

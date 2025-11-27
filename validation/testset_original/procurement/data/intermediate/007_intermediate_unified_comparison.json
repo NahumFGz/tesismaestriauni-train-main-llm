@@ -1,0 +1,150 @@
+[
+  {
+    "id": "intermediate_7",
+    "question": "¿Qué proveedores trabajan exclusivamente con el MINISTERIO DE SALUD en el 2023?, quiero el top 3 ordenados por el monto total de los contratos y el monto de ordenes de servicio",
+    "query": "WITH proveedores_minsa_2023 AS (SELECT DISTINCT ruc_proveedor, nombre_proveedor FROM contratos_orden_servicio WHERE entidad_contratante = 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM fecha_inicio) = 2023 ), proveedores_otras_entidades_2023 AS (SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante != 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM fecha_inicio) = 2023 ), proveedores_exclusivos_minsa AS (SELECT pm.ruc_proveedor, pm.nombre_proveedor FROM proveedores_minsa_2023 pm LEFT JOIN proveedores_otras_entidades_2023 poe ON pm.ruc_proveedor = poe.ruc_proveedor WHERE poe.ruc_proveedor IS NULL ), montos_por_proveedor AS ( SELECT pem.ruc_proveedor, pem.nombre_proveedor, SUM(CASE WHEN cos.tipo_contrato = 'CONTRATO' THEN cos.monto ELSE 0 END) as monto_contratos, SUM(CASE WHEN cos.tipo_contrato = 'ORDEN SERVICIO' THEN cos.monto ELSE 0 END) as monto_ordenes_servicio, SUM(cos.monto) as monto_total FROM proveedores_exclusivos_minsa pem JOIN contratos_orden_servicio cos ON pem.ruc_proveedor = cos.ruc_proveedor WHERE cos.entidad_contratante = 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM cos.fecha_inicio) = 2023 GROUP BY pem.ruc_proveedor, pem.nombre_proveedor ) SELECT ruc_proveedor, nombre_proveedor, monto_contratos, monto_ordenes_servicio, monto_total FROM montos_por_proveedor ORDER BY monto_total DESC LIMIT 3;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_contratos",
+        "monto_ordenes_servicio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20601244587",
+          "AM TECHNOLOGY SAC",
+          2139800.0,
+          0.0,
+          2139800.0
+        ],
+        [
+          "20143296254",
+          "MIGIVA S.A.C.",
+          1829400.0,
+          0.0,
+          1829400.0
+        ],
+        [
+          "20512986324",
+          "EJE PROYECTOS Y SERVICIOS S.A.C.",
+          450000.0,
+          0.0,
+          450000.0
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 5
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_contratos, monto_ordenes_servicio, monto_total FROM (SELECT pem.ruc_proveedor, pem.nombre_proveedor, SUM(CASE WHEN cos.tipo_contrato = 'CONTRATO' THEN cos.monto ELSE 0 END) as monto_contratos, SUM(CASE WHEN cos.tipo_contrato = 'ORDEN SERVICIO' THEN cos.monto ELSE 0 END) as monto_ordenes_servicio, SUM(cos.monto) as monto_total FROM (SELECT pm.ruc_proveedor, pm.nombre_proveedor FROM (SELECT DISTINCT ruc_proveedor, nombre_proveedor FROM contratos_orden_servicio WHERE entidad_contratante = 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM fecha_inicio) = 2023) pm LEFT JOIN (SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante != 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM fecha_inicio) = 2023) poe ON pm.ruc_proveedor = poe.ruc_proveedor WHERE poe.ruc_proveedor IS NULL) pem JOIN contratos_orden_servicio cos ON pem.ruc_proveedor = cos.ruc_proveedor WHERE cos.entidad_contratante = 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM cos.fecha_inicio) = 2023 GROUP BY pem.ruc_proveedor, pem.nombre_proveedor) montos_por_proveedor ORDER BY monto_total DESC LIMIT 3;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_contratos",
+        "monto_ordenes_servicio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20601244587",
+          "AM TECHNOLOGY SAC",
+          2139800.0,
+          0.0,
+          2139800.0
+        ],
+        [
+          "20143296254",
+          "MIGIVA S.A.C.",
+          1829400.0,
+          0.0,
+          1829400.0
+        ],
+        [
+          "20512986324",
+          "EJE PROYECTOS Y SERVICIOS S.A.C.",
+          450000.0,
+          0.0,
+          450000.0
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 5
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_contratos, monto_ordenes_servicio, monto_total FROM (SELECT pem.ruc_proveedor, pem.nombre_proveedor, SUM(CASE WHEN cos.tipo_contrato = 'CONTRATO' THEN cos.monto ELSE 0 END) as monto_contratos, SUM(CASE WHEN cos.tipo_contrato = 'ORDEN SERVICIO' THEN cos.monto ELSE 0 END) as monto_ordenes_servicio, SUM(cos.monto) as monto_total FROM (SELECT pm.ruc_proveedor, pm.nombre_proveedor FROM (SELECT DISTINCT ruc_proveedor, nombre_proveedor FROM contratos_orden_servicio WHERE entidad_contratante = 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM fecha_inicio) = 2023) pm LEFT JOIN (SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante != 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM fecha_inicio) = 2023) poe ON pm.ruc_proveedor = poe.ruc_proveedor WHERE poe.ruc_proveedor IS NULL) pem JOIN contratos_orden_servicio cos ON pem.ruc_proveedor = cos.ruc_proveedor WHERE cos.entidad_contratante = 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM cos.fecha_inicio) = 2023 GROUP BY pem.ruc_proveedor, pem.nombre_proveedor) montos_por_proveedor ORDER BY monto_total DESC LIMIT 3;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_contratos",
+        "monto_ordenes_servicio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20601244587",
+          "AM TECHNOLOGY SAC",
+          2139800.0,
+          0.0,
+          2139800.0
+        ],
+        [
+          "20143296254",
+          "MIGIVA S.A.C.",
+          1829400.0,
+          0.0,
+          1829400.0
+        ],
+        [
+          "20512986324",
+          "EJE PROYECTOS Y SERVICIOS S.A.C.",
+          450000.0,
+          0.0,
+          450000.0
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 5
+    },
+    "our_agent": {
+      "sql_query": "WITH proveedores_minsa_2023 AS ( -- Proveedores que trabajaron con MINISTERIO DE SALUD en 2023 SELECT DISTINCT ruc_proveedor, nombre_proveedor FROM contratos_orden_servicio WHERE entidad_contratante = 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM fecha_inicio) = 2023 ), proveedores_otras_entidades_2023 AS ( -- Proveedores que trabajaron con otras entidades en 2023 SELECT DISTINCT ruc_proveedor FROM contratos_orden_servicio WHERE entidad_contratante != 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM fecha_inicio) = 2023 ), proveedores_exclusivos_minsa AS ( -- Proveedores que trabajaron SOLO con MINISTERIO DE SALUD en 2023 SELECT pm.ruc_proveedor, pm.nombre_proveedor FROM proveedores_minsa_2023 pm LEFT JOIN proveedores_otras_entidades_2023 poe ON pm.ruc_proveedor = poe.ruc_proveedor WHERE poe.ruc_proveedor IS NULL ), montos_por_proveedor AS ( SELECT pem.ruc_proveedor, pem.nombre_proveedor, SUM(CASE WHEN cos.tipo_contrato = 'CONTRATO' THEN cos.monto ELSE 0 END) as monto_contratos, SUM(CASE WHEN cos.tipo_contrato = 'ORDEN SERVICIO' THEN cos.monto ELSE 0 END) as monto_ordenes_servicio, SUM(cos.monto) as monto_total FROM proveedores_exclusivos_minsa pem JOIN contratos_orden_servicio cos ON pem.ruc_proveedor = cos.ruc_proveedor WHERE cos.entidad_contratante = 'MINISTERIO DE SALUD' AND EXTRACT(YEAR FROM cos.fecha_inicio) = 2023 GROUP BY pem.ruc_proveedor, pem.nombre_proveedor ) SELECT ruc_proveedor, nombre_proveedor, monto_contratos, monto_ordenes_servicio, monto_total FROM montos_por_proveedor ORDER BY monto_total DESC LIMIT 3;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_contratos",
+        "monto_ordenes_servicio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20601244587",
+          "AM TECHNOLOGY SAC",
+          2139800.0,
+          0.0,
+          2139800.0
+        ],
+        [
+          "20143296254",
+          "MIGIVA S.A.C.",
+          1829400.0,
+          0.0,
+          1829400.0
+        ],
+        [
+          "20512986324",
+          "EJE PROYECTOS Y SERVICIOS S.A.C.",
+          450000.0,
+          0.0,
+          450000.0
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 5
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-14T10:25:38.468329",
+    "execution_id": 7
+  }
+]

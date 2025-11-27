@@ -1,0 +1,870 @@
+[
+  {
+    "id": "basic_6",
+    "question": "Dame la cantidad de empresas por tipo de contribuyente",
+    "query": "SELECT tipo_contribuyente, count(DISTINCT ruc_proveedor) as cantidad FROM transparencia_sunat GROUP BY tipo_contribuyente;",
+    "expected": {
+      "columns": [
+        "tipo_contribuyente",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "ASOC. FUNDAC. Y COMITE NO INSCRITOS",
+          1
+        ],
+        [
+          "ASOCIACION",
+          2425
+        ],
+        [
+          "ASOCIACION EN PARTICIPACION",
+          126
+        ],
+        [
+          "CAFAES Y SUBCAFAES",
+          49
+        ],
+        [
+          "COLEGIOS PROFESIONALES",
+          24
+        ],
+        [
+          "COMITES  INSCRITOS",
+          9
+        ],
+        [
+          "COMITES PROVEED.PROG.QALI WARMA",
+          1
+        ],
+        [
+          "COMUNIDAD CAMPESINA, NATIVA",
+          67
+        ],
+        [
+          "CONTRATOS COLABORACION EMPRESARIAL",
+          19017
+        ],
+        [
+          "COOPERATIVAS, SAIS, CAPS",
+          135
+        ],
+        [
+          "EMPRESA DE DERECHO PUBLICO",
+          12
+        ],
+        [
+          "EMPRESA DE ECONOMIA MIXTA",
+          4
+        ],
+        [
+          "EMPRESA DE PROPIEDAD SOCIAL",
+          4
+        ],
+        [
+          "EMPRESA ESTATAL DE DERECHO PRIVADO",
+          34
+        ],
+        [
+          "EMPRESA INDIVIDUAL DE RESP. LTDA",
+          31022
+        ],
+        [
+          "ENTIDADES DE AUXILIO MUTUO",
+          6
+        ],
+        [
+          "ENT.INST.COOPERAC.TECNICA - ENIEX",
+          21
+        ],
+        [
+          "FONDOS MUTUOS DE INVERSION",
+          10
+        ],
+        [
+          "FUNDACION",
+          27
+        ],
+        [
+          "GOBIERNO CENTRAL",
+          87
+        ],
+        [
+          "GOBIERNO REGIONAL, LOCAL",
+          2302
+        ],
+        [
+          "INSTITUCIONES PUBLICAS",
+          808
+        ],
+        [
+          "INSTITUCIONES RELIGIOSAS",
+          48
+        ],
+        [
+          "JUNTA DE PROPIETARIOS",
+          16
+        ],
+        [
+          "JUNTA DE PROPIETARIOS NO INSCRITA",
+          1
+        ],
+        [
+          "MISIONES DIPLOMATICAS Y ORG. INTER.",
+          23
+        ],
+        [
+          "NUCLEOS EJECUTORES",
+          256
+        ],
+        [
+          "OF.REPRESENTACION DE NO DOMICILIADO",
+          5
+        ],
+        [
+          "ORGANIZACIONES SOCIALES DE BASE",
+          1
+        ],
+        [
+          "PERSONA NATURAL CON NEGOCIO",
+          56538
+        ],
+        [
+          "PERSONA NATURAL SIN NEGOCIO",
+          49066
+        ],
+        [
+          "SINDICATOS Y FEDERACIONES",
+          9
+        ],
+        [
+          "SOC.COM.RESPONS. LTDA",
+          14461
+        ],
+        [
+          "SOCIEDAD ANONIMA",
+          4163
+        ],
+        [
+          "SOCIEDAD ANONIMA ABIERTA",
+          57
+        ],
+        [
+          "SOCIEDAD ANONIMA CERRADA",
+          40790
+        ],
+        [
+          "SOCIEDAD CIVIL",
+          277
+        ],
+        [
+          "SOCIEDAD COLECTIVA",
+          2
+        ],
+        [
+          "SOCIEDAD CONYUGAL CON NEGOCIO",
+          15
+        ],
+        [
+          "SOCIEDAD CONYUGAL SIN NEGOCIO",
+          57
+        ],
+        [
+          "SOCIEDAD DE BENEFICENCIA",
+          78
+        ],
+        [
+          "SOCIEDAD EN COMANDITA POR ACCIONES",
+          5
+        ],
+        [
+          "SOCIEDAD EN COMANDITA SIMPLE",
+          1
+        ],
+        [
+          "SOCIEDAD IRREGULAR",
+          537
+        ],
+        [
+          "SOCIEDAD MINERA DE RESP.LIMITADA",
+          1
+        ],
+        [
+          "SOC.POR ACCIONES CERRADA SIMPLIFICA",
+          31
+        ],
+        [
+          "SUCESION INDIVISA CON NEGOCIO",
+          174
+        ],
+        [
+          "SUCESION INDIVISA SIN NEGOCIO",
+          85
+        ],
+        [
+          "SUCURSALES O AG. DE EMP. EXTRANJ.",
+          375
+        ],
+        [
+          "UNIVERS. CENTROS EDUCAT. Y CULT.",
+          232
+        ],
+        [
+          null,
+          276389
+        ]
+      ],
+      "row_count": 51,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT tipo_contribuyente, count(DISTINCT ruc_proveedor)FROM transparencia_sunat GROUP BY tipo_contribuyente",
+      "columns": [
+        "tipo_contribuyente",
+        "count"
+      ],
+      "rows": [
+        [
+          "ASOC. FUNDAC. Y COMITE NO INSCRITOS",
+          1
+        ],
+        [
+          "ASOCIACION",
+          2425
+        ],
+        [
+          "ASOCIACION EN PARTICIPACION",
+          126
+        ],
+        [
+          "CAFAES Y SUBCAFAES",
+          49
+        ],
+        [
+          "COLEGIOS PROFESIONALES",
+          24
+        ],
+        [
+          "COMITES  INSCRITOS",
+          9
+        ],
+        [
+          "COMITES PROVEED.PROG.QALI WARMA",
+          1
+        ],
+        [
+          "COMUNIDAD CAMPESINA, NATIVA",
+          67
+        ],
+        [
+          "CONTRATOS COLABORACION EMPRESARIAL",
+          19017
+        ],
+        [
+          "COOPERATIVAS, SAIS, CAPS",
+          135
+        ],
+        [
+          "EMPRESA DE DERECHO PUBLICO",
+          12
+        ],
+        [
+          "EMPRESA DE ECONOMIA MIXTA",
+          4
+        ],
+        [
+          "EMPRESA DE PROPIEDAD SOCIAL",
+          4
+        ],
+        [
+          "EMPRESA ESTATAL DE DERECHO PRIVADO",
+          34
+        ],
+        [
+          "EMPRESA INDIVIDUAL DE RESP. LTDA",
+          31022
+        ],
+        [
+          "ENTIDADES DE AUXILIO MUTUO",
+          6
+        ],
+        [
+          "ENT.INST.COOPERAC.TECNICA - ENIEX",
+          21
+        ],
+        [
+          "FONDOS MUTUOS DE INVERSION",
+          10
+        ],
+        [
+          "FUNDACION",
+          27
+        ],
+        [
+          "GOBIERNO CENTRAL",
+          87
+        ],
+        [
+          "GOBIERNO REGIONAL, LOCAL",
+          2302
+        ],
+        [
+          "INSTITUCIONES PUBLICAS",
+          808
+        ],
+        [
+          "INSTITUCIONES RELIGIOSAS",
+          48
+        ],
+        [
+          "JUNTA DE PROPIETARIOS",
+          16
+        ],
+        [
+          "JUNTA DE PROPIETARIOS NO INSCRITA",
+          1
+        ],
+        [
+          "MISIONES DIPLOMATICAS Y ORG. INTER.",
+          23
+        ],
+        [
+          "NUCLEOS EJECUTORES",
+          256
+        ],
+        [
+          "OF.REPRESENTACION DE NO DOMICILIADO",
+          5
+        ],
+        [
+          "ORGANIZACIONES SOCIALES DE BASE",
+          1
+        ],
+        [
+          "PERSONA NATURAL CON NEGOCIO",
+          56538
+        ],
+        [
+          "PERSONA NATURAL SIN NEGOCIO",
+          49066
+        ],
+        [
+          "SINDICATOS Y FEDERACIONES",
+          9
+        ],
+        [
+          "SOC.COM.RESPONS. LTDA",
+          14461
+        ],
+        [
+          "SOCIEDAD ANONIMA",
+          4163
+        ],
+        [
+          "SOCIEDAD ANONIMA ABIERTA",
+          57
+        ],
+        [
+          "SOCIEDAD ANONIMA CERRADA",
+          40790
+        ],
+        [
+          "SOCIEDAD CIVIL",
+          277
+        ],
+        [
+          "SOCIEDAD COLECTIVA",
+          2
+        ],
+        [
+          "SOCIEDAD CONYUGAL CON NEGOCIO",
+          15
+        ],
+        [
+          "SOCIEDAD CONYUGAL SIN NEGOCIO",
+          57
+        ],
+        [
+          "SOCIEDAD DE BENEFICENCIA",
+          78
+        ],
+        [
+          "SOCIEDAD EN COMANDITA POR ACCIONES",
+          5
+        ],
+        [
+          "SOCIEDAD EN COMANDITA SIMPLE",
+          1
+        ],
+        [
+          "SOCIEDAD IRREGULAR",
+          537
+        ],
+        [
+          "SOCIEDAD MINERA DE RESP.LIMITADA",
+          1
+        ],
+        [
+          "SOC.POR ACCIONES CERRADA SIMPLIFICA",
+          31
+        ],
+        [
+          "SUCESION INDIVISA CON NEGOCIO",
+          174
+        ],
+        [
+          "SUCESION INDIVISA SIN NEGOCIO",
+          85
+        ],
+        [
+          "SUCURSALES O AG. DE EMP. EXTRANJ.",
+          375
+        ],
+        [
+          "UNIVERS. CENTROS EDUCAT. Y CULT.",
+          232
+        ],
+        [
+          null,
+          276389
+        ]
+      ],
+      "row_count": 51,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT tipo_contribuyente, COUNT(DISTINCT ruc_proveedor) AS cantidad FROM transparencia_sunat GROUP BY tipo_contribuyente;",
+      "columns": [
+        "tipo_contribuyente",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "ASOC. FUNDAC. Y COMITE NO INSCRITOS",
+          1
+        ],
+        [
+          "ASOCIACION",
+          2425
+        ],
+        [
+          "ASOCIACION EN PARTICIPACION",
+          126
+        ],
+        [
+          "CAFAES Y SUBCAFAES",
+          49
+        ],
+        [
+          "COLEGIOS PROFESIONALES",
+          24
+        ],
+        [
+          "COMITES  INSCRITOS",
+          9
+        ],
+        [
+          "COMITES PROVEED.PROG.QALI WARMA",
+          1
+        ],
+        [
+          "COMUNIDAD CAMPESINA, NATIVA",
+          67
+        ],
+        [
+          "CONTRATOS COLABORACION EMPRESARIAL",
+          19017
+        ],
+        [
+          "COOPERATIVAS, SAIS, CAPS",
+          135
+        ],
+        [
+          "EMPRESA DE DERECHO PUBLICO",
+          12
+        ],
+        [
+          "EMPRESA DE ECONOMIA MIXTA",
+          4
+        ],
+        [
+          "EMPRESA DE PROPIEDAD SOCIAL",
+          4
+        ],
+        [
+          "EMPRESA ESTATAL DE DERECHO PRIVADO",
+          34
+        ],
+        [
+          "EMPRESA INDIVIDUAL DE RESP. LTDA",
+          31022
+        ],
+        [
+          "ENTIDADES DE AUXILIO MUTUO",
+          6
+        ],
+        [
+          "ENT.INST.COOPERAC.TECNICA - ENIEX",
+          21
+        ],
+        [
+          "FONDOS MUTUOS DE INVERSION",
+          10
+        ],
+        [
+          "FUNDACION",
+          27
+        ],
+        [
+          "GOBIERNO CENTRAL",
+          87
+        ],
+        [
+          "GOBIERNO REGIONAL, LOCAL",
+          2302
+        ],
+        [
+          "INSTITUCIONES PUBLICAS",
+          808
+        ],
+        [
+          "INSTITUCIONES RELIGIOSAS",
+          48
+        ],
+        [
+          "JUNTA DE PROPIETARIOS",
+          16
+        ],
+        [
+          "JUNTA DE PROPIETARIOS NO INSCRITA",
+          1
+        ],
+        [
+          "MISIONES DIPLOMATICAS Y ORG. INTER.",
+          23
+        ],
+        [
+          "NUCLEOS EJECUTORES",
+          256
+        ],
+        [
+          "OF.REPRESENTACION DE NO DOMICILIADO",
+          5
+        ],
+        [
+          "ORGANIZACIONES SOCIALES DE BASE",
+          1
+        ],
+        [
+          "PERSONA NATURAL CON NEGOCIO",
+          56538
+        ],
+        [
+          "PERSONA NATURAL SIN NEGOCIO",
+          49066
+        ],
+        [
+          "SINDICATOS Y FEDERACIONES",
+          9
+        ],
+        [
+          "SOC.COM.RESPONS. LTDA",
+          14461
+        ],
+        [
+          "SOCIEDAD ANONIMA",
+          4163
+        ],
+        [
+          "SOCIEDAD ANONIMA ABIERTA",
+          57
+        ],
+        [
+          "SOCIEDAD ANONIMA CERRADA",
+          40790
+        ],
+        [
+          "SOCIEDAD CIVIL",
+          277
+        ],
+        [
+          "SOCIEDAD COLECTIVA",
+          2
+        ],
+        [
+          "SOCIEDAD CONYUGAL CON NEGOCIO",
+          15
+        ],
+        [
+          "SOCIEDAD CONYUGAL SIN NEGOCIO",
+          57
+        ],
+        [
+          "SOCIEDAD DE BENEFICENCIA",
+          78
+        ],
+        [
+          "SOCIEDAD EN COMANDITA POR ACCIONES",
+          5
+        ],
+        [
+          "SOCIEDAD EN COMANDITA SIMPLE",
+          1
+        ],
+        [
+          "SOCIEDAD IRREGULAR",
+          537
+        ],
+        [
+          "SOCIEDAD MINERA DE RESP.LIMITADA",
+          1
+        ],
+        [
+          "SOC.POR ACCIONES CERRADA SIMPLIFICA",
+          31
+        ],
+        [
+          "SUCESION INDIVISA CON NEGOCIO",
+          174
+        ],
+        [
+          "SUCESION INDIVISA SIN NEGOCIO",
+          85
+        ],
+        [
+          "SUCURSALES O AG. DE EMP. EXTRANJ.",
+          375
+        ],
+        [
+          "UNIVERS. CENTROS EDUCAT. Y CULT.",
+          232
+        ],
+        [
+          null,
+          276389
+        ]
+      ],
+      "row_count": 51,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT tipo_contribuyente, COUNT(DISTINCT ruc_proveedor) AS cantidad FROM transparencia_sunat GROUP BY tipo_contribuyente;",
+      "columns": [
+        "tipo_contribuyente",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "ASOC. FUNDAC. Y COMITE NO INSCRITOS",
+          1
+        ],
+        [
+          "ASOCIACION",
+          2425
+        ],
+        [
+          "ASOCIACION EN PARTICIPACION",
+          126
+        ],
+        [
+          "CAFAES Y SUBCAFAES",
+          49
+        ],
+        [
+          "COLEGIOS PROFESIONALES",
+          24
+        ],
+        [
+          "COMITES  INSCRITOS",
+          9
+        ],
+        [
+          "COMITES PROVEED.PROG.QALI WARMA",
+          1
+        ],
+        [
+          "COMUNIDAD CAMPESINA, NATIVA",
+          67
+        ],
+        [
+          "CONTRATOS COLABORACION EMPRESARIAL",
+          19017
+        ],
+        [
+          "COOPERATIVAS, SAIS, CAPS",
+          135
+        ],
+        [
+          "EMPRESA DE DERECHO PUBLICO",
+          12
+        ],
+        [
+          "EMPRESA DE ECONOMIA MIXTA",
+          4
+        ],
+        [
+          "EMPRESA DE PROPIEDAD SOCIAL",
+          4
+        ],
+        [
+          "EMPRESA ESTATAL DE DERECHO PRIVADO",
+          34
+        ],
+        [
+          "EMPRESA INDIVIDUAL DE RESP. LTDA",
+          31022
+        ],
+        [
+          "ENTIDADES DE AUXILIO MUTUO",
+          6
+        ],
+        [
+          "ENT.INST.COOPERAC.TECNICA - ENIEX",
+          21
+        ],
+        [
+          "FONDOS MUTUOS DE INVERSION",
+          10
+        ],
+        [
+          "FUNDACION",
+          27
+        ],
+        [
+          "GOBIERNO CENTRAL",
+          87
+        ],
+        [
+          "GOBIERNO REGIONAL, LOCAL",
+          2302
+        ],
+        [
+          "INSTITUCIONES PUBLICAS",
+          808
+        ],
+        [
+          "INSTITUCIONES RELIGIOSAS",
+          48
+        ],
+        [
+          "JUNTA DE PROPIETARIOS",
+          16
+        ],
+        [
+          "JUNTA DE PROPIETARIOS NO INSCRITA",
+          1
+        ],
+        [
+          "MISIONES DIPLOMATICAS Y ORG. INTER.",
+          23
+        ],
+        [
+          "NUCLEOS EJECUTORES",
+          256
+        ],
+        [
+          "OF.REPRESENTACION DE NO DOMICILIADO",
+          5
+        ],
+        [
+          "ORGANIZACIONES SOCIALES DE BASE",
+          1
+        ],
+        [
+          "PERSONA NATURAL CON NEGOCIO",
+          56538
+        ],
+        [
+          "PERSONA NATURAL SIN NEGOCIO",
+          49066
+        ],
+        [
+          "SINDICATOS Y FEDERACIONES",
+          9
+        ],
+        [
+          "SOC.COM.RESPONS. LTDA",
+          14461
+        ],
+        [
+          "SOCIEDAD ANONIMA",
+          4163
+        ],
+        [
+          "SOCIEDAD ANONIMA ABIERTA",
+          57
+        ],
+        [
+          "SOCIEDAD ANONIMA CERRADA",
+          40790
+        ],
+        [
+          "SOCIEDAD CIVIL",
+          277
+        ],
+        [
+          "SOCIEDAD COLECTIVA",
+          2
+        ],
+        [
+          "SOCIEDAD CONYUGAL CON NEGOCIO",
+          15
+        ],
+        [
+          "SOCIEDAD CONYUGAL SIN NEGOCIO",
+          57
+        ],
+        [
+          "SOCIEDAD DE BENEFICENCIA",
+          78
+        ],
+        [
+          "SOCIEDAD EN COMANDITA POR ACCIONES",
+          5
+        ],
+        [
+          "SOCIEDAD EN COMANDITA SIMPLE",
+          1
+        ],
+        [
+          "SOCIEDAD IRREGULAR",
+          537
+        ],
+        [
+          "SOCIEDAD MINERA DE RESP.LIMITADA",
+          1
+        ],
+        [
+          "SOC.POR ACCIONES CERRADA SIMPLIFICA",
+          31
+        ],
+        [
+          "SUCESION INDIVISA CON NEGOCIO",
+          174
+        ],
+        [
+          "SUCESION INDIVISA SIN NEGOCIO",
+          85
+        ],
+        [
+          "SUCURSALES O AG. DE EMP. EXTRANJ.",
+          375
+        ],
+        [
+          "UNIVERS. CENTROS EDUCAT. Y CULT.",
+          232
+        ],
+        [
+          null,
+          276389
+        ]
+      ],
+      "row_count": 51,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:05:06.117826",
+    "execution_id": 6
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "basic_1",
+    "question": "¿Cuál es el nombre del proveedor del proveedor con ruc 20100070970?",
+    "query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20100070970';",
+    "expected": {
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "SUPERMERCADOS PERUANOS SOCIEDAD ANONIMA 'O ' S.P.S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20100070970' LIMIT 1;",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "SUPERMERCADOS PERUANOS SOCIEDAD ANONIMA 'O ' S.P.S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20100070970';",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "SUPERMERCADOS PERUANOS SOCIEDAD ANONIMA 'O ' S.P.S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20100070970';",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "SUPERMERCADOS PERUANOS SOCIEDAD ANONIMA 'O ' S.P.S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-07T23:25:30.891027",
+    "execution_id": 1
+  }
+]

@@ -1,0 +1,203 @@
+[
+  {
+    "id": "advanced_19",
+    "question": "Dame los 10 proveedores que trabajan con más de 5 entidades diferentes",
+    "query": "SELECT c.ruc_proveedor, c.nombre_proveedor, COUNT(DISTINCT c.entidad_contratante) as num_entidades FROM contratos_orden_servicio c GROUP BY c.ruc_proveedor, c.nombre_proveedor HAVING COUNT(DISTINCT c.entidad_contratante) > 5 ORDER BY num_entidades DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "num_entidades"
+      ],
+      "rows": [
+        [
+          "20202380621",
+          "MAPFRE PERU COMPAÑIA DE SEGUROS Y REASEGUROS S.A.",
+          298
+        ],
+        [
+          "20111451592",
+          "RED CIENTIFICA PERUANA",
+          282
+        ],
+        [
+          "20539297881",
+          "VJK S.A.C.",
+          278
+        ],
+        [
+          "20602537324",
+          "KINGSTORE PERU S.A.C.",
+          277
+        ],
+        [
+          "20600257286",
+          "PROYECTEC E.I.R.L.",
+          269
+        ],
+        [
+          "20601005264",
+          "GRUPO LC PERU SOCIEDAD ANONIMA CERRADA",
+          260
+        ],
+        [
+          "20131378972",
+          "CONTRALORIA GENERAL DE LA REPUBLICA",
+          258
+        ],
+        [
+          "20505857781",
+          "DECDATA S.A.C.",
+          258
+        ],
+        [
+          "20604576033",
+          "NBS SOLUTIONS S.A.C.",
+          258
+        ],
+        [
+          "20565851331",
+          "MPC GRUPO S.A.C.",
+          257
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, COUNT(DISTINCT entidad_contratante) AS entidades_diferentes FROM contratos_orden_servicio GROUP BY ruc_proveedor, nombre_proveedor HAVING COUNT(DISTINCT entidad_contratante) > 5 LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "entidades_diferentes"
+      ],
+      "rows": [
+        [
+          "10000003412",
+          "PAREDES PAREDES ILTER",
+          9
+        ],
+        [
+          "10000015968",
+          "ESCOBAR PEZO GUIDO",
+          9
+        ],
+        [
+          "10000044585",
+          "RIOS CARDENAS CARLOS RAFAEL",
+          17
+        ],
+        [
+          "10000059230",
+          "SHAHUANO DAHUA ALDO",
+          6
+        ],
+        [
+          "10000064535",
+          "AGUIRRE VELA LLENY",
+          9
+        ],
+        [
+          "10000074671",
+          "URQUIA SEBASTIAN RITTMA",
+          6
+        ],
+        [
+          "10000076304",
+          "PINEDO DOCUMET SAMUEL ERNESTO",
+          7
+        ],
+        [
+          "10000080913",
+          "TINOCO SILVA DE REATEGUI ANA ESTHER",
+          15
+        ],
+        [
+          "10000105983",
+          "RENGIFO LOPEZ DORIS LIA",
+          6
+        ],
+        [
+          "10000138393",
+          "SANCHEZ CARBAJAL DELFIN",
+          13
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT c.ruc_proveedor, c.nombre_proveedor, COUNT(DISTINCT c.entidad_contratante) as num_entidades FROM contratos_orden_servicio c GROUP BY c.ruc_proveedor, c.nombre_proveedor HAVING COUNT(DISTINCT c.entidad_contratante) > 5 ORDER BY num_entidades DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "num_entidades"
+      ],
+      "rows": [
+        [
+          "20202380621",
+          "MAPFRE PERU COMPAÑIA DE SEGUROS Y REASEGUROS S.A.",
+          298
+        ],
+        [
+          "20111451592",
+          "RED CIENTIFICA PERUANA",
+          282
+        ],
+        [
+          "20539297881",
+          "VJK S.A.C.",
+          278
+        ],
+        [
+          "20602537324",
+          "KINGSTORE PERU S.A.C.",
+          277
+        ],
+        [
+          "20600257286",
+          "PROYECTEC E.I.R.L.",
+          269
+        ],
+        [
+          "20601005264",
+          "GRUPO LC PERU SOCIEDAD ANONIMA CERRADA",
+          260
+        ],
+        [
+          "20131378972",
+          "CONTRALORIA GENERAL DE LA REPUBLICA",
+          258
+        ],
+        [
+          "20505857781",
+          "DECDATA S.A.C.",
+          258
+        ],
+        [
+          "20604576033",
+          "NBS SOLUTIONS S.A.C.",
+          258
+        ],
+        [
+          "20565851331",
+          "MPC GRUPO S.A.C.",
+          257
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-18T09:24:58.513827",
+    "execution_id": 19
+  }
+]

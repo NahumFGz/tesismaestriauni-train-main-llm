@@ -1,0 +1,258 @@
+[
+  {
+    "id": "basic_10",
+    "question": "Dame los 10 proveedores persona natural con mayor monto girado, quiero las columnas ruc_proveedor, nombre_proveedor y monto_total ordenado por monto_total de forma descendente",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) as monto_total FROM transparencia_sunat WHERE tipo_empresa_persona_juridica_natural LIKE 'PERSONA NATURAL' GROUP BY ruc_proveedor, nombre_proveedor ORDER BY 3 DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10164660775",
+          "CASTILLO RUIZ JOSE HUMBERTO",
+          202001756.48
+        ],
+        [
+          "10282707069",
+          "BELLIDO VILCHEZ JORGE POMPEYO",
+          200905005.9
+        ],
+        [
+          "10012050017",
+          "SUCA MAMANI FERNAN TEODORO",
+          175758024.74
+        ],
+        [
+          "10282883576",
+          "JUAREZ CORONADO EFRAIN",
+          161270061.62
+        ],
+        [
+          "10266418898",
+          "GARCIA IDROGO LAURIANO",
+          149740856.46
+        ],
+        [
+          "10166241141",
+          "CUBAS RUIZ JORGE NAPOLEON",
+          79363482.36
+        ],
+        [
+          "10157044414",
+          "CARBAJAL ALZAMORA VICTOR HUGO",
+          76729078.3
+        ],
+        [
+          "10024021861",
+          "CARDENAS MAYTA ANTONIO ELISEO",
+          69991610.71
+        ],
+        [
+          "10410713506",
+          "GARAGONDO BALBOA HERNAN",
+          67135625.8
+        ],
+        [
+          "10283044748",
+          "BELLIDO AEDO ROLANDO",
+          64768871.83
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) as monto_total FROM transparencia_sunat WHERE tipo_empresa_persona_juridica_natural LIKE 'PERSONA NATURAL' GROUP BY ruc_proveedor, nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10164660775",
+          "CASTILLO RUIZ JOSE HUMBERTO",
+          202001756.48
+        ],
+        [
+          "10282707069",
+          "BELLIDO VILCHEZ JORGE POMPEYO",
+          200905005.9
+        ],
+        [
+          "10012050017",
+          "SUCA MAMANI FERNAN TEODORO",
+          175758024.74
+        ],
+        [
+          "10282883576",
+          "JUAREZ CORONADO EFRAIN",
+          161270061.62
+        ],
+        [
+          "10266418898",
+          "GARCIA IDROGO LAURIANO",
+          149740856.46
+        ],
+        [
+          "10166241141",
+          "CUBAS RUIZ JORGE NAPOLEON",
+          79363482.36
+        ],
+        [
+          "10157044414",
+          "CARBAJAL ALZAMORA VICTOR HUGO",
+          76729078.3
+        ],
+        [
+          "10024021861",
+          "CARDENAS MAYTA ANTONIO ELISEO",
+          69991610.71
+        ],
+        [
+          "10410713506",
+          "GARAGONDO BALBOA HERNAN",
+          67135625.8
+        ],
+        [
+          "10283044748",
+          "BELLIDO AEDO ROLANDO",
+          64768871.83
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) as monto_total FROM transparencia_sunat WHERE tipo_empresa_persona_juridica_natural LIKE 'PERSONA NATURAL' GROUP BY ruc_proveedor, nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10164660775",
+          "CASTILLO RUIZ JOSE HUMBERTO",
+          202001756.48
+        ],
+        [
+          "10282707069",
+          "BELLIDO VILCHEZ JORGE POMPEYO",
+          200905005.9
+        ],
+        [
+          "10012050017",
+          "SUCA MAMANI FERNAN TEODORO",
+          175758024.74
+        ],
+        [
+          "10282883576",
+          "JUAREZ CORONADO EFRAIN",
+          161270061.62
+        ],
+        [
+          "10266418898",
+          "GARCIA IDROGO LAURIANO",
+          149740856.46
+        ],
+        [
+          "10166241141",
+          "CUBAS RUIZ JORGE NAPOLEON",
+          79363482.36
+        ],
+        [
+          "10157044414",
+          "CARBAJAL ALZAMORA VICTOR HUGO",
+          76729078.3
+        ],
+        [
+          "10024021861",
+          "CARDENAS MAYTA ANTONIO ELISEO",
+          69991610.71
+        ],
+        [
+          "10410713506",
+          "GARAGONDO BALBOA HERNAN",
+          67135625.8
+        ],
+        [
+          "10283044748",
+          "BELLIDO AEDO ROLANDO",
+          64768871.83
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) as monto_total FROM transparencia_sunat WHERE tipo_empresa_persona_juridica_natural LIKE 'PERSONA NATURAL' GROUP BY ruc_proveedor, nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10164660775",
+          "CASTILLO RUIZ JOSE HUMBERTO",
+          202001756.48
+        ],
+        [
+          "10282707069",
+          "BELLIDO VILCHEZ JORGE POMPEYO",
+          200905005.9
+        ],
+        [
+          "10012050017",
+          "SUCA MAMANI FERNAN TEODORO",
+          175758024.74
+        ],
+        [
+          "10282883576",
+          "JUAREZ CORONADO EFRAIN",
+          161270061.62
+        ],
+        [
+          "10266418898",
+          "GARCIA IDROGO LAURIANO",
+          149740856.46
+        ],
+        [
+          "10166241141",
+          "CUBAS RUIZ JORGE NAPOLEON",
+          79363482.36
+        ],
+        [
+          "10157044414",
+          "CARBAJAL ALZAMORA VICTOR HUGO",
+          76729078.3
+        ],
+        [
+          "10024021861",
+          "CARDENAS MAYTA ANTONIO ELISEO",
+          69991610.71
+        ],
+        [
+          "10410713506",
+          "GARAGONDO BALBOA HERNAN",
+          67135625.8
+        ],
+        [
+          "10283044748",
+          "BELLIDO AEDO ROLANDO",
+          64768871.83
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:21:40.743776",
+    "execution_id": 10
+  }
+]

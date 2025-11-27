@@ -1,0 +1,236 @@
+[
+  {
+    "id": "advanced_7",
+    "question": "Cuales son las 10 municipalidades que han firmado mayor numero de ordenes de servicio en el año 2020, pero quiero aquellas que tengan el 2 primeros digitos del ruc del proveedor en 20, solo quiero la entidad contratante, la cantidad de ordenes de servicio, el monto total de las ordenes de servicio y el monto medio de las ordenes de servicio.",
+    "query": "SELECT entidad_contratante, COUNT(*) AS total_contratos, SUM(monto) AS monto_total, SUM(monto)/COUNT(*) AS monto_medio FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = 2020 AND entidad_contratante ILIKE '%MUNICIPALIDAD%' AND LEFT(ruc_proveedor::text, 2) = '20' GROUP BY entidad_contratante ORDER BY total_contratos DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "entidad_contratante",
+        "total_contratos",
+        "monto_total",
+        "monto_medio"
+      ],
+      "rows": [
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          2485,
+          273687010.6,
+          110135.61794768613
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE SAN ROMAN - JULIACA",
+          1765,
+          65390910.32999998,
+          37048.674407932005
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE PUNO",
+          1493,
+          93247126.52000003,
+          62456.213342263916
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE TORATA",
+          1393,
+          12565759.68,
+          9020.645857860733
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CHALLHUAHUACHO",
+          1263,
+          28044067.770000003,
+          22204.32919239905
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE ILO",
+          1260,
+          20456435.620000005,
+          16235.26636507937
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DEL CUSCO",
+          1203,
+          66917929.140000015,
+          55625.87625935164
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CORONEL GREGORIO ALBARRACIN LANCHIPA",
+          1097,
+          17694408.900000006,
+          16129.816681859622
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CERRO COLORADO",
+          1062,
+          146704615.94000003,
+          138139.93967984937
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE AREQUIPA",
+          1007,
+          71541814.46,
+          71044.50293942403
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.entidad_contratante, COUNT(*) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto_total_ordenes_servicio, AVG(co.monto) AS monto_medio_ordenes_servicio FROM contratos_orden_servicio co WHERE EXTRACT(YEAR FROM co.fecha_inicio) = 2020 AND co.ruc_proveedor ILIKE '20%' GROUP BY co.entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio",
+        "monto_medio_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          16147,
+          1758846751.6799953,
+          108927.15375487678
+        ],
+        [
+          "MARINA DE GUERRA DEL PERU",
+          4971,
+          199840827.09999996,
+          40201.33315228324
+        ],
+        [
+          "EJERCITO PERUANO",
+          3527,
+          420053269.2599999,
+          119096.47554862486
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          2485,
+          273687010.6,
+          110135.61794768613
+        ],
+        [
+          "GOBIERNO REGIONAL DE CUSCO SEDE CENTRAL",
+          2340,
+          105010829.69999994,
+          44876.422948717925
+        ],
+        [
+          "GOBIERNO REGIONAL DE MOQUEGUA SEDE CENTRAL",
+          1944,
+          27018304.299999997,
+          13898.304681069958
+        ],
+        [
+          "AUTORIDAD NACIONAL DEL AGUA",
+          1923,
+          39213303.19,
+          20391.733328133123
+        ],
+        [
+          "GOBIERNO REGIONAL DE AREQUIPA Sede Central",
+          1839,
+          286855653.55,
+          155984.58594344754
+        ],
+        [
+          "INSTITUTO NACIONAL DE ENFERMEDADES NEOPLASICAS",
+          1804,
+          58881071.03,
+          32639.174628603105
+        ],
+        [
+          "None",
+          1791,
+          22018725.52,
+          12294.095767727526
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT c.entidad_contratante, COUNT(*) as cantidad_ordenes_servicio, SUM(c.monto) as monto_total, AVG(c.monto) as monto_medio FROM contratos_orden_servicio c WHERE c.tipo_contrato = 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM c.fecha_inicio) = 2020 AND LEFT(c.ruc_proveedor, 2) = '20' AND LOWER(c.entidad_contratante) LIKE '%municipalidad%' GROUP BY c.entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio",
+        "monto_total",
+        "monto_medio"
+      ],
+      "rows": [
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          2323,
+          40994386.349999994,
+          17647.174494188548
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE SAN ROMAN - JULIACA",
+          1630,
+          12561376.149999997,
+          7706.365736196317
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE PUNO",
+          1416,
+          8110844.8699999945,
+          5727.997789548019
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE TORATA",
+          1365,
+          8891766.200000001,
+          6514.1144322344335
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE ILO",
+          1233,
+          6112774.079999997,
+          4957.64321167883
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CHALLHUAHUACHO",
+          1200,
+          9744836.02,
+          8120.696683333333
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DEL CUSCO",
+          1147,
+          7983830.030000001,
+          6960.619032258066
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CORONEL GREGORIO ALBARRACIN LANCHIPA",
+          1052,
+          5109666.590000001,
+          4857.097519011408
+        ],
+        [
+          "MUNICIPALIDAD DISTRITAL DE CERRO COLORADO",
+          985,
+          7993447.780000001,
+          8115.175411167514
+        ],
+        [
+          "MUNICIPALIDAD PROVINCIAL DE AREQUIPA",
+          948,
+          7847256.840000005,
+          8277.697088607601
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-17T12:55:52.754127",
+    "execution_id": 7
+  }
+]

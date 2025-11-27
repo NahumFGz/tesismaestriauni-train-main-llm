@@ -1,0 +1,218 @@
+[
+  {
+    "id": "basic_49",
+    "question": "Dame el monto total y cantidad de los contratos y ordenes de servicio por moneda, quiero las columnas moneda, cantidad y monto",
+    "query": "SELECT moneda, count(*) as cantidad, sum(monto) as monto FROM contratos_orden_servicio GROUP BY moneda;",
+    "expected": {
+      "columns": [
+        "moneda",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "DOLARES",
+          22600,
+          35914283348.880005
+        ],
+        [
+          "DOLARES CANADIENSES",
+          12,
+          59741.14
+        ],
+        [
+          "EUROS",
+          147,
+          51781159.5
+        ],
+        [
+          "FRANCOS SUIZOS",
+          23,
+          103035.9
+        ],
+        [
+          "LIBRAS ESTERLINAS",
+          27,
+          138179.75
+        ],
+        [
+          "SOLES",
+          12600576,
+          155925111232801.22
+        ],
+        [
+          "YENES",
+          22,
+          120031.64000000001
+        ],
+        [
+          "YUANS",
+          10,
+          66381.16
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT moneda, count(*) as cantidad, sum(monto) as monto FROM contratos_orden_servicio GROUP BY moneda;",
+      "columns": [
+        "moneda",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "DOLARES",
+          22600,
+          35914283348.880005
+        ],
+        [
+          "DOLARES CANADIENSES",
+          12,
+          59741.14
+        ],
+        [
+          "EUROS",
+          147,
+          51781159.5
+        ],
+        [
+          "FRANCOS SUIZOS",
+          23,
+          103035.9
+        ],
+        [
+          "LIBRAS ESTERLINAS",
+          27,
+          138179.75
+        ],
+        [
+          "SOLES",
+          12600576,
+          155925111232801.22
+        ],
+        [
+          "YENES",
+          22,
+          120031.64000000001
+        ],
+        [
+          "YUANS",
+          10,
+          66381.16
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT moneda, SUM(monto) AS monto, COUNT(*) AS cantidad FROM contratos_orden_servicio GROUP BY moneda;",
+      "columns": [
+        "moneda",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "DOLARES",
+          22600,
+          35914283348.880005
+        ],
+        [
+          "DOLARES CANADIENSES",
+          12,
+          59741.14
+        ],
+        [
+          "EUROS",
+          147,
+          51781159.5
+        ],
+        [
+          "FRANCOS SUIZOS",
+          23,
+          103035.9
+        ],
+        [
+          "LIBRAS ESTERLINAS",
+          27,
+          138179.75
+        ],
+        [
+          "SOLES",
+          12600576,
+          155925111232801.22
+        ],
+        [
+          "YENES",
+          22,
+          120031.64000000001
+        ],
+        [
+          "YUANS",
+          10,
+          66381.16
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT moneda, COUNT(*) as cantidad, SUM(monto) as monto_total FROM contratos_orden_servicio GROUP BY moneda ORDER BY monto_total DESC;",
+      "columns": [
+        "moneda",
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          "DOLARES",
+          22600,
+          35914283348.880005
+        ],
+        [
+          "DOLARES CANADIENSES",
+          12,
+          59741.14
+        ],
+        [
+          "EUROS",
+          147,
+          51781159.5
+        ],
+        [
+          "FRANCOS SUIZOS",
+          23,
+          103035.9
+        ],
+        [
+          "LIBRAS ESTERLINAS",
+          27,
+          138179.75
+        ],
+        [
+          "SOLES",
+          12600576,
+          155925111232801.22
+        ],
+        [
+          "YENES",
+          22,
+          120031.64000000001
+        ],
+        [
+          "YUANS",
+          10,
+          66381.16
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-12T09:09:02.942790",
+    "execution_id": 49
+  }
+]

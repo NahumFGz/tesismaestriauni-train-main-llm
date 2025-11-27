@@ -1,0 +1,258 @@
+[
+  {
+    "id": "intermediate_36",
+    "question": "Que entidades han firmado mas ordenes de servicio en los años 2020, 2021, 2022, 2023 y 2024, quiero el top 10 ordenados por la cantidad de ordenes de servicio y el monto total ordenes de servicio.",
+    "query": "SELECT co.entidad_contratante, COUNT(*) AS num_contratos, SUM(co.monto) AS monto_total FROM contratos_orden_servicio co WHERE co.tipo_contrato ILIKE 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM co.fecha_inicio) IN (2020, 2021, 2022, 2023, 2024) GROUP BY co.entidad_contratante ORDER BY num_contratos DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "entidad_contratante",
+        "num_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          134198,
+          2790385143.960012
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          42628,
+          633639001.7100002
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          37287,
+          186835963.67000002
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          36585,
+          547542146.9100001
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          35614,
+          317161941.38
+        ],
+        [
+          "MARINA DE GUERRA DEL PERU",
+          32101,
+          252127052.44999987
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          31846,
+          301327613.81000006
+        ],
+        [
+          "MINISTERIO DE SALUD",
+          30275,
+          498723006.87
+        ],
+        [
+          "GOBIERNO REGIONAL DE PIURA SEDE CENTRAL",
+          26845,
+          145854082.96000016
+        ],
+        [
+          "GOBIERNO REGIONAL DE AREQUIPA Sede Central",
+          24289,
+          277503034.3099999
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT co.entidad_contratante, COUNT(*) AS num_contratos, SUM(co.monto) AS monto_total FROM contratos_orden_servicio co WHERE co.tipo_contrato ILIKE 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM co.fecha_inicio) IN (2020, 2021, 2022, 2023, 2024) GROUP BY co.entidad_contratante ORDER BY num_contratos DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "num_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          134198,
+          2790385143.960012
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          42628,
+          633639001.7100002
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          37287,
+          186835963.67000002
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          36585,
+          547542146.9100001
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          35614,
+          317161941.38
+        ],
+        [
+          "MARINA DE GUERRA DEL PERU",
+          32101,
+          252127052.44999987
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          31846,
+          301327613.81000006
+        ],
+        [
+          "MINISTERIO DE SALUD",
+          30275,
+          498723006.87
+        ],
+        [
+          "GOBIERNO REGIONAL DE PIURA SEDE CENTRAL",
+          26845,
+          145854082.96000016
+        ],
+        [
+          "GOBIERNO REGIONAL DE AREQUIPA Sede Central",
+          24289,
+          277503034.3099999
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.entidad_contratante, COUNT(*) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto_total FROM contratos_orden_servicio co WHERE co.tipo_contrato ILIKE 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM co.fecha_inicio) IN (2020, 2021, 2022, 2023, 2024) GROUP BY co.entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "num_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          134198,
+          2790385143.960012
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          42628,
+          633639001.7100002
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          37287,
+          186835963.67000002
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          36585,
+          547542146.9100001
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          35614,
+          317161941.38
+        ],
+        [
+          "MARINA DE GUERRA DEL PERU",
+          32101,
+          252127052.44999987
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          31846,
+          301327613.81000006
+        ],
+        [
+          "MINISTERIO DE SALUD",
+          30275,
+          498723006.87
+        ],
+        [
+          "GOBIERNO REGIONAL DE PIURA SEDE CENTRAL",
+          26845,
+          145854082.96000016
+        ],
+        [
+          "GOBIERNO REGIONAL DE AREQUIPA Sede Central",
+          24289,
+          277503034.3099999
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT co.entidad_contratante, COUNT(*) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto_total FROM contratos_orden_servicio co WHERE co.tipo_contrato ILIKE 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM co.fecha_inicio) IN (2020, 2021, 2022, 2023, 2024) GROUP BY co.entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 10;",
+      "columns": [
+        "entidad_contratante",
+        "num_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "SEGURO SOCIAL DE SALUD",
+          134198,
+          2790385143.960012
+        ],
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          42628,
+          633639001.7100002
+        ],
+        [
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          37287,
+          186835963.67000002
+        ],
+        [
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          36585,
+          547542146.9100001
+        ],
+        [
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          35614,
+          317161941.38
+        ],
+        [
+          "MARINA DE GUERRA DEL PERU",
+          32101,
+          252127052.44999987
+        ],
+        [
+          "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
+          31846,
+          301327613.81000006
+        ],
+        [
+          "MINISTERIO DE SALUD",
+          30275,
+          498723006.87
+        ],
+        [
+          "GOBIERNO REGIONAL DE PIURA SEDE CENTRAL",
+          26845,
+          145854082.96000016
+        ],
+        [
+          "GOBIERNO REGIONAL DE AREQUIPA Sede Central",
+          24289,
+          277503034.3099999
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T09:13:28.568637",
+    "execution_id": 36
+  }
+]

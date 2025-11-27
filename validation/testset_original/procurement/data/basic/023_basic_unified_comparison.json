@@ -1,0 +1,62 @@
+[
+  {
+    "id": "basic_23",
+    "question": "Dame la cantidad de empresas que son  de tipo contribuyente INSTITUCIONES PUBLICAS",
+    "query": "SELECT count(distinct ruc_proveedor) as cantidad FROM transparencia_sunat WHERE tipo_contribuyente = 'INSTITUCIONES PUBLICAS';",
+    "expected": {
+      "columns": [
+        "cantidad"
+      ],
+      "rows": [
+        [
+          808
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT count(distinct ruc_proveedor) as cantidad FROM transparencia_sunat WHERE tipo_contribuyente = 'INSTITUCIONES PUBLICAS';",
+      "columns": [
+        "cantidad"
+      ],
+      "rows": [
+        [
+          808
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT COUNT(DISTINCT ruc_proveedor) FROM transparencia_sunat WHERE tipo_contribuyente ILIKE '%INSTITUCIONES PUBLICAS%';",
+      "columns": [
+        "count"
+      ],
+      "rows": [
+        [
+          808
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT COUNT(DISTINCT ruc_proveedor) as cantidad FROM transparencia_sunat WHERE tipo_contribuyente = 'INSTITUCIONES PUBLICAS'",
+      "columns": [
+        "cantidad"
+      ],
+      "rows": [
+        [
+          808
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T06:49:05.444590",
+    "execution_id": 23
+  }
+]

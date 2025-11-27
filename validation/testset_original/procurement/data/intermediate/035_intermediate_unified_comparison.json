@@ -1,0 +1,118 @@
+[
+  {
+    "id": "intermediate_35",
+    "question": "Con que entidades ha firmado mas ordenes de servicio el proveedor 'IBM DEL PERU S A C', quiero el top 3?, dame entidad_contratante, cantidad_ordenes_servicio, monto",
+    "query": "SELECT entidad_contratante, COUNT(*) as cantidad_ordenes_servicio, SUM(monto) as monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND tipo_contrato = 'ORDEN SERVICIO' GROUP BY entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 3;",
+    "expected": {
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio",
+        "monto"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          18,
+          629122.14
+        ],
+        [
+          "INSTITUTO NACIONAL DE DEFENSA DE LA COMPETENCIA Y DE LA PROTECCION DE LA PROPIEDAD INTELECTUAL",
+          6,
+          66594.84
+        ],
+        [
+          "EMPRESA DE SERVICIO PUBLICO DE ELECTRICIDAD ELECTRONORTE S.A.",
+          5,
+          14258.23
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as cantidad_ordenes_servicio, SUM(monto) as monto FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%IBM DEL PERU S A C%' AND tipo_contrato = 'ORDEN SERVICIO' GROUP BY entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 3;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio",
+        "monto"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          18,
+          629122.14
+        ],
+        [
+          "INSTITUTO NACIONAL DE DEFENSA DE LA COMPETENCIA Y DE LA PROTECCION DE LA PROPIEDAD INTELECTUAL",
+          6,
+          66594.84
+        ],
+        [
+          "EMPRESA DE SERVICIO PUBLICO DE ELECTRICIDAD ELECTRONORTE S.A.",
+          5,
+          14258.23
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.entidad_contratante, COUNT(*) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto FROM contratos_orden_servicio co WHERE co.nombre_proveedor ILIKE '%IBM DEL PERU S A C%' AND co.tipo_contrato = 'ORDEN SERVICIO' GROUP BY co.entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 3;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio",
+        "monto"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          18,
+          629122.14
+        ],
+        [
+          "INSTITUTO NACIONAL DE DEFENSA DE LA COMPETENCIA Y DE LA PROTECCION DE LA PROPIEDAD INTELECTUAL",
+          6,
+          66594.84
+        ],
+        [
+          "EMPRESA DE SERVICIO PUBLICO DE ELECTRICIDAD ELECTRONORTE S.A.",
+          5,
+          14258.23
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as cantidad_ordenes_servicio, SUM(monto) as monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND tipo_contrato = 'ORDEN SERVICIO' GROUP BY entidad_contratante ORDER BY cantidad_ordenes_servicio DESC LIMIT 3;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes_servicio",
+        "monto"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          18,
+          629122.14
+        ],
+        [
+          "INSTITUTO NACIONAL DE DEFENSA DE LA COMPETENCIA Y DE LA PROTECCION DE LA PROPIEDAD INTELECTUAL",
+          6,
+          66594.84
+        ],
+        [
+          "EMPRESA DE SERVICIO PUBLICO DE ELECTRICIDAD ELECTRONORTE S.A.",
+          5,
+          14258.23
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 3
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T08:59:19.992810",
+    "execution_id": 35
+  }
+]

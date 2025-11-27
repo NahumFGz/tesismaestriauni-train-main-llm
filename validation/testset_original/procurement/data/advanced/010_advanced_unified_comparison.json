@@ -1,0 +1,291 @@
+[
+  {
+    "id": "advanced_10",
+    "question": "10 proveedores cuyos 2 primeros digitos del ruc del proveedor sean 20 con mayor crecimiento interanual",
+    "query": "WITH yearly AS ( SELECT c.ruc_proveedor, c.nombre_proveedor, EXTRACT(YEAR FROM c.fecha_inicio)::int AS anio, SUM(c.monto) AS monto_anual FROM contratos_orden_servicio c WHERE c.fecha_inicio IS NOT NULL AND EXTRACT(YEAR FROM c.fecha_inicio) BETWEEN 2020 AND 2023 AND SUBSTRING(c.ruc_proveedor::text, 1, 2) = '20' GROUP BY c.ruc_proveedor, c.nombre_proveedor, anio ), bordes AS ( SELECT ruc_proveedor, MIN(anio) AS anio_ini, MAX(anio) AS anio_fin FROM yearly GROUP BY ruc_proveedor HAVING MIN(anio) <> MAX(anio) ), ini_fin AS ( SELECT y0.ruc_proveedor, y0.nombre_proveedor, b.anio_ini, b.anio_fin, y0.monto_anual AS monto_ini, y1.monto_anual AS monto_fin, (b.anio_fin - b.anio_ini) AS n_years FROM bordes b JOIN yearly y0 ON y0.ruc_proveedor = b.ruc_proveedor AND y0.anio = b.anio_ini JOIN yearly y1 ON y1.ruc_proveedor = b.ruc_proveedor AND y1.anio = b.anio_fin ), score AS ( SELECT ruc_proveedor, nombre_proveedor, anio_ini, anio_fin, monto_ini, monto_fin, n_years, CASE WHEN monto_ini <= 0 THEN NULL ELSE POWER(monto_fin / monto_ini, 1.0 / NULLIF(n_years, 0)) - 1 END AS cagr FROM ini_fin ) SELECT ruc_proveedor, nombre_proveedor, anio_ini, anio_fin, ROUND(monto_ini::numeric, 2) AS monto_ini, ROUND(monto_fin::numeric, 2) AS monto_fin, ROUND((cagr * 100)::numeric, 2) AS crecimiento_interanual_pct FROM score WHERE cagr IS NOT NULL ORDER BY cagr DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "anio_ini",
+        "anio_fin",
+        "monto_ini",
+        "monto_fin",
+        "crecimiento_interanual_pct"
+      ],
+      "rows": [
+        [
+          "20600968361",
+          "INVERSIONES RWEISS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA - INVERSIONES RWEISS E.I.R.L.",
+          2020,
+          2021,
+          939.6,
+          9491547.97,
+          1010069.0
+        ],
+        [
+          "20601122970",
+          "FES PAITITI S.R.L.",
+          2022,
+          2023,
+          712.5,
+          4006479.42,
+          562212.9
+        ],
+        [
+          "20600280172",
+          "PAPA DE AMERICA SOCIEDAD ANONIMA - PAPA DE AMERICA S.A.",
+          2022,
+          2023,
+          1333.2,
+          4995507.66,
+          374600.54
+        ],
+        [
+          "20608249851",
+          "CONSORCIO EIC INVERSIONES E.I.R.L. - SEGUNDO HECTOR IDROGO CIEZA",
+          2021,
+          2022,
+          935.25,
+          3025163.17,
+          323360.38
+        ],
+        [
+          "20603081901",
+          "ROUSSLIS MULTIVENTAS E.I.R.L.",
+          2021,
+          2022,
+          122.16,
+          382331.3,
+          312875.85
+        ],
+        [
+          "20600456467",
+          "MNDC CONSTRUCTORES Y LOGISTICA S.A.C.",
+          2020,
+          2021,
+          13500.0,
+          39633288.71,
+          293479.92
+        ],
+        [
+          "20487984206",
+          "SAN EDUARDO INGENIEROS S.R.L.",
+          2021,
+          2022,
+          629.93,
+          1843656.7,
+          292576.44
+        ],
+        [
+          "20609847728",
+          "INNOVA BIOBASE E.I.R.L.",
+          2022,
+          2023,
+          435.0,
+          1210017.23,
+          278064.88
+        ],
+        [
+          "20445429351",
+          "SUPER LINK SOCIEDAD COMERCIAL DE RESPONSABILIDAD LIMITADA",
+          2022,
+          2023,
+          620.0,
+          1402320.0,
+          226080.65
+        ],
+        [
+          "20407879687",
+          "CONSTRUCTORA J.J. ESPINOZA CONTRATISTAS S.A.C.",
+          2022,
+          2023,
+          1080.0,
+          2096883.58,
+          194055.89
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 7
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ts.ruc_proveedor, ts.nombre_proveedor, SUM(CASE WHEN EXTRACT(YEAR FROM ts.fecha_de_inicio_de_actividades) = EXTRACT(YEAR FROM CURRENT_DATE) THEN ts.monto_girado ELSE 0 END) AS monto_actual, SUM(CASE WHEN EXTRACT(YEAR FROM ts.fecha_de_inicio_de_actividades) = EXTRACT(YEAR FROM CURRENT_DATE) - 1 THEN ts.monto_girado ELSE 0 END) AS monto_anterior, (SUM(CASE WHEN EXTRACT(YEAR FROM ts.fecha_de_inicio_de_actividades) = EXTRACT(YEAR FROM CURRENT_DATE) THEN ts.monto_girado ELSE 0 END) - SUM(CASE WHEN EXTRACT(YEAR FROM ts.fecha_de_inicio_de_actividades) = EXTRACT(YEAR FROM CURRENT_DATE) - 1 THEN ts.monto_girado ELSE 0 END)) AS crecimiento FROM transparencia_sunat ts WHERE ts.ruc_proveedor ILIKE '20%' GROUP BY ts.ruc_proveedor, ts.nombre_proveedor ORDER BY crecimiento DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_actual",
+        "monto_anterior",
+        "crecimiento"
+      ],
+      "rows": [
+        [
+          "20613645897",
+          "CONSORCIO VIAL BRM",
+          31029081.38,
+          0.0,
+          31029081.38
+        ],
+        [
+          "20613879693",
+          "CONSORCIO PUENTE HUALLAGA",
+          25124095.52,
+          0.0,
+          25124095.52
+        ],
+        [
+          "20613659766",
+          "CONSORCIO PERLA DEL CHIRA",
+          13129832.08,
+          0.0,
+          13129832.08
+        ],
+        [
+          "20613807919",
+          "CONSORCIO ADRIANO",
+          11809855.03,
+          0.0,
+          11809855.03
+        ],
+        [
+          "20607461814",
+          "BUREAU PIEMONTE SOCIEDAD COMERCIAL DE RESPONSABILIDAD LIMITADA.",
+          11400646.09,
+          0.0,
+          11400646.09
+        ],
+        [
+          "20614035332",
+          "CONSORCIO AZ PARCONA",
+          10635000.0,
+          0.0,
+          10635000.0
+        ],
+        [
+          "20613611747",
+          "CONSORCIO TIGRE - SALUD 25",
+          10537037.4,
+          0.0,
+          10537037.4
+        ],
+        [
+          "20613884239",
+          "CONSORCIO EJECUTOR LA CANTUTA",
+          5355712.95,
+          0.0,
+          5355712.95
+        ],
+        [
+          "20613816560",
+          "CONSORCIO CALLANGO",
+          5332000.0,
+          0.0,
+          5332000.0
+        ],
+        [
+          "20613742175",
+          "CONSORCIO EJECUTOR MARTIRES",
+          4700000.0,
+          0.0,
+          4700000.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 5
+    },
+    "our_agent": {
+      "sql_query": "WITH montos_anuales AS ( SELECT c.ruc_proveedor, c.nombre_proveedor, EXTRACT(YEAR FROM c.fecha_inicio) as año, SUM(c.monto) as monto_total_año FROM contratos_orden_servicio c WHERE c.ruc_proveedor LIKE '20%' AND c.fecha_inicio IS NOT NULL AND c.monto IS NOT NULL GROUP BY c.ruc_proveedor, c.nombre_proveedor, EXTRACT(YEAR FROM c.fecha_inicio) ), crecimiento_interanual AS ( SELECT ma1.ruc_proveedor, ma1.nombre_proveedor, ma1.año as año_actual, ma2.año as año_anterior, ma1.monto_total_año as monto_actual, ma2.monto_total_año as monto_anterior, CASE WHEN ma2.monto_total_año > 0 THEN ((ma1.monto_total_año - ma2.monto_total_año) / ma2.monto_total_año) * 100 ELSE NULL END as crecimiento_porcentual FROM montos_anuales ma1 JOIN montos_anuales ma2 ON ma1.ruc_proveedor = ma2.ruc_proveedor AND ma1.año = ma2.año + 1 WHERE ma2.monto_total_año > 0 ), promedio_crecimiento AS ( SELECT ruc_proveedor, nombre_proveedor, AVG(crecimiento_porcentual) as crecimiento_promedio, COUNT(*) as periodos_comparados, MAX(monto_actual) as monto_maximo FROM crecimiento_interanual WHERE crecimiento_porcentual IS NOT NULL GROUP BY ruc_proveedor, nombre_proveedor HAVING COUNT(*) >= 1 -- Al menos un periodo de comparación ) SELECT ruc_proveedor, nombre_proveedor, crecimiento_promedio as crecimiento_promedio_porcentual, periodos_comparados, monto_maximo as monto_maximo_anual FROM promedio_crecimiento ORDER BY crecimiento_promedio DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "crecimiento_promedio_porcentual",
+        "periodos_comparados",
+        "monto_maximo_anual"
+      ],
+      "rows": [
+        [
+          "20309285043",
+          "EMPR.DE ASESORAMT.Y SERV.ECOBOSQUE S.R.L",
+          323864900.0,
+          1,
+          32386.5
+        ],
+        [
+          "20600800877",
+          "CORPORACION I & F S.A.C.",
+          50921100.26801223,
+          3,
+          3055269.09
+        ],
+        [
+          "20455536805",
+          "BIO-LOGICA CONSULTORES S.A.C.",
+          36580052.96196761,
+          7,
+          57000.0
+        ],
+        [
+          "20454904321",
+          "DIMEXSOUTH E.I.R.L.",
+          26216791.490862783,
+          7,
+          6301292.300000001
+        ],
+        [
+          "20509798495",
+          "VENETO CORRETAJES INMOBILIARIA SOCIEDAD ANONIMA CERRADA",
+          3543909.021156213,
+          4,
+          8041397.94
+        ],
+        [
+          "20543671399",
+          "TRES SINERGIAS S.A.C.",
+          3279350.3209919464,
+          2,
+          31522.52
+        ],
+        [
+          "20525182372",
+          "B & S LAZFER S.R.L.",
+          2324835.945539895,
+          4,
+          92994.0
+        ],
+        [
+          "20602710280",
+          "NORTHWEST SECURITY S.A.C",
+          1834434.9517762766,
+          6,
+          4147446.64
+        ],
+        [
+          "20529265302",
+          "INGENIEROS CONSTRUCTORES MINEROS Y SERVICIOS MULTIPLES HINOSTROZA & RIVERA SOCIEDAD ANONIMA CERRADA",
+          1731482.7757334758,
+          1,
+          175052629.13
+        ],
+        [
+          "20604908842",
+          "MACE CONSULTANCY (PERU) S.A.C.",
+          1691266.279174013,
+          1,
+          565981898.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 5
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-17T13:23:06.758208",
+    "execution_id": 10
+  }
+]

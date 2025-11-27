@@ -1,0 +1,62 @@
+[
+  {
+    "id": "basic_13",
+    "question": "Dame la cantidad de empresas que son  de tipo contribuyente SOCIEDAD ANONIMA",
+    "query": "SELECT count(distinct ruc_proveedor) as cantidad FROM transparencia_sunat WHERE tipo_contribuyente = 'SOCIEDAD ANONIMA';",
+    "expected": {
+      "columns": [
+        "cantidad"
+      ],
+      "rows": [
+        [
+          4163
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT COUNT(DISTINCT ruc_proveedor) as cantidad FROM transparencia_sunat WHERE tipo_contribuyente = 'SOCIEDAD ANONIMA';",
+      "columns": [
+        "cantidad"
+      ],
+      "rows": [
+        [
+          4163
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT COUNT(DISTINCT ruc_proveedor) as cantidad FROM transparencia_sunat WHERE tipo_contribuyente = 'SOCIEDAD ANONIMA';",
+      "columns": [
+        "cantidad"
+      ],
+      "rows": [
+        [
+          4163
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT COUNT(*) as cantidad FROM transparencia_sunat WHERE tipo_contribuyente = 'SOCIEDAD ANONIMA';",
+      "columns": [
+        "cantidad"
+      ],
+      "rows": [
+        [
+          4163
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:45:46.454821",
+    "execution_id": 13
+  }
+]

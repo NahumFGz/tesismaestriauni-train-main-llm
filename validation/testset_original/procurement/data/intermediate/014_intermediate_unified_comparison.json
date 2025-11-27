@@ -1,0 +1,182 @@
+[
+  {
+    "id": "intermediate_14",
+    "question": "Contratos en dólares del proveedor 'IBM DEL PERU S A C' en 2008, quiero las columnas nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto",
+    "query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND EXTRACT(YEAR FROM fecha_inicio) = 2008 AND moneda = 'DOLARES' AND tipo_contrato = 'CONTRATO' ORDER BY fecha_inicio;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          "SUPERINTENDENCIA NACIONAL DE ADMINISTRACION TRIBUTARIA",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-08-05",
+          "DOLARES",
+          3113.14
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "BANCO AGROPECUARIO",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-29",
+          "DOLARES",
+          287456.4
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-30",
+          "DOLARES",
+          103916.93
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 7
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND EXTRACT(YEAR FROM fecha_inicio) = 2008 AND moneda = 'DOLARES' AND tipo_contrato = 'CONTRATO' ORDER BY fecha_inicio;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          "SUPERINTENDENCIA NACIONAL DE ADMINISTRACION TRIBUTARIA",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-08-05",
+          "DOLARES",
+          3113.14
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "BANCO AGROPECUARIO",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-29",
+          "DOLARES",
+          287456.4
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-30",
+          "DOLARES",
+          103916.93
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 7
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND EXTRACT(YEAR FROM fecha_inicio) = 2008 AND moneda = 'DOLARES' AND tipo_contrato = 'CONTRATO' ORDER BY fecha_inicio;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          "SUPERINTENDENCIA NACIONAL DE ADMINISTRACION TRIBUTARIA",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-08-05",
+          "DOLARES",
+          3113.14
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "BANCO AGROPECUARIO",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-29",
+          "DOLARES",
+          287456.4
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-30",
+          "DOLARES",
+          103916.93
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 7
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor = 'IBM DEL PERU S A C' AND EXTRACT(YEAR FROM fecha_inicio) = 2008 AND moneda = 'DOLARES' AND tipo_contrato = 'CONTRATO' ORDER BY fecha_inicio;",
+      "columns": [
+        "nombre_proveedor",
+        "entidad_contratante",
+        "tipo_contrato",
+        "objeto_contrato",
+        "fecha_inicio",
+        "moneda",
+        "monto"
+      ],
+      "rows": [
+        [
+          "IBM DEL PERU S A C",
+          "SUPERINTENDENCIA NACIONAL DE ADMINISTRACION TRIBUTARIA",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-08-05",
+          "DOLARES",
+          3113.14
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "BANCO AGROPECUARIO",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-29",
+          "DOLARES",
+          287456.4
+        ],
+        [
+          "IBM DEL PERU S A C",
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          "CONTRATO",
+          "SERVICIO EN GENERAL",
+          "2008-12-30",
+          "DOLARES",
+          103916.93
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 7
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-15T06:07:00.529072",
+    "execution_id": 14
+  }
+]

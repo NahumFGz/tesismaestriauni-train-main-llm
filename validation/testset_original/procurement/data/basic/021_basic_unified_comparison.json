@@ -1,0 +1,78 @@
+[
+  {
+    "id": "basic_21",
+    "question": "Dame el ruc, la fecha de inicio de actividades y el monto girado del proveedor que se llama BANCO DE CREDITO DEL PERU, dame las columnas ruc_proveedor, fecha_de_inicio_de_actividades y monto_girado",
+    "query": "SELECT ruc_proveedor, fecha_de_inicio_de_actividades, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%BANCO DE CREDITO DEL PERU%'",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20100047218",
+          "1889-04-09",
+          8015071213.5
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, fecha_de_inicio_de_actividades, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%BANCO DE CREDITO DEL PERU%",
+      "columns": [
+        "ruc_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20100047218",
+          "1889-04-09",
+          8015071213.5
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, fecha_de_inicio_de_actividades, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%BANCO DE CREDITO DEL PERU%';",
+      "columns": [
+        "ruc_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20100047218",
+          "1889-04-09",
+          8015071213.5
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, fecha_de_inicio_de_actividades, monto_girado FROM transparencia_sunat WHERE nombre_proveedor = 'BANCO DE CREDITO DEL PERU';",
+      "columns": [
+        "ruc_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20100047218",
+          "1889-04-09",
+          8015071213.5
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T06:41:07.283324",
+    "execution_id": 21
+  }
+]

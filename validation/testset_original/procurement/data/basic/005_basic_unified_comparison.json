@@ -1,0 +1,56 @@
+[
+  {
+    "id": "basic_5",
+    "question": "Cuantas empresas hay en la base de datos?",
+    "query": "SELECT count(*) as total_empresas FROM transparencia_sunat",
+    "expected": {
+      "columns": [
+        "total_empresas"
+      ],
+      "rows": [
+        [
+          499884
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT COUNT(DISTINCT ruc_proveedor) AS total_empresas FROM transparencia_sunat;",
+      "columns": [
+        "total_empresas"
+      ],
+      "rows": [
+        [
+          499884
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT COUNT(DISTINCT ruc_proveedor) as total_empresas FROM transparencia_sunat;",
+      "columns": [
+        "total_empresas"
+      ],
+      "rows": [
+        [
+          499884
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:02:24.477446",
+    "execution_id": 5
+  }
+]

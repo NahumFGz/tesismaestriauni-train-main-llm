@@ -1,0 +1,86 @@
+[
+  {
+    "id": "basic_35",
+    "question": "Quiero la informacion de que tengas disponibles en la tabla transparencia del proveedor con RUC 20543254798",
+    "query": "SELECT * FROM transparencia_sunat WHERE ruc_proveedor = '20543254798';",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "tipo_empresa_persona_juridica_natural",
+        "tipo_contribuyente",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20543254798",
+          "VIETTEL PERU S.A.C.",
+          502097627.34,
+          "PERSONA JURIDICA",
+          "SOCIEDAD ANONIMA CERRADA",
+          "2011-04-30"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT * FROM transparencia_sunat WHERE ruc_proveedor = '20543254798';",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "tipo_empresa_persona_juridica_natural",
+        "tipo_contribuyente",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20543254798",
+          "VIETTEL PERU S.A.C.",
+          502097627.34,
+          "PERSONA JURIDICA",
+          "SOCIEDAD ANONIMA CERRADA",
+          "2011-04-30"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "our_agent": {
+      "sql_query": "SELECT * FROM transparencia_sunat WHERE ruc_proveedor = '20543254798'",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "tipo_empresa_persona_juridica_natural",
+        "tipo_contribuyente",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20543254798",
+          "VIETTEL PERU S.A.C.",
+          502097627.34,
+          "PERSONA JURIDICA",
+          "SOCIEDAD ANONIMA CERRADA",
+          "2011-04-30"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 6
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T03:33:12.595115",
+    "execution_id": 35
+  }
+]

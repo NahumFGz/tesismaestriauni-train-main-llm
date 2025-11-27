@@ -1,0 +1,78 @@
+[
+  {
+    "id": "basic_7",
+    "question": "¿Cuál es el monto girado del proveedor con RUC 20537321190?, quiero el ruc, el nombre del proveedor y el monto girado",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE ruc_proveedor = '20537321190';",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20537321190",
+          "DIMERC PERU S.A.C.",
+          22578422.36
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE ruc_proveedor = '20537321190' LIMIT 1;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20537321190",
+          "DIMERC PERU S.A.C.",
+          22578422.36
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE ruc_proveedor = '20537321190';",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20537321190",
+          "DIMERC PERU S.A.C.",
+          22578422.36
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE ruc_proveedor = '20537321190';",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20537321190",
+          "DIMERC PERU S.A.C.",
+          22578422.36
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:07:38.887470",
+    "execution_id": 7
+  }
+]

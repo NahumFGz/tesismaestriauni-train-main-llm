@@ -1,0 +1,346 @@
+[
+  {
+    "id": "advanced_3",
+    "question": "¿Cuáles son los proveedores más diversificados (trabajan con múltiples entidades) en 2023?, solo quiero 10 filas.",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, COUNT(DISTINCT entidad_contratante) as num_entidades, COUNT(*) as total_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio c WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY ruc_proveedor, nombre_proveedor ORDER BY COUNT(DISTINCT entidad_contratante) DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "num_entidades",
+        "total_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20519865476",
+          "OK COMPUTER E.I.R.L.",
+          192,
+          375,
+          52402054.95
+        ],
+        [
+          "20605265201",
+          "MC ERATECH S.A.C.",
+          182,
+          331,
+          1211221.9000000004
+        ],
+        [
+          "20601710308",
+          "CORPORACION REYSANA BIENESTAR S.R.L.",
+          181,
+          470,
+          5710689.679999999
+        ],
+        [
+          "20605152296",
+          "GRUPO TALEON INGENIERIA Y CONSTRUCCION S.A.C.",
+          170,
+          289,
+          2852702.920000001
+        ],
+        [
+          "20609061317",
+          "PC SUMINISTROS IMPORT S.A.C.",
+          168,
+          260,
+          914239.2600000001
+        ],
+        [
+          "20602537324",
+          "KINGSTORE PERU S.A.C.",
+          164,
+          237,
+          1770073.7000000004
+        ],
+        [
+          "20519272815",
+          "JP INVERSIONES GENERALES EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          161,
+          301,
+          2283141.6399999997
+        ],
+        [
+          "20518992296",
+          "INVERSIONES TECNOLOGICAS DEL PERU S.A.C.",
+          150,
+          338,
+          40791690.669999994
+        ],
+        [
+          "20606256486",
+          "FIMAV PERU E.I.R.L",
+          149,
+          224,
+          18777566.89999999
+        ],
+        [
+          "20605925520",
+          "W & M SIRYCATA S.A.C.",
+          148,
+          234,
+          1031733.26
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 5
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, COUNT(DISTINCT entidad_contratante) as num_entidades, COUNT(*) as total_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio c WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY ruc_proveedor, nombre_proveedor ORDER BY COUNT(DISTINCT entidad_contratante) DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "num_entidades",
+        "total_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20519865476",
+          "OK COMPUTER E.I.R.L.",
+          192,
+          375,
+          52402054.95
+        ],
+        [
+          "20605265201",
+          "MC ERATECH S.A.C.",
+          182,
+          331,
+          1211221.9000000004
+        ],
+        [
+          "20601710308",
+          "CORPORACION REYSANA BIENESTAR S.R.L.",
+          181,
+          470,
+          5710689.679999999
+        ],
+        [
+          "20605152296",
+          "GRUPO TALEON INGENIERIA Y CONSTRUCCION S.A.C.",
+          170,
+          289,
+          2852702.920000001
+        ],
+        [
+          "20609061317",
+          "PC SUMINISTROS IMPORT S.A.C.",
+          168,
+          260,
+          914239.2600000001
+        ],
+        [
+          "20602537324",
+          "KINGSTORE PERU S.A.C.",
+          164,
+          237,
+          1770073.7000000004
+        ],
+        [
+          "20519272815",
+          "JP INVERSIONES GENERALES EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          161,
+          301,
+          2283141.6399999997
+        ],
+        [
+          "20518992296",
+          "INVERSIONES TECNOLOGICAS DEL PERU S.A.C.",
+          150,
+          338,
+          40791690.669999994
+        ],
+        [
+          "20606256486",
+          "FIMAV PERU E.I.R.L",
+          149,
+          224,
+          18777566.89999999
+        ],
+        [
+          "20605925520",
+          "W & M SIRYCATA S.A.C.",
+          148,
+          234,
+          1031733.26
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 5
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, COUNT(DISTINCT entidad_contratante) as num_entidades, COUNT(*) as total_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio c WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY ruc_proveedor, nombre_proveedor ORDER BY COUNT(DISTINCT entidad_contratante) DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "num_entidades",
+        "total_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20519865476",
+          "OK COMPUTER E.I.R.L.",
+          192,
+          375,
+          52402054.95
+        ],
+        [
+          "20605265201",
+          "MC ERATECH S.A.C.",
+          182,
+          331,
+          1211221.9000000004
+        ],
+        [
+          "20601710308",
+          "CORPORACION REYSANA BIENESTAR S.R.L.",
+          181,
+          470,
+          5710689.679999999
+        ],
+        [
+          "20605152296",
+          "GRUPO TALEON INGENIERIA Y CONSTRUCCION S.A.C.",
+          170,
+          289,
+          2852702.920000001
+        ],
+        [
+          "20609061317",
+          "PC SUMINISTROS IMPORT S.A.C.",
+          168,
+          260,
+          914239.2600000001
+        ],
+        [
+          "20602537324",
+          "KINGSTORE PERU S.A.C.",
+          164,
+          237,
+          1770073.7000000004
+        ],
+        [
+          "20519272815",
+          "JP INVERSIONES GENERALES EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          161,
+          301,
+          2283141.6399999997
+        ],
+        [
+          "20518992296",
+          "INVERSIONES TECNOLOGICAS DEL PERU S.A.C.",
+          150,
+          338,
+          40791690.669999994
+        ],
+        [
+          "20606256486",
+          "FIMAV PERU E.I.R.L",
+          149,
+          224,
+          18777566.89999999
+        ],
+        [
+          "20605925520",
+          "W & M SIRYCATA S.A.C.",
+          148,
+          234,
+          1031733.26
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 5
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, COUNT(DISTINCT entidad_contratante) as num_entidades, COUNT(*) as total_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio c WHERE EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY ruc_proveedor, nombre_proveedor ORDER BY COUNT(DISTINCT entidad_contratante) DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "num_entidades",
+        "total_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20519865476",
+          "OK COMPUTER E.I.R.L.",
+          192,
+          375,
+          52402054.95
+        ],
+        [
+          "20605265201",
+          "MC ERATECH S.A.C.",
+          182,
+          331,
+          1211221.9000000004
+        ],
+        [
+          "20601710308",
+          "CORPORACION REYSANA BIENESTAR S.R.L.",
+          181,
+          470,
+          5710689.679999999
+        ],
+        [
+          "20605152296",
+          "GRUPO TALEON INGENIERIA Y CONSTRUCCION S.A.C.",
+          170,
+          289,
+          2852702.920000001
+        ],
+        [
+          "20609061317",
+          "PC SUMINISTROS IMPORT S.A.C.",
+          168,
+          260,
+          914239.2600000001
+        ],
+        [
+          "20602537324",
+          "KINGSTORE PERU S.A.C.",
+          164,
+          237,
+          1770073.7000000004
+        ],
+        [
+          "20519272815",
+          "JP INVERSIONES GENERALES EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          161,
+          301,
+          2283141.6399999997
+        ],
+        [
+          "20518992296",
+          "INVERSIONES TECNOLOGICAS DEL PERU S.A.C.",
+          150,
+          338,
+          40791690.669999994
+        ],
+        [
+          "20606256486",
+          "FIMAV PERU E.I.R.L",
+          149,
+          224,
+          18777566.89999999
+        ],
+        [
+          "20605925520",
+          "W & M SIRYCATA S.A.C.",
+          148,
+          234,
+          1031733.26
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 5
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-17T12:39:06.311615",
+    "execution_id": 3
+  }
+]

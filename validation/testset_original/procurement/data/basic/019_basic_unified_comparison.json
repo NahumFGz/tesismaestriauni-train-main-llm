@@ -1,0 +1,258 @@
+[
+  {
+    "id": "basic_19",
+    "question": "Dame los 10 proveedores con mayor monto girado que iniciaron sus actividades en 2001, dame el ruc_proveedor, nombre_proveedor y monto_total con ordenado por monto_total de forma descendente",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) as monto_total  FROM transparencia_sunat WHERE EXTRACT(YEAR FROM fecha_de_inicio_de_actividades) = 2001 GROUP BY ruc_proveedor, nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20501891801",
+          "ORGANIZ.INTERNACIONAL PARA LAS MIGRACIO- NES OIM",
+          1387125657.23
+        ],
+        [
+          "20501439020",
+          "OBRAS DE INGENIERIA S.A.C.",
+          1094682747.61
+        ],
+        [
+          "20502503180",
+          "NIISA CORPORATION S.A.",
+          1051083218.78
+        ],
+        [
+          "20501887286",
+          "DIAGNOSTICA PERUANA S.A.C.",
+          833171022.8
+        ],
+        [
+          "20502797230",
+          "DIVEIMPORT S.A.",
+          724242947.93
+        ],
+        [
+          "20502221796",
+          "TECNOLOGIAS ECOLOGICAS PRISMA SAC",
+          655117598.06
+        ],
+        [
+          "20483851171",
+          "SERVICIOS GENERALES VIVIANA EIRL",
+          399687483.46
+        ],
+        [
+          "20508035200",
+          "BANCO INTERNACIONAL DE RECONSTRUCCION Y FOMENTO",
+          288110778.81
+        ],
+        [
+          "20471652963",
+          "FONDO NACIONAL DEL AMBIENTE",
+          235781668.45
+        ],
+        [
+          "20503028655",
+          "TECNICA Y PROYECTOS S.A SUCURSAL DEL PERU",
+          213426500.74
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) as monto_total  FROM transparencia_sunat WHERE EXTRACT(YEAR FROM fecha_de_inicio_de_actividades) = 2001 GROUP BY ruc_proveedor, nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20501891801",
+          "ORGANIZ.INTERNACIONAL PARA LAS MIGRACIO- NES OIM",
+          1387125657.23
+        ],
+        [
+          "20501439020",
+          "OBRAS DE INGENIERIA S.A.C.",
+          1094682747.61
+        ],
+        [
+          "20502503180",
+          "NIISA CORPORATION S.A.",
+          1051083218.78
+        ],
+        [
+          "20501887286",
+          "DIAGNOSTICA PERUANA S.A.C.",
+          833171022.8
+        ],
+        [
+          "20502797230",
+          "DIVEIMPORT S.A.",
+          724242947.93
+        ],
+        [
+          "20502221796",
+          "TECNOLOGIAS ECOLOGICAS PRISMA SAC",
+          655117598.06
+        ],
+        [
+          "20483851171",
+          "SERVICIOS GENERALES VIVIANA EIRL",
+          399687483.46
+        ],
+        [
+          "20508035200",
+          "BANCO INTERNACIONAL DE RECONSTRUCCION Y FOMENTO",
+          288110778.81
+        ],
+        [
+          "20471652963",
+          "FONDO NACIONAL DEL AMBIENTE",
+          235781668.45
+        ],
+        [
+          "20503028655",
+          "TECNICA Y PROYECTOS S.A SUCURSAL DEL PERU",
+          213426500.74
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ts.ruc_proveedor, ts.nombre_proveedor, SUM(ts.monto_girado) AS monto_total FROM transparencia_sunat ts WHERE EXTRACT(YEAR FROM ts.fecha_de_inicio_de_actividades) = 2001 GROUP BY ts.ruc_proveedor, ts.nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20501891801",
+          "ORGANIZ.INTERNACIONAL PARA LAS MIGRACIO- NES OIM",
+          1387125657.23
+        ],
+        [
+          "20501439020",
+          "OBRAS DE INGENIERIA S.A.C.",
+          1094682747.61
+        ],
+        [
+          "20502503180",
+          "NIISA CORPORATION S.A.",
+          1051083218.78
+        ],
+        [
+          "20501887286",
+          "DIAGNOSTICA PERUANA S.A.C.",
+          833171022.8
+        ],
+        [
+          "20502797230",
+          "DIVEIMPORT S.A.",
+          724242947.93
+        ],
+        [
+          "20502221796",
+          "TECNOLOGIAS ECOLOGICAS PRISMA SAC",
+          655117598.06
+        ],
+        [
+          "20483851171",
+          "SERVICIOS GENERALES VIVIANA EIRL",
+          399687483.46
+        ],
+        [
+          "20508035200",
+          "BANCO INTERNACIONAL DE RECONSTRUCCION Y FOMENTO",
+          288110778.81
+        ],
+        [
+          "20471652963",
+          "FONDO NACIONAL DEL AMBIENTE",
+          235781668.45
+        ],
+        [
+          "20503028655",
+          "TECNICA Y PROYECTOS S.A SUCURSAL DEL PERU",
+          213426500.74
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado as monto_total FROM transparencia_sunat WHERE EXTRACT(YEAR FROM fecha_de_inicio_de_actividades) = 2001 ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20501891801",
+          "ORGANIZ.INTERNACIONAL PARA LAS MIGRACIO- NES OIM",
+          1387125657.23
+        ],
+        [
+          "20501439020",
+          "OBRAS DE INGENIERIA S.A.C.",
+          1094682747.61
+        ],
+        [
+          "20502503180",
+          "NIISA CORPORATION S.A.",
+          1051083218.78
+        ],
+        [
+          "20501887286",
+          "DIAGNOSTICA PERUANA S.A.C.",
+          833171022.8
+        ],
+        [
+          "20502797230",
+          "DIVEIMPORT S.A.",
+          724242947.93
+        ],
+        [
+          "20502221796",
+          "TECNOLOGIAS ECOLOGICAS PRISMA SAC",
+          655117598.06
+        ],
+        [
+          "20483851171",
+          "SERVICIOS GENERALES VIVIANA EIRL",
+          399687483.46
+        ],
+        [
+          "20508035200",
+          "BANCO INTERNACIONAL DE RECONSTRUCCION Y FOMENTO",
+          288110778.81
+        ],
+        [
+          "20471652963",
+          "FONDO NACIONAL DEL AMBIENTE",
+          235781668.45
+        ],
+        [
+          "20503028655",
+          "TECNICA Y PROYECTOS S.A SUCURSAL DEL PERU",
+          213426500.74
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T06:25:02.346804",
+    "execution_id": 19
+  }
+]

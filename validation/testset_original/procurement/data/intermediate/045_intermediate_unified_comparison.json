@@ -1,0 +1,70 @@
+[
+  {
+    "id": "intermediate_45",
+    "question": "Cual es el ministerio que mas contratos y ordenes de servicio ha firmado?, quiero las columnas entidad_contratante y total_contratos_ordenes",
+    "query": "SELECT entidad_contratante, COUNT(*) as total_contratos_ordenes FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MINISTERIO%' GROUP BY entidad_contratante ORDER BY total_contratos_ordenes DESC LIMIT 1;",
+    "expected": {
+      "columns": [
+        "entidad_contratante",
+        "total_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          69948
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as total_contratos_ordenes FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MINISTERIO%' GROUP BY entidad_contratante ORDER BY total_contratos_ordenes DESC LIMIT 1;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          69948
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as total_contratos_ordenes FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MINISTERIO%' GROUP BY entidad_contratante ORDER BY total_contratos_ordenes DESC LIMIT 1;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          69948
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT entidad_contratante, COUNT(*) as total_contratos_ordenes FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MINISTERIO%' GROUP BY entidad_contratante ORDER BY total_contratos_ordenes DESC LIMIT 1;",
+      "columns": [
+        "entidad_contratante",
+        "total_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          69948
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-17T09:39:54.060328",
+    "execution_id": 45
+  }
+]

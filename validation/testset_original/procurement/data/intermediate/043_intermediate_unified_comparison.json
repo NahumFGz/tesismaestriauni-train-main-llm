@@ -1,0 +1,122 @@
+[
+  {
+    "id": "intermediate_43",
+    "question": "Dame los 3 contratos y ordenes de servicio más bajos del proveedor BBVA, quiero las columnas nombre_proveedor, monto, fecha_inicio, entidad_contratante, tipo_contrato",
+    "query": "SELECT nombre_proveedor, monto, fecha_inicio, entidad_contratante, tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' ORDER BY monto ASC LIMIT 3;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "monto",
+        "fecha_inicio",
+        "entidad_contratante",
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "BANCO BBVA PERU",
+          2.5,
+          "2014-08-14",
+          "IAFAS DEL EJERCITO DEL PERU (FOSPEME)",
+          "ORDEN SERVICIO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          2.5,
+          "2014-08-14",
+          "IAFAS DEL EJERCITO DEL PERU (FOSPEME)",
+          "ORDEN SERVICIO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          2.5,
+          "2014-08-14",
+          "IAFAS DEL EJERCITO DEL PERU (FOSPEME)",
+          "ORDEN SERVICIO"
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 5
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.nombre_proveedor, co.monto, co.fecha_inicio, co.entidad_contratante, co.tipo_contrato FROM contratos_orden_servicio co WHERE co.nombre_proveedor ILIKE '%BBVA%' ORDER BY co.monto ASC LIMIT 3;",
+      "columns": [
+        "nombre_proveedor",
+        "monto",
+        "fecha_inicio",
+        "entidad_contratante",
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "BANCO BBVA PERU",
+          2.5,
+          "2014-08-14",
+          "IAFAS DEL EJERCITO DEL PERU (FOSPEME)",
+          "ORDEN SERVICIO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          2.5,
+          "2014-08-14",
+          "IAFAS DEL EJERCITO DEL PERU (FOSPEME)",
+          "ORDEN SERVICIO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          2.5,
+          "2014-08-14",
+          "IAFAS DEL EJERCITO DEL PERU (FOSPEME)",
+          "ORDEN SERVICIO"
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 5
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, monto, fecha_inicio, entidad_contratante, tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' ORDER BY monto ASC LIMIT 3;",
+      "columns": [
+        "nombre_proveedor",
+        "monto",
+        "fecha_inicio",
+        "entidad_contratante",
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "BANCO BBVA PERU",
+          2.5,
+          "2014-08-14",
+          "IAFAS DEL EJERCITO DEL PERU (FOSPEME)",
+          "ORDEN SERVICIO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          2.5,
+          "2014-08-14",
+          "IAFAS DEL EJERCITO DEL PERU (FOSPEME)",
+          "ORDEN SERVICIO"
+        ],
+        [
+          "BANCO BBVA PERU",
+          2.5,
+          "2014-08-14",
+          "IAFAS DEL EJERCITO DEL PERU (FOSPEME)",
+          "ORDEN SERVICIO"
+        ]
+      ],
+      "row_count": 3,
+      "column_count": 5
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-17T09:31:12.228512",
+    "execution_id": 43
+  }
+]

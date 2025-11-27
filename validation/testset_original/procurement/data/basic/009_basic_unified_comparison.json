@@ -1,0 +1,258 @@
+[
+  {
+    "id": "basic_9",
+    "question": "Dame los 10 proveedores con mayor monto girado, quiero las columnas ruc_proveedor, nombre_proveedor y monto_total ordenado por monto_total de forma descendente",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) as monto_total FROM transparencia_sunat GROUP BY ruc_proveedor, nombre_proveedor ORDER BY 3 DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20131370645",
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          19312898790.58
+        ],
+        [
+          "20414671773",
+          "FONDO MIVIVIENDA S.A.",
+          12293205840.88
+        ],
+        [
+          "20100128218",
+          "PETROLEOS DEL PERU PETROPERU SA",
+          9905757838.69
+        ],
+        [
+          "20557410008",
+          "METRO DE LIMA LINEA 2 S.A.",
+          9649129064.13
+        ],
+        [
+          "20100047218",
+          "BANCO DE CREDITO DEL PERU",
+          8015071213.5
+        ],
+        [
+          "20100030595",
+          "BANCO DE LA NACION",
+          7103743610.32
+        ],
+        [
+          "20511004251",
+          "CONCESIONARIA IIRSA NORTE S.A.",
+          6680126248.24
+        ],
+        [
+          "20511130124",
+          "INTERSUR CONCESIONES S.A.",
+          6534345759.95
+        ],
+        [
+          "20109565017",
+          "CONSTRUCCION Y ADMINISTRACION S.A.",
+          6267208145.71
+        ],
+        [
+          "20100003351",
+          "SERVICIOS INDUSTRIALES DE LA MARINA S.A.",
+          6161343750.86
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) as monto_total FROM transparencia_sunat GROUP BY ruc_proveedor, nombre_proveedor ORDER BY 3 DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20131370645",
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          19312898790.58
+        ],
+        [
+          "20414671773",
+          "FONDO MIVIVIENDA S.A.",
+          12293205840.88
+        ],
+        [
+          "20100128218",
+          "PETROLEOS DEL PERU PETROPERU SA",
+          9905757838.69
+        ],
+        [
+          "20557410008",
+          "METRO DE LIMA LINEA 2 S.A.",
+          9649129064.13
+        ],
+        [
+          "20100047218",
+          "BANCO DE CREDITO DEL PERU",
+          8015071213.5
+        ],
+        [
+          "20100030595",
+          "BANCO DE LA NACION",
+          7103743610.32
+        ],
+        [
+          "20511004251",
+          "CONCESIONARIA IIRSA NORTE S.A.",
+          6680126248.24
+        ],
+        [
+          "20511130124",
+          "INTERSUR CONCESIONES S.A.",
+          6534345759.95
+        ],
+        [
+          "20109565017",
+          "CONSTRUCCION Y ADMINISTRACION S.A.",
+          6267208145.71
+        ],
+        [
+          "20100003351",
+          "SERVICIOS INDUSTRIALES DE LA MARINA S.A.",
+          6161343750.86
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, SUM(monto_girado) AS monto_total FROM transparencia_sunat GROUP BY ruc_proveedor, nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20131370645",
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          19312898790.58
+        ],
+        [
+          "20414671773",
+          "FONDO MIVIVIENDA S.A.",
+          12293205840.88
+        ],
+        [
+          "20100128218",
+          "PETROLEOS DEL PERU PETROPERU SA",
+          9905757838.69
+        ],
+        [
+          "20557410008",
+          "METRO DE LIMA LINEA 2 S.A.",
+          9649129064.13
+        ],
+        [
+          "20100047218",
+          "BANCO DE CREDITO DEL PERU",
+          8015071213.5
+        ],
+        [
+          "20100030595",
+          "BANCO DE LA NACION",
+          7103743610.32
+        ],
+        [
+          "20511004251",
+          "CONCESIONARIA IIRSA NORTE S.A.",
+          6680126248.24
+        ],
+        [
+          "20511130124",
+          "INTERSUR CONCESIONES S.A.",
+          6534345759.95
+        ],
+        [
+          "20109565017",
+          "CONSTRUCCION Y ADMINISTRACION S.A.",
+          6267208145.71
+        ],
+        [
+          "20100003351",
+          "SERVICIOS INDUSTRIALES DE LA MARINA S.A.",
+          6161343750.86
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_total FROM transparencia_sunat ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20131370645",
+          "MINISTERIO DE ECONOMIA Y FINANZAS",
+          19312898790.58
+        ],
+        [
+          "20414671773",
+          "FONDO MIVIVIENDA S.A.",
+          12293205840.88
+        ],
+        [
+          "20100128218",
+          "PETROLEOS DEL PERU PETROPERU SA",
+          9905757838.69
+        ],
+        [
+          "20557410008",
+          "METRO DE LIMA LINEA 2 S.A.",
+          9649129064.13
+        ],
+        [
+          "20100047218",
+          "BANCO DE CREDITO DEL PERU",
+          8015071213.5
+        ],
+        [
+          "20100030595",
+          "BANCO DE LA NACION",
+          7103743610.32
+        ],
+        [
+          "20511004251",
+          "CONCESIONARIA IIRSA NORTE S.A.",
+          6680126248.24
+        ],
+        [
+          "20511130124",
+          "INTERSUR CONCESIONES S.A.",
+          6534345759.95
+        ],
+        [
+          "20109565017",
+          "CONSTRUCCION Y ADMINISTRACION S.A.",
+          6267208145.71
+        ],
+        [
+          "20100003351",
+          "SERVICIOS INDUSTRIALES DE LA MARINA S.A.",
+          6161343750.86
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:15:49.505319",
+    "execution_id": 9
+  }
+]

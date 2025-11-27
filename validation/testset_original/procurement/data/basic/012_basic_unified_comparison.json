@@ -1,0 +1,302 @@
+[
+  {
+    "id": "basic_12",
+    "question": "Dame las 10 empresas con mayor monto girado que iniciaron sus actividades en 1990, quiero ruc_proveedor, nombre_proveedor, monto_girado y fecha_de_inicio_de_actividades",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado, fecha_de_inicio_de_actividades FROM transparencia_sunat WHERE EXTRACT(YEAR FROM fecha_de_inicio_de_actividades) = 1990 ORDER BY monto_girado DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20100717124",
+          "PROTECCION Y RESGUARDO S A",
+          1242521802.68,
+          "1990-08-02"
+        ],
+        [
+          "20131369981",
+          "INSTITUTO NACIONAL DE ESTAD. E INFORMATI",
+          817687370.28,
+          "1990-05-03"
+        ],
+        [
+          "20100177774",
+          "TELEFONICA MOVILES S.A",
+          344987585.62,
+          "1990-06-01"
+        ],
+        [
+          "20106641529",
+          "SISTEMAS INTEGRALES DE SEGURIDAD SA",
+          266960437.63,
+          "1990-08-15"
+        ],
+        [
+          "20166398771",
+          "CONSORC.ENERGOPROJEKT COSAPI UPACA VILLA",
+          211603027.79,
+          "1990-02-15"
+        ],
+        [
+          "20136353315",
+          "EPS. SEDACUSCO S.A.",
+          156984421.04,
+          "1990-11-30"
+        ],
+        [
+          "20100111838",
+          "GRIFOS ESPINOZA S A",
+          156162966.91,
+          "1990-01-01"
+        ],
+        [
+          "20100686814",
+          "OLVA COURIER S.A.C",
+          119444758.36,
+          "1990-07-01"
+        ],
+        [
+          "20102188293",
+          "INGENIERIA DE LA INFORMATICA S.A.-INFORDATA S.A.",
+          118036154.61,
+          "1990-02-02"
+        ],
+        [
+          "20100868254",
+          "COMERCIALIZADORA DE PRODUCTOS EN GENERAL SRL - COPEGER SRL",
+          110550078.75,
+          "1990-04-09"
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado, fecha_de_inicio_de_actividades FROM transparencia_sunat WHERE EXTRACT(YEAR FROM fecha_de_inicio_de_actividades) = 1990 ORDER BY monto_girado DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20100717124",
+          "PROTECCION Y RESGUARDO S A",
+          1242521802.68,
+          "1990-08-02"
+        ],
+        [
+          "20131369981",
+          "INSTITUTO NACIONAL DE ESTAD. E INFORMATI",
+          817687370.28,
+          "1990-05-03"
+        ],
+        [
+          "20100177774",
+          "TELEFONICA MOVILES S.A",
+          344987585.62,
+          "1990-06-01"
+        ],
+        [
+          "20106641529",
+          "SISTEMAS INTEGRALES DE SEGURIDAD SA",
+          266960437.63,
+          "1990-08-15"
+        ],
+        [
+          "20166398771",
+          "CONSORC.ENERGOPROJEKT COSAPI UPACA VILLA",
+          211603027.79,
+          "1990-02-15"
+        ],
+        [
+          "20136353315",
+          "EPS. SEDACUSCO S.A.",
+          156984421.04,
+          "1990-11-30"
+        ],
+        [
+          "20100111838",
+          "GRIFOS ESPINOZA S A",
+          156162966.91,
+          "1990-01-01"
+        ],
+        [
+          "20100686814",
+          "OLVA COURIER S.A.C",
+          119444758.36,
+          "1990-07-01"
+        ],
+        [
+          "20102188293",
+          "INGENIERIA DE LA INFORMATICA S.A.-INFORDATA S.A.",
+          118036154.61,
+          "1990-02-02"
+        ],
+        [
+          "20100868254",
+          "COMERCIALIZADORA DE PRODUCTOS EN GENERAL SRL - COPEGER SRL",
+          110550078.75,
+          "1990-04-09"
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ts.ruc_proveedor, ts.nombre_proveedor, SUM(ts.monto_girado) AS monto_girado FROM transparencia_sunat ts WHERE EXTRACT(YEAR FROM ts.fecha_de_inicio_de_actividades) = 1990 GROUP BY ts.ruc_proveedor, ts.nombre_proveedor ORDER BY monto_girado DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20100717124",
+          "PROTECCION Y RESGUARDO S A",
+          1242521802.68,
+          "1990-08-02"
+        ],
+        [
+          "20131369981",
+          "INSTITUTO NACIONAL DE ESTAD. E INFORMATI",
+          817687370.28,
+          "1990-05-03"
+        ],
+        [
+          "20100177774",
+          "TELEFONICA MOVILES S.A",
+          344987585.62,
+          "1990-06-01"
+        ],
+        [
+          "20106641529",
+          "SISTEMAS INTEGRALES DE SEGURIDAD SA",
+          266960437.63,
+          "1990-08-15"
+        ],
+        [
+          "20166398771",
+          "CONSORC.ENERGOPROJEKT COSAPI UPACA VILLA",
+          211603027.79,
+          "1990-02-15"
+        ],
+        [
+          "20136353315",
+          "EPS. SEDACUSCO S.A.",
+          156984421.04,
+          "1990-11-30"
+        ],
+        [
+          "20100111838",
+          "GRIFOS ESPINOZA S A",
+          156162966.91,
+          "1990-01-01"
+        ],
+        [
+          "20100686814",
+          "OLVA COURIER S.A.C",
+          119444758.36,
+          "1990-07-01"
+        ],
+        [
+          "20102188293",
+          "INGENIERIA DE LA INFORMATICA S.A.-INFORDATA S.A.",
+          118036154.61,
+          "1990-02-02"
+        ],
+        [
+          "20100868254",
+          "COMERCIALIZADORA DE PRODUCTOS EN GENERAL SRL - COPEGER SRL",
+          110550078.75,
+          "1990-04-09"
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado, fecha_de_inicio_de_actividades FROM transparencia_sunat WHERE EXTRACT(YEAR FROM fecha_de_inicio_de_actividades) = 1990 ORDER BY monto_girado DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado",
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "20100717124",
+          "PROTECCION Y RESGUARDO S A",
+          1242521802.68,
+          "1990-08-02"
+        ],
+        [
+          "20131369981",
+          "INSTITUTO NACIONAL DE ESTAD. E INFORMATI",
+          817687370.28,
+          "1990-05-03"
+        ],
+        [
+          "20100177774",
+          "TELEFONICA MOVILES S.A",
+          344987585.62,
+          "1990-06-01"
+        ],
+        [
+          "20106641529",
+          "SISTEMAS INTEGRALES DE SEGURIDAD SA",
+          266960437.63,
+          "1990-08-15"
+        ],
+        [
+          "20166398771",
+          "CONSORC.ENERGOPROJEKT COSAPI UPACA VILLA",
+          211603027.79,
+          "1990-02-15"
+        ],
+        [
+          "20136353315",
+          "EPS. SEDACUSCO S.A.",
+          156984421.04,
+          "1990-11-30"
+        ],
+        [
+          "20100111838",
+          "GRIFOS ESPINOZA S A",
+          156162966.91,
+          "1990-01-01"
+        ],
+        [
+          "20100686814",
+          "OLVA COURIER S.A.C",
+          119444758.36,
+          "1990-07-01"
+        ],
+        [
+          "20102188293",
+          "INGENIERIA DE LA INFORMATICA S.A.-INFORDATA S.A.",
+          118036154.61,
+          "1990-02-02"
+        ],
+        [
+          "20100868254",
+          "COMERCIALIZADORA DE PRODUCTOS EN GENERAL SRL - COPEGER SRL",
+          110550078.75,
+          "1990-04-09"
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:36:00.913070",
+    "execution_id": 12
+  }
+]

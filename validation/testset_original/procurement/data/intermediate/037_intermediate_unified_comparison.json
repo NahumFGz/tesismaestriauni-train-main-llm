@@ -1,0 +1,484 @@
+[
+  {
+    "id": "intermediate_37",
+    "question": "Que entidades han firmado mas ordenes de servicio en los años 2020, 2021, 2022, 2023 y 2024, quiero el top 3 de cada año ordenados por la cantidad de ordenes de servicio y el monto total ordenes de servicio. Dame las columnas anio, ranking, entidad_contratante, cantidad_ordenes, monto_total",
+    "query": "SELECT anio, ranking, entidad_contratante, cantidad_ordenes, CAST(monto_total AS DECIMAL(15,2)) AS monto_total FROM ( SELECT entidad_contratante, EXTRACT(YEAR FROM fecha_inicio) AS anio, COUNT(*) AS cantidad_ordenes, SUM(monto) AS monto_total, ROW_NUMBER() OVER ( PARTITION BY EXTRACT(YEAR FROM fecha_inicio) ORDER BY COUNT(*) DESC, SUM(monto) DESC ) AS ranking FROM contratos_orden_servicio WHERE tipo_contrato = 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM fecha_inicio) IN (2020, 2021, 2022, 2023, 2024) GROUP BY entidad_contratante, EXTRACT(YEAR FROM fecha_inicio) ) AS ranking_por_anio WHERE ranking <= 3 ORDER BY anio, ranking;",
+    "expected": {
+      "columns": [
+        "anio",
+        "ranking",
+        "entidad_contratante",
+        "cantidad_ordenes",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          2020.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          19179,
+          839859242.76
+        ],
+        [
+          2020.0,
+          2,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9013,
+          78830554.26
+        ],
+        [
+          2020.0,
+          3,
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          8607,
+          101750949.73
+        ],
+        [
+          2021.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          22366,
+          357863296.17
+        ],
+        [
+          2021.0,
+          2,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9597,
+          78081209.47
+        ],
+        [
+          2021.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          8175,
+          143430509.95
+        ],
+        [
+          2022.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          24537,
+          393888482.96
+        ],
+        [
+          2022.0,
+          2,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          10987,
+          124786317.77
+        ],
+        [
+          2022.0,
+          3,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9102,
+          75997415.09
+        ],
+        [
+          2023.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          35849,
+          599116188.29
+        ],
+        [
+          2023.0,
+          2,
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          11938,
+          61317973.22
+        ],
+        [
+          2023.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          9630,
+          158461056.13
+        ],
+        [
+          2024.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          32267,
+          599657933.78
+        ],
+        [
+          2024.0,
+          2,
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          8234,
+          56965571.29
+        ],
+        [
+          2024.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          6615,
+          102654816.83
+        ]
+      ],
+      "row_count": 15,
+      "column_count": 5
+    },
+    "baseline_template": {
+      "sql_query": "SELECT anio, ranking, entidad_contratante, cantidad_ordenes, CAST(monto_total AS DECIMAL(15,2)) AS monto_total FROM ( SELECT entidad_contratante, EXTRACT(YEAR FROM fecha_inicio) AS anio, COUNT(*) AS cantidad_ordenes, SUM(monto) AS monto_total, ROW_NUMBER() OVER ( PARTITION BY EXTRACT(YEAR FROM fecha_inicio) ORDER BY COUNT(*) DESC, SUM(monto) DESC ) AS ranking FROM contratos_orden_servicio WHERE tipo_contrato = 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM fecha_inicio) IN (2020, 2021, 2022, 2023, 2024) GROUP BY entidad_contratante, EXTRACT(YEAR FROM fecha_inicio) ) AS ranking_por_anio WHERE ranking <= 3 ORDER BY anio, ranking;",
+      "columns": [
+        "anio",
+        "ranking",
+        "entidad_contratante",
+        "cantidad_ordenes",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          2020.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          19179,
+          839859242.76
+        ],
+        [
+          2020.0,
+          2,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9013,
+          78830554.26
+        ],
+        [
+          2020.0,
+          3,
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          8607,
+          101750949.73
+        ],
+        [
+          2021.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          22366,
+          357863296.17
+        ],
+        [
+          2021.0,
+          2,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9597,
+          78081209.47
+        ],
+        [
+          2021.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          8175,
+          143430509.95
+        ],
+        [
+          2022.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          24537,
+          393888482.96
+        ],
+        [
+          2022.0,
+          2,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          10987,
+          124786317.77
+        ],
+        [
+          2022.0,
+          3,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9102,
+          75997415.09
+        ],
+        [
+          2023.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          35849,
+          599116188.29
+        ],
+        [
+          2023.0,
+          2,
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          11938,
+          61317973.22
+        ],
+        [
+          2023.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          9630,
+          158461056.13
+        ],
+        [
+          2024.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          32267,
+          599657933.78
+        ],
+        [
+          2024.0,
+          2,
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          8234,
+          56965571.29
+        ],
+        [
+          2024.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          6615,
+          102654816.83
+        ]
+      ],
+      "row_count": 15,
+      "column_count": 5
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT anio, ranking, entidad_contratante, cantidad_ordenes, CAST(monto_total AS DECIMAL(15,2)) AS monto_total FROM ( SELECT entidad_contratante, EXTRACT(YEAR FROM fecha_inicio) AS anio, COUNT(*) AS cantidad_ordenes, SUM(monto) AS monto_total, ROW_NUMBER() OVER ( PARTITION BY EXTRACT(YEAR FROM fecha_inicio) ORDER BY COUNT(*) DESC, SUM(monto) DESC ) AS ranking FROM contratos_orden_servicio WHERE tipo_contrato = 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM fecha_inicio) IN (2020, 2021, 2022, 2023, 2024) GROUP BY entidad_contratante, EXTRACT(YEAR FROM fecha_inicio) ) AS ranking_por_anio WHERE ranking <= 3 ORDER BY anio, ranking;",
+      "columns": [
+        "entidad_contratante",
+        "cantidad_ordenes",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          2020.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          19179,
+          839859242.76
+        ],
+        [
+          2020.0,
+          2,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9013,
+          78830554.26
+        ],
+        [
+          2020.0,
+          3,
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          8607,
+          101750949.73
+        ],
+        [
+          2021.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          22366,
+          357863296.17
+        ],
+        [
+          2021.0,
+          2,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9597,
+          78081209.47
+        ],
+        [
+          2021.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          8175,
+          143430509.95
+        ],
+        [
+          2022.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          24537,
+          393888482.96
+        ],
+        [
+          2022.0,
+          2,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          10987,
+          124786317.77
+        ],
+        [
+          2022.0,
+          3,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9102,
+          75997415.09
+        ],
+        [
+          2023.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          35849,
+          599116188.29
+        ],
+        [
+          2023.0,
+          2,
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          11938,
+          61317973.22
+        ],
+        [
+          2023.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          9630,
+          158461056.13
+        ],
+        [
+          2024.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          32267,
+          599657933.78
+        ],
+        [
+          2024.0,
+          2,
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          8234,
+          56965571.29
+        ],
+        [
+          2024.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          6615,
+          102654816.83
+        ]
+      ],
+      "row_count": 15,
+      "column_count": 5
+    },
+    "our_agent": {
+      "sql_query": "WITH ordenes_por_entidad_anio AS ( SELECT entidad_contratante, EXTRACT(YEAR FROM fecha_inicio) as anio, COUNT(*) as cantidad_ordenes, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE tipo_contrato = 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM fecha_inicio) IN (2020, 2021, 2022, 2023, 2024) AND fecha_inicio IS NOT NULL GROUP BY entidad_contratante, EXTRACT(YEAR FROM fecha_inicio) ), ranking_por_anio AS ( SELECT entidad_contratante, anio, cantidad_ordenes, monto_total, ROW_NUMBER() OVER (PARTITION BY anio ORDER BY cantidad_ordenes DESC, monto_total DESC) as ranking FROM ordenes_por_entidad_anio ) SELECT anio, ranking, entidad_contratante, cantidad_ordenes, CAST(monto_total AS DECIMAL(15,2)) as monto_total FROM ranking_por_anio WHERE ranking <= 3 ORDER BY anio, ranking;",
+      "columns": [
+        "anio",
+        "ranking",
+        "entidad_contratante",
+        "cantidad_ordenes",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          2020.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          19179,
+          839859242.76
+        ],
+        [
+          2020.0,
+          2,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9013,
+          78830554.26
+        ],
+        [
+          2020.0,
+          3,
+          "PROGRAMA EDUCACION BASICA PARA TODOS UE 026",
+          8607,
+          101750949.73
+        ],
+        [
+          2021.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          22366,
+          357863296.17
+        ],
+        [
+          2021.0,
+          2,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9597,
+          78081209.47
+        ],
+        [
+          2021.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          8175,
+          143430509.95
+        ],
+        [
+          2022.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          24537,
+          393888482.96
+        ],
+        [
+          2022.0,
+          2,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          10987,
+          124786317.77
+        ],
+        [
+          2022.0,
+          3,
+          "MUNICIPALIDAD METROPOLITANA DE LIMA",
+          9102,
+          75997415.09
+        ],
+        [
+          2023.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          35849,
+          599116188.29
+        ],
+        [
+          2023.0,
+          2,
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          11938,
+          61317973.22
+        ],
+        [
+          2023.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          9630,
+          158461056.13
+        ],
+        [
+          2024.0,
+          1,
+          "SEGURO SOCIAL DE SALUD",
+          32267,
+          599657933.78
+        ],
+        [
+          2024.0,
+          2,
+          "UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS",
+          8234,
+          56965571.29
+        ],
+        [
+          2024.0,
+          3,
+          "MINISTERIO DE TRANSPORTES Y COMUNICACIONES",
+          6615,
+          102654816.83
+        ]
+      ],
+      "row_count": 15,
+      "column_count": 5
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T10:57:13.853680",
+    "execution_id": 37
+  }
+]

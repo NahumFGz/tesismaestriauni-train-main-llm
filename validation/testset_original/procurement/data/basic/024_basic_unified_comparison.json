@@ -1,0 +1,70 @@
+[
+  {
+    "id": "basic_24",
+    "question": "Dame la cantidad y el monto de empresas que son  de tipo contribuyente INSTITUCIONES PUBLICAS",
+    "query": "SELECT count(ruc_proveedor) as cantidad, sum(monto_girado) as monto FROM transparencia_sunat WHERE tipo_contribuyente = 'INSTITUCIONES PUBLICAS';",
+    "expected": {
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          808.0,
+          30215386002.449966
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT count(ruc_proveedor) as cantidad, sum(monto_girado) as monto FROM transparencia_sunat WHERE tipo_contribuyente = 'INSTITUCIONES PUBLICAS';",
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          808.0,
+          30215386002.449966
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT COUNT(DISTINCT ts.ruc_proveedor) AS cantidad_empresas, SUM(co.monto) AS monto_total FROM transparencia_sunat ts JOIN contratos_orden_servicio co ON co.ruc_proveedor = ts.ruc_proveedor WHERE ts.tipo_contribuyente ILIKE '%INSTITUCIONES PUBLICAS%';",
+      "columns": [
+        "cantidad_empresas",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          403.0,
+          20912791111.249947
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT count(ruc_proveedor) as cantidad, sum(monto_girado) as monto FROM transparencia_sunat WHERE tipo_contribuyente = 'INSTITUCIONES PUBLICAS';",
+      "columns": [
+        "cantidad",
+        "monto"
+      ],
+      "rows": [
+        [
+          808.0,
+          30215386002.449966
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T06:49:39.162436",
+    "execution_id": 24
+  }
+]

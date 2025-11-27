@@ -1,0 +1,62 @@
+[
+  {
+    "id": "intermediate_4",
+    "question": "¿Cuál es el monto total de los contratos y ordenes de servicio del proveedor PFIZER S A en el año 2020 y 2023?, solo quiero la columna monto_total",
+    "query": "SELECT COALESCE(SUM(monto),0) AS monto_total FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%PFIZER S A%' AND EXTRACT(YEAR FROM fecha_inicio) BETWEEN CAST('2020' AS INTEGER) AND CAST('2023' AS INTEGER)",
+    "expected": {
+      "columns": [
+        "monto_total"
+      ],
+      "rows": [
+        [
+          67751291.72
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT COALESCE(SUM(monto),0) AS monto_total FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%PFIZER S A%' AND EXTRACT(YEAR FROM fecha_inicio) BETWEEN CAST('2020' AS INTEGER) AND CAST('2023' AS INTEGER);",
+      "columns": [
+        "monto_total"
+      ],
+      "rows": [
+        [
+          67751291.72
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT SUM(co.monto) AS monto_total FROM contratos_orden_servicio co WHERE co.nombre_proveedor ILIKE '%PFIZER S A%' AND EXTRACT(YEAR FROM co.fecha_inicio) BETWEEN 2020 AND 2023;",
+      "columns": [
+        "monto_total"
+      ],
+      "rows": [
+        [
+          67751291.72
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT SUM(monto) AS monto_total FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%PFIZER S A%' AND EXTRACT(YEAR FROM fecha_inicio) BETWEEN 2020 AND 2023;",
+      "columns": [
+        "monto_total"
+      ],
+      "rows": [
+        [
+          67751291.72
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-12T15:10:18.391618",
+    "execution_id": 4
+  }
+]

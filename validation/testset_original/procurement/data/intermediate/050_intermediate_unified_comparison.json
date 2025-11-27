@@ -1,0 +1,38 @@
+[
+  {
+    "id": "intermediate_50",
+    "question": "Contratos en soles del proveedor BBVA en 2018, quiero las columnas nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto",
+    "query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' AND EXTRACT(YEAR FROM fecha_inicio) = 2018 AND moneda = 'SOLES' AND tipo_contrato = 'CONTRATO' ORDER BY fecha_inicio;",
+    "expected": {
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' AND EXTRACT(YEAR FROM fecha_inicio) = 2018 AND moneda = 'SOLES' AND tipo_contrato = 'CONTRATO' ORDER BY fecha_inicio LIMIT 1;",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' AND EXTRACT(YEAR FROM fecha_inicio) = 2018 AND moneda = 'SOLES' AND tipo_contrato = 'CONTRATO' ORDER BY fecha_inicio;",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, entidad_contratante, tipo_contrato, objeto_contrato, fecha_inicio, moneda, monto FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%BBVA%' AND EXTRACT(YEAR FROM fecha_inicio) = 2018 AND moneda = 'SOLES' AND tipo_contrato = 'CONTRATO' ORDER BY fecha_inicio;",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-17T09:52:55.942820",
+    "execution_id": 50
+  }
+]

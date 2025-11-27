@@ -1,0 +1,200 @@
+[
+  {
+    "id": "intermediate_28",
+    "question": "Cuanto son los contratos de BANCO DE LA NACION por trimestre en 2023?, solo quiero el trimestre, el tipo de contrato, el monto acumulado y la cantidad de contratos",
+    "query": "SELECT CASE WHEN EXTRACT(MONTH FROM fecha_inicio) IN (1,2,3) THEN 'Q1' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (4,5,6) THEN 'Q2' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (7,8,9) THEN 'Q3' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (10,11,12) THEN 'Q4' END AS trimestre, tipo_contrato, SUM(monto) AS monto_acumulado, COUNT(*) AS cantidad_contratos FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%BANCO DE LA NACION%' AND EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY CASE WHEN EXTRACT(MONTH FROM fecha_inicio) IN (1,2,3) THEN 'Q1' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (4,5,6) THEN 'Q2' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (7,8,9) THEN 'Q3' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (10,11,12) THEN 'Q4' END, tipo_contrato ORDER BY trimestre, tipo_contrato;",
+    "expected": {
+      "columns": [
+        "trimestre",
+        "tipo_contrato",
+        "monto_acumulado",
+        "cantidad_contratos"
+      ],
+      "rows": [
+        [
+          "Q1",
+          "CONTRATO",
+          20023293.75,
+          21
+        ],
+        [
+          "Q1",
+          "ORDEN SERVICIO",
+          3464286.0399999996,
+          235
+        ],
+        [
+          "Q2",
+          "CONTRATO",
+          12904498.5,
+          18
+        ],
+        [
+          "Q2",
+          "ORDEN SERVICIO",
+          3020429.9099999997,
+          209
+        ],
+        [
+          "Q3",
+          "CONTRATO",
+          9971406.81,
+          19
+        ],
+        [
+          "Q3",
+          "ORDEN SERVICIO",
+          3588744.410000001,
+          225
+        ],
+        [
+          "Q4",
+          "CONTRATO",
+          39494670.879999995,
+          18
+        ],
+        [
+          "Q4",
+          "ORDEN SERVICIO",
+          2593064.47,
+          162
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT EXTRACT(QUARTER FROM co.fecha_inicio) AS trimestre, co.tipo_contrato, SUM(co.monto) AS monto_acumulado, COUNT(*) AS cantidad_contratos FROM contratos_orden_servicio co WHERE co.entidad_contratante ILIKE '%BANCO DE LA NACION%' AND EXTRACT(YEAR FROM co.fecha_inicio) = 2023 GROUP BY trimestre, co.tipo_contrato ORDER BY trimestre, co.tipo_contrato;",
+      "columns": [
+        "trimestre",
+        "tipo_contrato",
+        "monto_acumulado",
+        "cantidad_contratos"
+      ],
+      "rows": [
+        [
+          1.0,
+          "CONTRATO",
+          20023293.75,
+          21
+        ],
+        [
+          1.0,
+          "ORDEN SERVICIO",
+          3464286.0399999996,
+          235
+        ],
+        [
+          2.0,
+          "CONTRATO",
+          12904498.5,
+          18
+        ],
+        [
+          2.0,
+          "ORDEN SERVICIO",
+          3020429.91,
+          209
+        ],
+        [
+          3.0,
+          "CONTRATO",
+          9971406.81,
+          19
+        ],
+        [
+          3.0,
+          "ORDEN SERVICIO",
+          3588744.41,
+          225
+        ],
+        [
+          4.0,
+          "CONTRATO",
+          39494670.879999995,
+          18
+        ],
+        [
+          4.0,
+          "ORDEN SERVICIO",
+          2593064.47,
+          162
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT CASE WHEN EXTRACT(MONTH FROM fecha_inicio) IN (1,2,3) THEN 'Q1' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (4,5,6) THEN 'Q2' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (7,8,9) THEN 'Q3' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (10,11,12) THEN 'Q4' END AS trimestre, tipo_contrato, SUM(monto) AS monto_acumulado, COUNT(*) AS cantidad_contratos FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%BANCO DE LA NACION%' AND EXTRACT(YEAR FROM fecha_inicio) = 2023 GROUP BY CASE WHEN EXTRACT(MONTH FROM fecha_inicio) IN (1,2,3) THEN 'Q1' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (4,5,6) THEN 'Q2' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (7,8,9) THEN 'Q3' WHEN EXTRACT(MONTH FROM fecha_inicio) IN (10,11,12) THEN 'Q4' END, tipo_contrato ORDER BY trimestre, tipo_contrato;",
+      "columns": [
+        "trimestre",
+        "tipo_contrato",
+        "monto_acumulado",
+        "cantidad_contratos"
+      ],
+      "rows": [
+        [
+          "Q1",
+          "CONTRATO",
+          20023293.75,
+          21
+        ],
+        [
+          "Q1",
+          "ORDEN SERVICIO",
+          3464286.0399999996,
+          235
+        ],
+        [
+          "Q2",
+          "CONTRATO",
+          12904498.5,
+          18
+        ],
+        [
+          "Q2",
+          "ORDEN SERVICIO",
+          3020429.9099999997,
+          209
+        ],
+        [
+          "Q3",
+          "CONTRATO",
+          9971406.81,
+          19
+        ],
+        [
+          "Q3",
+          "ORDEN SERVICIO",
+          3588744.410000001,
+          225
+        ],
+        [
+          "Q4",
+          "CONTRATO",
+          39494670.879999995,
+          18
+        ],
+        [
+          "Q4",
+          "ORDEN SERVICIO",
+          2593064.47,
+          162
+        ]
+      ],
+      "row_count": 8,
+      "column_count": 4
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T04:39:39.224302",
+    "execution_id": 28
+  }
+]

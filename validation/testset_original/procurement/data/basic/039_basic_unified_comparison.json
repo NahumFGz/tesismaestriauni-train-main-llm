@@ -1,0 +1,62 @@
+[
+  {
+    "id": "basic_39",
+    "question": "Cual es el nombre del proveedor con RUC 20610075615",
+    "query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20610075615';",
+    "expected": {
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "NÚCLEO EJECUTOR DE COMPRAS (NEC) PARA EL SECTOR PRODUCTIVO DE TEXTIL - CONFECCIONES"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20610075615' LIMIT 1;",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "NÚCLEO EJECUTOR DE COMPRAS (NEC) PARA EL SECTOR PRODUCTIVO DE TEXTIL - CONFECCIONES"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20610075615';",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "NÚCLEO EJECUTOR DE COMPRAS (NEC) PARA EL SECTOR PRODUCTIVO DE TEXTIL - CONFECCIONES"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20610075615'",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "NÚCLEO EJECUTOR DE COMPRAS (NEC) PARA EL SECTOR PRODUCTIVO DE TEXTIL - CONFECCIONES"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T04:03:14.176124",
+    "execution_id": 39
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "intermediate_22",
+    "question": "Alguna vez el PODER JUDICIAL contrato o genero una orden de servicio con el proveedor 20100030595?, si es asi quiero las columnas monto y total_contratos_ordenes",
+    "query": "SELECT SUM(monto) AS monto, COUNT(*) AS total_contratos_ordenes FROM contratos_orden_servicio WHERE entidad_contratante ILIKE '%PODER JUDICIAL%' AND ruc_proveedor = '20100030595';",
+    "expected": {
+      "columns": [
+        "monto",
+        "total_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          2439924.06,
+          29.0
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT entidad_contratante, objeto_contrato, monto, moneda, fecha_inicio FROM contratos_orden_servicio WHERE ruc_proveedor = '20100030595' AND EXTRACT(YEAR FROM fecha_inicio) = CAST('2010' AS INTEGER) ORDER BY fecha_inicio DESC LIMIT 20;",
+      "columns": [
+        "entidad_contratante",
+        "objeto_contrato",
+        "monto",
+        "moneda",
+        "fecha_inicio"
+      ],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 5
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT SUM(monto) AS monto, COUNT(*) AS total_contratos_ordenes FROM contratos_orden_servicio WHERE entidad_contratante ILIKE '%PODER JUDICIAL%' AND ruc_proveedor = '20100030595';",
+      "columns": [
+        "monto",
+        "total_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          2439924.06,
+          29.0
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT SUM(monto) AS monto, COUNT(*) AS total_contratos_ordenes FROM contratos_orden_servicio WHERE entidad_contratante ILIKE '%PODER JUDICIAL%' AND ruc_proveedor = '20100030595';",
+      "columns": [
+        "monto",
+        "total_contratos_ordenes"
+      ],
+      "rows": [
+        [
+          2439924.06,
+          29.0
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 2
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T03:52:32.322388",
+    "execution_id": 22
+  }
+]

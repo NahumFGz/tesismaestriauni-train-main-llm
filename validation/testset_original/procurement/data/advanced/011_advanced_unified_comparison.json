@@ -1,0 +1,128 @@
+[
+  {
+    "id": "advanced_11",
+    "question": "Dame los 5 proveedores de tipo persona juridica que han firmado mayor monto de ordenes de servicio.",
+    "query": "SELECT A.ruc_proveedor, A.nombre_proveedor, SUM(A.monto) AS monto FROM contratos_orden_servicio A LEFT JOIN transparencia_sunat B ON A.ruc_proveedor = B.ruc_proveedor WHERE B.tipo_empresa_persona_juridica_natural = 'PERSONA JURIDICA' AND A.tipo_contrato = 'ORDEN SERVICIO' GROUP BY A.ruc_proveedor, A.nombre_proveedor ORDER BY monto DESC LIMIT 5;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto"
+      ],
+      "rows": [
+        [
+          "20450326713",
+          "ENGINEERING BUILD S.A.C",
+          674112902.26
+        ],
+        [
+          "20100027705",
+          "EMPRESA ELECTRICIDAD DEL PERU - ELECTROPERU S A",
+          467997021.7
+        ],
+        [
+          "20540007668",
+          "SERVICIOS GENERALES JELDER & HNOS S.R.L.",
+          405779021.39
+        ],
+        [
+          "20330791412",
+          "ORYGEN PERU S.A.A.",
+          348472989.22
+        ],
+        [
+          "20264742995",
+          "F Y L CONTRATISTAS GENERALES S.A.",
+          263827857.61999997
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.ruc_proveedor, co.nombre_proveedor, SUM(co.monto) AS total_monto FROM contratos_orden_servicio co JOIN transparencia_sunat ts ON co.ruc_proveedor = ts.ruc_proveedor WHERE ts.tipo_empresa_persona_juridica_natural ILIKE '%persona juridica%' AND co.tipo_contrato = 'ORDEN SERVICIO' GROUP BY co.ruc_proveedor, co.nombre_proveedor ORDER BY total_monto DESC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "total_monto"
+      ],
+      "rows": [
+        [
+          "20450326713",
+          "ENGINEERING BUILD S.A.C",
+          674112902.26
+        ],
+        [
+          "20100027705",
+          "EMPRESA ELECTRICIDAD DEL PERU - ELECTROPERU S A",
+          467997021.7
+        ],
+        [
+          "20540007668",
+          "SERVICIOS GENERALES JELDER & HNOS S.R.L.",
+          405779021.39
+        ],
+        [
+          "20330791412",
+          "ORYGEN PERU S.A.A.",
+          348472989.22
+        ],
+        [
+          "20264742995",
+          "F Y L CONTRATISTAS GENERALES S.A.",
+          263827857.61999997
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT t.ruc_proveedor, t.nombre_proveedor, SUM(c.monto) as monto_total_ordenes_servicio FROM transparencia_sunat t INNER JOIN contratos_orden_servicio c ON t.ruc_proveedor = c.ruc_proveedor WHERE t.tipo_empresa_persona_juridica_natural = 'PERSONA JURIDICA' AND c.tipo_contrato = 'ORDEN SERVICIO' GROUP BY t.ruc_proveedor, t.nombre_proveedor ORDER BY monto_total_ordenes_servicio DESC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_total_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "20450326713",
+          "ENGINEERING BUILD S.A.C",
+          674112902.2599999
+        ],
+        [
+          "20100027705",
+          "EMPRESA ELECTRICIDAD DEL PERU - ELECTROPERU S A",
+          467997021.7
+        ],
+        [
+          "20540007668",
+          "SERVICIOS GENERALES JELDER & HNOS S.R.L.",
+          405779021.39
+        ],
+        [
+          "20330791412",
+          "ORYGEN PERU S.A.A.",
+          348472989.22
+        ],
+        [
+          "20264742995",
+          "F Y L CONTRATISTAS GENERALES S.A.",
+          263827857.61999997
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 3
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-18T07:55:36.350619",
+    "execution_id": 11
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "intermediate_8",
+    "question": "¿Qué tipos de contrato maneja PFIZER S A?",
+    "query": "SELECT DISTINCT tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%PFIZER%';",
+    "expected": {
+      "columns": [
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "CONTRATO"
+        ],
+        [
+          "ORDEN SERVICIO"
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT DISTINCT tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%PFIZER%';",
+      "columns": [
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "CONTRATO"
+        ],
+        [
+          "ORDEN SERVICIO"
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT DISTINCT tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%PFIZER S A%';",
+      "columns": [
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "CONTRATO"
+        ],
+        [
+          "ORDEN SERVICIO"
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT DISTINCT tipo_contrato FROM contratos_orden_servicio WHERE nombre_proveedor ILIKE '%PFIZER%';",
+      "columns": [
+        "tipo_contrato"
+      ],
+      "rows": [
+        [
+          "CONTRATO"
+        ],
+        [
+          "ORDEN SERVICIO"
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 1
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-14T10:31:45.006959",
+    "execution_id": 8
+  }
+]

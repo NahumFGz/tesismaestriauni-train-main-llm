@@ -1,0 +1,406 @@
+[
+  {
+    "id": "basic_17",
+    "question": "Dame el nombre de la empresas y el monto girado de las empresas que tengan en su nombre SUPERMERCADO",
+    "query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%SUPERMERCADO%';",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "SUPERMERCADOS PERUANOS SOCIEDAD ANONIMA 'O ' S.P.S.A.",
+          669724077.05
+        ],
+        [
+          "SUPERMERCADO LYN SOCIEDAD ANONIMA CERRADA-LYN SAC",
+          912623.55
+        ],
+        [
+          "SUPERMERCADO TACNA EMP.IND.DE RESP.LTDA.",
+          884738.64
+        ],
+        [
+          "SUPERMERCADO TECNOLOGICO S.A.C.",
+          418526.07
+        ],
+        [
+          "SUPERMERCADOS LM S.A.C.",
+          308483.49
+        ],
+        [
+          "SUPERMERCADO ALTOMAYO E.I.R.L.",
+          290528.77
+        ],
+        [
+          "SUPERMERCADO MIX S.R.L.",
+          12877915.75
+        ],
+        [
+          "MAKROPLAZA SUPERMERCADOS E.I.R.L.",
+          10792807.48
+        ],
+        [
+          "SUPERMERCADOS ROJAS S.A.C.",
+          7692917.37
+        ],
+        [
+          "SUPERMERCADOS LA INMACULADA S.A.C",
+          4523954.17
+        ],
+        [
+          "MACROPLAZA SUPERMERCADOS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          3375148.94
+        ],
+        [
+          "FRANCO SUPERMERCADO E.I.R.L.",
+          1068461.47
+        ],
+        [
+          "SUPERMERCADOS CASTOPE S.R.L",
+          859691.39
+        ],
+        [
+          "HOLA SUPERMERCADOS S.A.C.",
+          445393.05
+        ],
+        [
+          "SUPERMERCADOS EL KAZMEÑO E.I.R.L.",
+          161958.88
+        ],
+        [
+          "PACIFICO SUPERMERCADOS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA - PACIFICO SUPERMERCADOS E.I.R",
+          3055311.63
+        ],
+        [
+          "SUPERMERCADO LA CANASTA EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA-SUPERMERCADO LA CANASTA EIRL,",
+          569152.56
+        ],
+        [
+          "SUPERMERCADO ANITA S.A.C.",
+          498198.82
+        ],
+        [
+          "SUPERMERCADO ALKOSTO S.A.C.",
+          425216.15
+        ],
+        [
+          "SUPERMERCADO RAULITO S.R.L.",
+          235632.56
+        ],
+        [
+          "MILKA SUPERMERCADOS E.I.R.L.",
+          138427.7
+        ],
+        [
+          "SUPERMERCADOS D'TODO EIRL",
+          97200.84
+        ]
+      ],
+      "row_count": 22,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%SUPERMERCADO%';",
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "SUPERMERCADOS PERUANOS SOCIEDAD ANONIMA 'O ' S.P.S.A.",
+          669724077.05
+        ],
+        [
+          "SUPERMERCADO LYN SOCIEDAD ANONIMA CERRADA-LYN SAC",
+          912623.55
+        ],
+        [
+          "SUPERMERCADO TACNA EMP.IND.DE RESP.LTDA.",
+          884738.64
+        ],
+        [
+          "SUPERMERCADO TECNOLOGICO S.A.C.",
+          418526.07
+        ],
+        [
+          "SUPERMERCADOS LM S.A.C.",
+          308483.49
+        ],
+        [
+          "SUPERMERCADO ALTOMAYO E.I.R.L.",
+          290528.77
+        ],
+        [
+          "SUPERMERCADO MIX S.R.L.",
+          12877915.75
+        ],
+        [
+          "MAKROPLAZA SUPERMERCADOS E.I.R.L.",
+          10792807.48
+        ],
+        [
+          "SUPERMERCADOS ROJAS S.A.C.",
+          7692917.37
+        ],
+        [
+          "SUPERMERCADOS LA INMACULADA S.A.C",
+          4523954.17
+        ],
+        [
+          "MACROPLAZA SUPERMERCADOS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          3375148.94
+        ],
+        [
+          "FRANCO SUPERMERCADO E.I.R.L.",
+          1068461.47
+        ],
+        [
+          "SUPERMERCADOS CASTOPE S.R.L",
+          859691.39
+        ],
+        [
+          "HOLA SUPERMERCADOS S.A.C.",
+          445393.05
+        ],
+        [
+          "SUPERMERCADOS EL KAZMEÑO E.I.R.L.",
+          161958.88
+        ],
+        [
+          "PACIFICO SUPERMERCADOS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA - PACIFICO SUPERMERCADOS E.I.R",
+          3055311.63
+        ],
+        [
+          "SUPERMERCADO LA CANASTA EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA-SUPERMERCADO LA CANASTA EIRL,",
+          569152.56
+        ],
+        [
+          "SUPERMERCADO ANITA S.A.C.",
+          498198.82
+        ],
+        [
+          "SUPERMERCADO ALKOSTO S.A.C.",
+          425216.15
+        ],
+        [
+          "SUPERMERCADO RAULITO S.R.L.",
+          235632.56
+        ],
+        [
+          "MILKA SUPERMERCADOS E.I.R.L.",
+          138427.7
+        ],
+        [
+          "SUPERMERCADOS D'TODO EIRL",
+          97200.84
+        ]
+      ],
+      "row_count": 22,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%SUPERMERCADO%';",
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "SUPERMERCADOS PERUANOS SOCIEDAD ANONIMA 'O ' S.P.S.A.",
+          669724077.05
+        ],
+        [
+          "SUPERMERCADO LYN SOCIEDAD ANONIMA CERRADA-LYN SAC",
+          912623.55
+        ],
+        [
+          "SUPERMERCADO TACNA EMP.IND.DE RESP.LTDA.",
+          884738.64
+        ],
+        [
+          "SUPERMERCADO TECNOLOGICO S.A.C.",
+          418526.07
+        ],
+        [
+          "SUPERMERCADOS LM S.A.C.",
+          308483.49
+        ],
+        [
+          "SUPERMERCADO ALTOMAYO E.I.R.L.",
+          290528.77
+        ],
+        [
+          "SUPERMERCADO MIX S.R.L.",
+          12877915.75
+        ],
+        [
+          "MAKROPLAZA SUPERMERCADOS E.I.R.L.",
+          10792807.48
+        ],
+        [
+          "SUPERMERCADOS ROJAS S.A.C.",
+          7692917.37
+        ],
+        [
+          "SUPERMERCADOS LA INMACULADA S.A.C",
+          4523954.17
+        ],
+        [
+          "MACROPLAZA SUPERMERCADOS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          3375148.94
+        ],
+        [
+          "FRANCO SUPERMERCADO E.I.R.L.",
+          1068461.47
+        ],
+        [
+          "SUPERMERCADOS CASTOPE S.R.L",
+          859691.39
+        ],
+        [
+          "HOLA SUPERMERCADOS S.A.C.",
+          445393.05
+        ],
+        [
+          "SUPERMERCADOS EL KAZMEÑO E.I.R.L.",
+          161958.88
+        ],
+        [
+          "PACIFICO SUPERMERCADOS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA - PACIFICO SUPERMERCADOS E.I.R",
+          3055311.63
+        ],
+        [
+          "SUPERMERCADO LA CANASTA EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA-SUPERMERCADO LA CANASTA EIRL,",
+          569152.56
+        ],
+        [
+          "SUPERMERCADO ANITA S.A.C.",
+          498198.82
+        ],
+        [
+          "SUPERMERCADO ALKOSTO S.A.C.",
+          425216.15
+        ],
+        [
+          "SUPERMERCADO RAULITO S.R.L.",
+          235632.56
+        ],
+        [
+          "MILKA SUPERMERCADOS E.I.R.L.",
+          138427.7
+        ],
+        [
+          "SUPERMERCADOS D'TODO EIRL",
+          97200.84
+        ]
+      ],
+      "row_count": 22,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE UPPER(nombre_proveedor) LIKE '%SUPERMERCADO%'ORDER BY monto_girado DESC;",
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "SUPERMERCADOS PERUANOS SOCIEDAD ANONIMA 'O ' S.P.S.A.",
+          669724077.05
+        ],
+        [
+          "SUPERMERCADO LYN SOCIEDAD ANONIMA CERRADA-LYN SAC",
+          912623.55
+        ],
+        [
+          "SUPERMERCADO TACNA EMP.IND.DE RESP.LTDA.",
+          884738.64
+        ],
+        [
+          "SUPERMERCADO TECNOLOGICO S.A.C.",
+          418526.07
+        ],
+        [
+          "SUPERMERCADOS LM S.A.C.",
+          308483.49
+        ],
+        [
+          "SUPERMERCADO ALTOMAYO E.I.R.L.",
+          290528.77
+        ],
+        [
+          "SUPERMERCADO MIX S.R.L.",
+          12877915.75
+        ],
+        [
+          "MAKROPLAZA SUPERMERCADOS E.I.R.L.",
+          10792807.48
+        ],
+        [
+          "SUPERMERCADOS ROJAS S.A.C.",
+          7692917.37
+        ],
+        [
+          "SUPERMERCADOS LA INMACULADA S.A.C",
+          4523954.17
+        ],
+        [
+          "MACROPLAZA SUPERMERCADOS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA",
+          3375148.94
+        ],
+        [
+          "FRANCO SUPERMERCADO E.I.R.L.",
+          1068461.47
+        ],
+        [
+          "SUPERMERCADOS CASTOPE S.R.L",
+          859691.39
+        ],
+        [
+          "HOLA SUPERMERCADOS S.A.C.",
+          445393.05
+        ],
+        [
+          "SUPERMERCADOS EL KAZMEÑO E.I.R.L.",
+          161958.88
+        ],
+        [
+          "PACIFICO SUPERMERCADOS EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA - PACIFICO SUPERMERCADOS E.I.R",
+          3055311.63
+        ],
+        [
+          "SUPERMERCADO LA CANASTA EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA-SUPERMERCADO LA CANASTA EIRL,",
+          569152.56
+        ],
+        [
+          "SUPERMERCADO ANITA S.A.C.",
+          498198.82
+        ],
+        [
+          "SUPERMERCADO ALKOSTO S.A.C.",
+          425216.15
+        ],
+        [
+          "SUPERMERCADO RAULITO S.R.L.",
+          235632.56
+        ],
+        [
+          "MILKA SUPERMERCADOS E.I.R.L.",
+          138427.7
+        ],
+        [
+          "SUPERMERCADOS D'TODO EIRL",
+          97200.84
+        ]
+      ],
+      "row_count": 22,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T06:16:30.954361",
+    "execution_id": 17
+  }
+]

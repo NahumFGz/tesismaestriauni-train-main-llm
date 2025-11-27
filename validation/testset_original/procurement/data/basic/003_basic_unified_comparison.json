@@ -1,0 +1,86 @@
+[
+  {
+    "id": "basic_3",
+    "question": "Cuanto monto girado tiene Petroperu en total en todos estos años?, dame el nombre del proveedor y el monto girado",
+    "query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%PETROPERU%';",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "PETROLEOS DEL PERU PETROPERU SA",
+          9905757838.69
+        ],
+        [
+          "CLUB PETROLEOS DEL PERU PETROPERU",
+          158732.55
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 2
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%PETROPERU%';",
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "PETROLEOS DEL PERU PETROPERU SA",
+          9905757838.69
+        ],
+        [
+          "CLUB PETROLEOS DEL PERU PETROPERU",
+          158732.55
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 2
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%petroperu%';",
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "PETROLEOS DEL PERU PETROPERU SA",
+          9905757838.69
+        ],
+        [
+          "CLUB PETROLEOS DEL PERU PETROPERU",
+          158732.55
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 2
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%petroperu%';",
+      "columns": [
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "PETROLEOS DEL PERU PETROPERU SA",
+          9905757838.69
+        ],
+        [
+          "CLUB PETROLEOS DEL PERU PETROPERU",
+          158732.55
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 2
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-09T21:29:30.906222",
+    "execution_id": 3
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "id": "basic_32",
+    "question": "Cuanto monto girado tiene el proveedor el proveedor LUZ DEL SUR S.A.A., dame las columnas de ruc_proveedor, nombre_proveedor y monto_girado",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor = 'LUZ DEL SUR S.A.A.'",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20331898008",
+          "LUZ DEL SUR S.A.A.",
+          2336059214.89
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor = 'LUZ DEL SUR S.A.A.' LIMIT 1;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20331898008",
+          "LUZ DEL SUR S.A.A.",
+          2336059214.89
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor = 'LUZ DEL SUR S.A.A.'",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20331898008",
+          "LUZ DEL SUR S.A.A.",
+          2336059214.89
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE nombre_proveedor = 'LUZ DEL SUR S.A.A.'",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20331898008",
+          "LUZ DEL SUR S.A.A.",
+          2336059214.89
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T03:26:42.753164",
+    "execution_id": 32
+  }
+]

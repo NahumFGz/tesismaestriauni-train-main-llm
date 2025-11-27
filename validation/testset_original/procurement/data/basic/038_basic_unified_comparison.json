@@ -1,0 +1,62 @@
+[
+  {
+    "id": "basic_38",
+    "question": "Cual es el nombre del proveedor con RUC 10100116826",
+    "query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '10100116826';",
+    "expected": {
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "MARTINEZ MORAN JUAN CARLOS"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '10100116826' LIMIT 1;",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "MARTINEZ MORAN JUAN CARLOS"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '10100116826';",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "MARTINEZ MORAN JUAN CARLOS"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '10100116826'",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "MARTINEZ MORAN JUAN CARLOS"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T03:57:42.582979",
+    "execution_id": 38
+  }
+]

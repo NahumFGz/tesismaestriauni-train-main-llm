@@ -1,0 +1,242 @@
+[
+  {
+    "id": "advanced_8",
+    "question": "Cuales son las 10 personas (aquellas cuyos 2 primeros digitos del ruc del proveedor sean 10) que han firmado mayor numero de ordenes de servicio en el año 2022, 2023 y 2024 con la 'MUNICIPALIDAD METROPOLITANA DE LIMA', solo quiero la ruc del proveedor, el nombre del proveedor, la cantidad de ordenes de servicio y el monto total de las ordenes de servicio.",
+    "query": "SELECT c.ruc_proveedor, c.nombre_proveedor, COUNT(*) AS cantidad_ordenes_servicio, SUM(COALESCE(c.monto, 0)) AS monto_total_ordenes_servicio FROM contratos_orden_servicio AS c WHERE c.tipo_contrato = 'ORDEN SERVICIO' AND c.entidad_contratante = 'MUNICIPALIDAD METROPOLITANA DE LIMA' AND LEFT(c.ruc_proveedor::text, 2) = '10' AND EXTRACT(YEAR FROM c.fecha_inicio) IN (2022, 2023, 2024) GROUP BY c.ruc_proveedor, c.nombre_proveedor ORDER BY cantidad_ordenes_servicio DESC, monto_total_ordenes_servicio DESC LIMIT 10;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "10410471367",
+          "VILLARREAL RUIZ LORENA TERESA",
+          71,
+          598379.7
+        ],
+        [
+          "10088332925",
+          "LANDAURO CONDORI WILBER ANTONIO",
+          71,
+          325518.99999999994
+        ],
+        [
+          "10762431063",
+          "LAVI CARPIO BETZABET EVELIN",
+          56,
+          1070925.05
+        ],
+        [
+          "10445898355",
+          "BRAVO VELASQUEZ GIAN CARLO ANTONIO",
+          55,
+          778844.8
+        ],
+        [
+          "10094082396",
+          "GUARDIA VASQUEZ NORMA MARINA",
+          41,
+          126865.09000000001
+        ],
+        [
+          "10083735771",
+          "ENRIQUEZ ALVARADO ELIZABETH",
+          40,
+          174717.1
+        ],
+        [
+          "10098676088",
+          "SAYAS PEREZ MIGUEL ANGEL",
+          37,
+          83941.64
+        ],
+        [
+          "10413847414",
+          "RIOJA MORALES DE MESTANZA SANTA ROSARIO",
+          34,
+          665417.5900000001
+        ],
+        [
+          "10078453864",
+          "NAVARRO CCOILLO SUSANA",
+          30,
+          399951.0
+        ],
+        [
+          "10420840123",
+          "INQUIL VILLEGAS HENRRY",
+          30,
+          117400.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor FROM transparencia_sunat WHERE nombre_proveedor ILIKE '%MUNICIPALIDAD METROPOLITANA DE LIMA%' LIMIT 1;",
+      "columns": [
+        "ruc_proveedor"
+      ],
+      "rows": [
+        [
+          "20131380951"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.ruc_proveedor, co.nombre_proveedor, COUNT(*) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto_total FROM contratos_orden_servicio co WHERE EXTRACT(YEAR FROM co.fecha_inicio) IN (2022, 2023, 2024) AND co.entidad_contratante ILIKE '%MUNICIPALIDAD METROPOLITANA DE LIMA%' AND co.ruc_proveedor ILIKE '10%' GROUP BY co.ruc_proveedor, co.nombre_proveedor ORDER BY cantidad_ordenes_servicio DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10410471367",
+          "VILLARREAL RUIZ LORENA TERESA",
+          71,
+          598379.7
+        ],
+        [
+          "10088332925",
+          "LANDAURO CONDORI WILBER ANTONIO",
+          71,
+          325519.0
+        ],
+        [
+          "10762431063",
+          "LAVI CARPIO BETZABET EVELIN",
+          58,
+          1317700.05
+        ],
+        [
+          "10445898355",
+          "BRAVO VELASQUEZ GIAN CARLO ANTONIO",
+          55,
+          778844.7999999999
+        ],
+        [
+          "10094082396",
+          "GUARDIA VASQUEZ NORMA MARINA",
+          41,
+          126865.08999999998
+        ],
+        [
+          "10083735771",
+          "ENRIQUEZ ALVARADO ELIZABETH",
+          40,
+          174717.1
+        ],
+        [
+          "10098676088",
+          "SAYAS PEREZ MIGUEL ANGEL",
+          37,
+          83941.64
+        ],
+        [
+          "10078453864",
+          "NAVARRO CCOILLO SUSANA",
+          35,
+          1144010.8
+        ],
+        [
+          "10413847414",
+          "RIOJA MORALES DE MESTANZA SANTA ROSARIO",
+          34,
+          665417.59
+        ],
+        [
+          "10420840123",
+          "INQUIL VILLEGAS HENRRY",
+          30,
+          117400.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT c.ruc_proveedor, c.nombre_proveedor, COUNT(*) as cantidad_ordenes_servicio, SUM(c.monto) as monto_total FROM contratos_orden_servicio c WHERE c.ruc_proveedor LIKE '10%' AND c.entidad_contratante = 'MUNICIPALIDAD METROPOLITANA DE LIMA' AND c.tipo_contrato = 'ORDEN SERVICIO' AND EXTRACT(YEAR FROM c.fecha_inicio) IN (2022, 2023, 2024) GROUP BY c.ruc_proveedor, c.nombre_proveedor ORDER BY cantidad_ordenes_servicio DESC LIMIT 10;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10088332925",
+          "LANDAURO CONDORI WILBER ANTONIO",
+          71,
+          325518.99999999994
+        ],
+        [
+          "10410471367",
+          "VILLARREAL RUIZ LORENA TERESA",
+          71,
+          598379.7
+        ],
+        [
+          "10762431063",
+          "LAVI CARPIO BETZABET EVELIN",
+          56,
+          1070925.05
+        ],
+        [
+          "10445898355",
+          "BRAVO VELASQUEZ GIAN CARLO ANTONIO",
+          55,
+          778844.7999999999
+        ],
+        [
+          "10094082396",
+          "GUARDIA VASQUEZ NORMA MARINA",
+          41,
+          126865.09000000001
+        ],
+        [
+          "10083735771",
+          "ENRIQUEZ ALVARADO ELIZABETH",
+          40,
+          174717.1
+        ],
+        [
+          "10098676088",
+          "SAYAS PEREZ MIGUEL ANGEL",
+          37,
+          83941.63999999998
+        ],
+        [
+          "10413847414",
+          "RIOJA MORALES DE MESTANZA SANTA ROSARIO",
+          34,
+          665417.5900000001
+        ],
+        [
+          "10078453864",
+          "NAVARRO CCOILLO SUSANA",
+          30,
+          399951.0
+        ],
+        [
+          "10420840123",
+          "INQUIL VILLEGAS HENRRY",
+          30,
+          117400.0
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 4
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-17T13:03:59.243021",
+    "execution_id": 8
+  }
+]

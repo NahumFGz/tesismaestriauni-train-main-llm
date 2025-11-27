@@ -1,0 +1,413 @@
+[
+  {
+    "id": "advanced_21",
+    "question": "Cuantos proveedores que iniciaron sus actividades en febrero del 2021 en adelante han firmado ordenes de servicio con la municipalidad distrital de los olivos, quiero el top 15 ordenados por la cantidad de ordenes de servicio y el monto total ordenes de servicio, considera buscar nombre silmares a la entidad contratante.",
+    "query": "SELECT t.ruc_proveedor, t.nombre_proveedor, t.fecha_de_inicio_de_actividades, COUNT(c.ruc_proveedor) AS cantidad_ordenes_servicio, SUM(c.monto) AS monto_total_ordenes_servicio FROM transparencia_sunat t INNER JOIN contratos_orden_servicio c ON t.ruc_proveedor = c.ruc_proveedor WHERE t.fecha_de_inicio_de_actividades >= '2021-02-01' AND c.tipo_contrato = 'ORDEN SERVICIO' AND UPPER(c.entidad_contratante) LIKE '%MUNICIPALIDAD%DISTRITAL%OLIVOS%' GROUP BY t.ruc_proveedor, t.nombre_proveedor, t.fecha_de_inicio_de_actividades ORDER BY cantidad_ordenes_servicio DESC, monto_total_ordenes_servicio DESC LIMIT 15;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "10102940861",
+          "GARCIA CALDERON JULIA JUDITH",
+          "2024-03-14",
+          24,
+          219220.5
+        ],
+        [
+          "10407260894",
+          "FLORES VELASQUEZ VLADIMIRO",
+          "2023-06-15",
+          22,
+          106573.0
+        ],
+        [
+          "10108610510",
+          "MONTES VILLANUEVA ROSARIO JESSICA",
+          "2021-11-17",
+          22,
+          76510.0
+        ],
+        [
+          "20535649171",
+          "CORPORACION EDUCATIVA CULTURA NASCA S.A.C.",
+          "2023-09-06",
+          21,
+          243909.8
+        ],
+        [
+          "10437750233",
+          "GARCIA SALAS MIGUEL ANGEL",
+          "2021-07-01",
+          15,
+          54531.68
+        ],
+        [
+          "20524314097",
+          "AMZUR SERVICIOS GENERALES S.A.C.",
+          "2023-06-12",
+          13,
+          52640.53
+        ],
+        [
+          "20612182478",
+          "SUMINISTROS Y SOLUCIONES COMERCIALES E.I.R.L.",
+          "2024-02-22",
+          11,
+          253368.61
+        ],
+        [
+          "20608611496",
+          "INVERSIONES Y SERVICIOS GENERALES NAPALA S.A.C",
+          "2021-10-19",
+          11,
+          79816.9
+        ],
+        [
+          "20551651062",
+          "NATURA ALIMENTOS S.A.C.",
+          "2023-05-26",
+          9,
+          263963.5
+        ],
+        [
+          "20607821918",
+          "R.H Y SERVICIOS E.I.R.L.",
+          "2021-04-01",
+          7,
+          93619.5
+        ],
+        [
+          "10429431994",
+          "GARCIA TARAZONA JUAN SAUL",
+          "2021-10-25",
+          7,
+          52421.36
+        ],
+        [
+          "20608085069",
+          "CERCOR LOGISTICS S.A.C.",
+          "2021-06-10",
+          6,
+          80588.42
+        ],
+        [
+          "10754315682",
+          "TORRES GUTIERREZ JEAN PIERRE JORGE",
+          "2022-10-26",
+          4,
+          48375.98
+        ],
+        [
+          "20515469975",
+          "J&F INVERSIONES Y CONSTRUCCIONES CONTRATISTAS GENERALES SRL",
+          "2023-02-02",
+          4,
+          45453.6
+        ],
+        [
+          "20608306286",
+          "COMPANY LAOS E.I.R.L.",
+          "2021-08-04",
+          4,
+          41400.0
+        ]
+      ],
+      "row_count": 15,
+      "column_count": 5
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, COUNT(*) as num_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio WHERE EXTRACT(YEAR FROM fecha_inicio) = CAST('2021' AS INTEGER) GROUP BY nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "nombre_proveedor",
+        "num_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "CHINA CIVIL ENGINEERING CONSTRUCTION CORPORATION SUCURSAL DEL PERU",
+          10,
+          1045576321.4
+        ],
+        [
+          "CHINA RAILWAY N° 10 ENGINEERING GROUP CO., LTD SUCURSAL DEL PERU",
+          8,
+          997362525.61
+        ],
+        [
+          "OBRASCON HUARTE LAIN S.A.SUC.DEL PERU",
+          2,
+          908210274.27
+        ],
+        [
+          "HV CONTRATISTAS S.A.",
+          2,
+          730266048.37
+        ],
+        [
+          "GRUPO CONSTRUCTOR & CONSULTOR ASOCIADOS S.A.C. - G.C. & C.A. S.A.C.",
+          4,
+          588686590.14
+        ],
+        [
+          "CHINA RAILWAY TUNNEL GROUP CO., LTD SUCURSAL DEL PERU",
+          5,
+          579670554.64
+        ],
+        [
+          "SINOHYDRO CORPORATION LIMITED, SUCURSAL DEL PERU",
+          4,
+          479419947.21
+        ],
+        [
+          "CONSORCIO BESALCO STRACON",
+          1,
+          473255028.67
+        ],
+        [
+          "H.B. ESTRUCTURAS METALICAS S.A.S. SUCURSAL EN PERU",
+          2,
+          392161928.53
+        ],
+        [
+          "TERMIREX S.A.C.",
+          2,
+          392161928.53
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ts.ruc_proveedor, ts.nombre_proveedor, COUNT(co.ruc_proveedor) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto_total FROM transparencia_sunat ts JOIN contratos_orden_servicio co ON co.ruc_proveedor = ts.ruc_proveedor WHERE ts.fecha_de_inicio_de_actividades >= '2021-02-01' AND co.entidad_contratante ILIKE '%municipalidad distrital de los olivos%' AND co.tipo_contrato = 'ORDEN SERVICIO' GROUP BY ts.ruc_proveedor, ts.nombre_proveedor ORDER BY cantidad_ordenes_servicio DESC LIMIT 15;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "10102940861",
+          "GARCIA CALDERON JULIA JUDITH",
+          24,
+          219220.5
+        ],
+        [
+          "10108610510",
+          "MONTES VILLANUEVA ROSARIO JESSICA",
+          22,
+          76510.0
+        ],
+        [
+          "10407260894",
+          "FLORES VELASQUEZ VLADIMIRO",
+          22,
+          106573.0
+        ],
+        [
+          "20535649171",
+          "CORPORACION EDUCATIVA CULTURA NASCA S.A.C.",
+          21,
+          243909.80000000002
+        ],
+        [
+          "10437750233",
+          "GARCIA SALAS MIGUEL ANGEL",
+          15,
+          54531.67999999999
+        ],
+        [
+          "20524314097",
+          "AMZUR SERVICIOS GENERALES S.A.C.",
+          13,
+          52640.53
+        ],
+        [
+          "20612182478",
+          "SUMINISTROS Y SOLUCIONES COMERCIALES E.I.R.L.",
+          11,
+          253368.61
+        ],
+        [
+          "20608611496",
+          "INVERSIONES Y SERVICIOS GENERALES NAPALA S.A.C",
+          11,
+          79816.9
+        ],
+        [
+          "20551651062",
+          "NATURA ALIMENTOS S.A.C.",
+          9,
+          263963.5
+        ],
+        [
+          "10429431994",
+          "GARCIA TARAZONA JUAN SAUL",
+          7,
+          52421.36
+        ],
+        [
+          "20607821918",
+          "R.H Y SERVICIOS E.I.R.L.",
+          7,
+          93619.5
+        ],
+        [
+          "20608085069",
+          "CERCOR LOGISTICS S.A.C.",
+          6,
+          80588.42000000001
+        ],
+        [
+          "10754315682",
+          "TORRES GUTIERREZ JEAN PIERRE JORGE",
+          4,
+          48375.979999999996
+        ],
+        [
+          "20515469975",
+          "J&F INVERSIONES Y CONSTRUCCIONES CONTRATISTAS GENERALES SRL",
+          4,
+          45453.6
+        ],
+        [
+          "20608306286",
+          "COMPANY LAOS E.I.R.L.",
+          4,
+          41400.0
+        ]
+      ],
+      "row_count": 15,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT c.ruc_proveedor, c.nombre_proveedor, t.fecha_de_inicio_de_actividades, COUNT(*) as cantidad_ordenes_servicio, SUM(c.monto) as monto_total_ordenes_servicio FROM contratos_orden_servicio c INNER JOIN transparencia_sunat t ON c.ruc_proveedor = t.ruc_proveedor WHERE c.tipo_contrato = 'ORDEN SERVICIO' AND t.fecha_de_inicio_de_actividades >= '2021-02-01' AND UPPER(c.entidad_contratante) LIKE '%MUNICIPALIDAD%DISTRITAL%LOS%OLIVOS%' GROUP BY c.ruc_proveedor, c.nombre_proveedor, t.fecha_de_inicio_de_actividades ORDER BY cantidad_ordenes_servicio DESC, monto_total_ordenes_servicio DESC LIMIT 15;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "fecha_de_inicio_de_actividades",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "10102940861",
+          "GARCIA CALDERON JULIA JUDITH",
+          "2024-03-14",
+          24,
+          219220.5
+        ],
+        [
+          "10407260894",
+          "FLORES VELASQUEZ VLADIMIRO",
+          "2023-06-15",
+          22,
+          106573.0
+        ],
+        [
+          "10108610510",
+          "MONTES VILLANUEVA ROSARIO JESSICA",
+          "2021-11-17",
+          22,
+          76510.0
+        ],
+        [
+          "20535649171",
+          "CORPORACION EDUCATIVA CULTURA NASCA S.A.C.",
+          "2023-09-06",
+          21,
+          243909.80000000002
+        ],
+        [
+          "10437750233",
+          "GARCIA SALAS MIGUEL ANGEL",
+          "2021-07-01",
+          15,
+          54531.68
+        ],
+        [
+          "20524314097",
+          "AMZUR SERVICIOS GENERALES S.A.C.",
+          "2023-06-12",
+          13,
+          52640.53
+        ],
+        [
+          "20612182478",
+          "SUMINISTROS Y SOLUCIONES COMERCIALES E.I.R.L.",
+          "2024-02-22",
+          11,
+          253368.61
+        ],
+        [
+          "20608611496",
+          "INVERSIONES Y SERVICIOS GENERALES NAPALA S.A.C",
+          "2021-10-19",
+          11,
+          79816.9
+        ],
+        [
+          "20551651062",
+          "NATURA ALIMENTOS S.A.C.",
+          "2023-05-26",
+          9,
+          263963.5
+        ],
+        [
+          "20607821918",
+          "R.H Y SERVICIOS E.I.R.L.",
+          "2021-04-01",
+          7,
+          93619.5
+        ],
+        [
+          "10429431994",
+          "GARCIA TARAZONA JUAN SAUL",
+          "2021-10-25",
+          7,
+          52421.36
+        ],
+        [
+          "20608085069",
+          "CERCOR LOGISTICS S.A.C.",
+          "2021-06-10",
+          6,
+          80588.42
+        ],
+        [
+          "10754315682",
+          "TORRES GUTIERREZ JEAN PIERRE JORGE",
+          "2022-10-26",
+          4,
+          48375.979999999996
+        ],
+        [
+          "20515469975",
+          "J&F INVERSIONES Y CONSTRUCCIONES CONTRATISTAS GENERALES SRL",
+          "2023-02-02",
+          4,
+          45453.6
+        ],
+        [
+          "20608306286",
+          "COMPANY LAOS E.I.R.L.",
+          "2021-08-04",
+          4,
+          41400.0
+        ]
+      ],
+      "row_count": 15,
+      "column_count": 5
+    },
+    "complexity_level": "advanced",
+    "question_type": "advanced",
+    "generated_at": "2025-09-18T09:30:01.483527",
+    "execution_id": 21
+  }
+]

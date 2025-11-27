@@ -1,0 +1,98 @@
+[
+  {
+    "id": "basic_29",
+    "question": "Cuantos contratos y ordenes de servicio tiene el ruc 20379719440, quiero las columnas proveedor, tipo_contrato y cantidad",
+    "query": "SELECT nombre_proveedor, tipo_contrato, count(ruc_proveedor) as cantidad FROM contratos_orden_servicio WHERE ruc_proveedor = '20379719440' GROUP BY nombre_proveedor, tipo_contrato;",
+    "expected": {
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "100PRE FELIZ SOCIEDAD ANONIMA CERRADA",
+          "CONTRATO",
+          17
+        ],
+        [
+          "100PRE FELIZ SOCIEDAD ANONIMA CERRADA",
+          "ORDEN SERVICIO",
+          223
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, tipo_contrato, count(ruc_proveedor) as cantidad FROM contratos_orden_servicio WHERE ruc_proveedor = '20379719440' GROUP BY nombre_proveedor, tipo_contrato;",
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "100PRE FELIZ SOCIEDAD ANONIMA CERRADA",
+          "CONTRATO",
+          17
+        ],
+        [
+          "100PRE FELIZ SOCIEDAD ANONIMA CERRADA",
+          "ORDEN SERVICIO",
+          223
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.nombre_proveedor, co.tipo_contrato, COUNT(*) AS cantidad FROM contratos_orden_servicio co WHERE co.ruc_proveedor = '20379719440' GROUP BY co.nombre_proveedor, co.tipo_contrato;",
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "100PRE FELIZ SOCIEDAD ANONIMA CERRADA",
+          "CONTRATO",
+          17
+        ],
+        [
+          "100PRE FELIZ SOCIEDAD ANONIMA CERRADA",
+          "ORDEN SERVICIO",
+          223
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT c.nombre_proveedor, c.tipo_contrato, COUNT(*) as cantidad FROM contratos_orden_servicio c WHERE c.ruc_proveedor = '20379719440' GROUP BY c.nombre_proveedor, c.tipo_contrato ORDER BY c.tipo_contrato;",
+      "columns": [
+        "nombre_proveedor",
+        "tipo_contrato",
+        "cantidad"
+      ],
+      "rows": [
+        [
+          "100PRE FELIZ SOCIEDAD ANONIMA CERRADA",
+          "CONTRATO",
+          17
+        ],
+        [
+          "100PRE FELIZ SOCIEDAD ANONIMA CERRADA",
+          "ORDEN SERVICIO",
+          223
+        ]
+      ],
+      "row_count": 2,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T03:12:15.082894",
+    "execution_id": 29
+  }
+]

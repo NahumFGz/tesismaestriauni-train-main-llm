@@ -1,0 +1,201 @@
+[
+  {
+    "id": "intermediate_39",
+    "question": "Cuantos proveedores han firmado ordenes de servicio con la municipalidad distrital de los olivos, quiero el top 5 ordenados por la cantidad de ordenes de servicio y el monto total ordenes de servicio.",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, COUNT(*) as cantidad_ordenes_servicio, SUM(monto) as monto_total_ordenes_servicio FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MUNICIPALIDAD DISTRITAL DE LOS OLIVOS%' AND tipo_contrato = 'ORDEN SERVICIO' GROUP BY ruc_proveedor, nombre_proveedor ORDER BY cantidad_ordenes_servicio DESC, monto_total_ordenes_servicio DESC LIMIT 5;",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20131368667",
+          "MUNICIPALIDAD DISTRITAL DE LOS OLIVOS",
+          329,
+          4456909.629999999
+        ],
+        [
+          "20100053455",
+          "BANCO INTERNACIONAL DEL PERU-INTERBANK",
+          212,
+          5282078.530000003
+        ],
+        [
+          "20100043140",
+          "SCOTIABANK PERU SAA",
+          143,
+          5696244.62
+        ],
+        [
+          "10061856965",
+          "GONZALES BERMUDEZ MAGNOLIA",
+          101,
+          220930.23999999996
+        ],
+        [
+          "10107459893",
+          "ROQUE CASTILLO HEBERT",
+          79,
+          862155.3999999999
+        ]
+      ],
+      "row_count": 15,
+      "column_count": 5
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor, COUNT(*) as num_contratos, SUM(monto) as monto_total FROM contratos_orden_servicio GROUP BY nombre_proveedor ORDER BY monto_total DESC LIMIT 10;",
+      "columns": [
+        "nombre_proveedor",
+        "num_contratos",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "QUISPE SULCA JULIA",
+          68,
+          150910802673605.3
+        ],
+        [
+          "REPUESTOS Y LUBRICANTES LA FLORIDA EIRL",
+          68,
+          206023429291.0
+        ],
+        [
+          "EMPRESA CONSTRUCTORA BRANDOM E.I.R.L",
+          81,
+          201482003661.86
+        ],
+        [
+          "LAZARO VILCHEZ DASIO FELIX",
+          21,
+          95060047533.0
+        ],
+        [
+          "CHAVEZ ACOSTA ABNER MANUEL",
+          209,
+          20819739669.829998
+        ],
+        [
+          "GRUPO VITESSE INGENIEROS & ABOGADOS S.A.C.",
+          197,
+          20650975297.33
+        ],
+        [
+          "WONG LOGISTIC S.A.C.",
+          414,
+          20611888210.370003
+        ],
+        [
+          "TIZIANNI LOGISTICS SOCIEDAD ANONIMA - TIZIANNI LOGISTICS S.A.",
+          375,
+          20611329257.60999
+        ],
+        [
+          "CORPORACION SAGOTA S.A.C.",
+          295,
+          20609609053.950012
+        ],
+        [
+          "GRUOP ONE SAN VALENTIN E.I.R.L. - (GRUOP-ONESV E.I.R.L.)",
+          169,
+          20606622897.88
+        ]
+      ],
+      "row_count": 10,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT co.ruc_proveedor, co.nombre_proveedor, COUNT(*) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto_total FROM contratos_orden_servicio co WHERE co.entidad_contratante ILIKE '%municipalidad distrital de los olivos%' AND co.tipo_contrato = 'ORDEN SERVICIO' GROUP BY co.ruc_proveedor, co.nombre_proveedor ORDER BY cantidad_ordenes_servicio DESC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          "20131368667",
+          "MUNICIPALIDAD DISTRITAL DE LOS OLIVOS",
+          329,
+          4456909.630000001
+        ],
+        [
+          "20100053455",
+          "BANCO INTERNACIONAL DEL PERU-INTERBANK",
+          212,
+          5282078.529999999
+        ],
+        [
+          "20100043140",
+          "SCOTIABANK PERU SAA",
+          143,
+          5696244.62
+        ],
+        [
+          "10061856965",
+          "GONZALES BERMUDEZ MAGNOLIA",
+          101,
+          220930.24000000005
+        ],
+        [
+          "10107459893",
+          "ROQUE CASTILLO HEBERT",
+          79,
+          862155.3999999999
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 4
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, COUNT(*) as cantidad_ordenes_servicio, SUM(monto) as monto_total_ordenes_servicio FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MUNICIPALIDAD DISTRITAL DE LOS OLIVOS%' AND tipo_contrato = 'ORDEN SERVICIO' GROUP BY ruc_proveedor, nombre_proveedor ORDER BY cantidad_ordenes_servicio DESC, monto_total_ordenes_servicio DESC LIMIT 5;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "cantidad_ordenes_servicio",
+        "monto_total_ordenes_servicio"
+      ],
+      "rows": [
+        [
+          "20131368667",
+          "MUNICIPALIDAD DISTRITAL DE LOS OLIVOS",
+          329,
+          4456909.629999999
+        ],
+        [
+          "20100053455",
+          "BANCO INTERNACIONAL DEL PERU-INTERBANK",
+          212,
+          5282078.530000003
+        ],
+        [
+          "20100043140",
+          "SCOTIABANK PERU SAA",
+          143,
+          5696244.62
+        ],
+        [
+          "10061856965",
+          "GONZALES BERMUDEZ MAGNOLIA",
+          101,
+          220930.23999999996
+        ],
+        [
+          "10107459893",
+          "ROQUE CASTILLO HEBERT",
+          79,
+          862155.3999999999
+        ]
+      ],
+      "row_count": 5,
+      "column_count": 4
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-16T11:11:05.148818",
+    "execution_id": 39
+  }
+]

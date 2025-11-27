@@ -1,0 +1,62 @@
+[
+  {
+    "id": "basic_40",
+    "question": "Cual es el nombre del proveedor con RUC 20100117526",
+    "query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20100117526';",
+    "expected": {
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "ENOTRIA S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20100117526' LIMIT 1;",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "ENOTRIA S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20100117526';",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "ENOTRIA S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT nombre_proveedor FROM transparencia_sunat WHERE ruc_proveedor = '20100117526'",
+      "columns": [
+        "nombre_proveedor"
+      ],
+      "rows": [
+        [
+          "ENOTRIA S.A."
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T04:03:38.672148",
+    "execution_id": 40
+  }
+]

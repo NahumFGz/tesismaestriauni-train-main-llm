@@ -1,0 +1,78 @@
+[
+  {
+    "id": "basic_11",
+    "question": "Cual es el nombre del proveedor con RUC 20552312814, quiero las columnas ruc_proveedor, nombre_proveedor y monto_girado",
+    "query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE ruc_proveedor = '20552312814';",
+    "expected": {
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20552312814",
+          "CONSORCIO VIAL QUILCA MATARANI",
+          661994833.74
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "baseline_template": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE ruc_proveedor = '20552312814' LIMIT 1;",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20552312814",
+          "CONSORCIO VIAL QUILCA MATARANI",
+          661994833.74
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE ruc_proveedor = '20552312814';",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20552312814",
+          "CONSORCIO VIAL QUILCA MATARANI",
+          661994833.74
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT ruc_proveedor, nombre_proveedor, monto_girado FROM transparencia_sunat WHERE ruc_proveedor = '20552312814';",
+      "columns": [
+        "ruc_proveedor",
+        "nombre_proveedor",
+        "monto_girado"
+      ],
+      "rows": [
+        [
+          "20552312814",
+          "CONSORCIO VIAL QUILCA MATARANI",
+          661994833.74
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-10T05:29:25.915276",
+    "execution_id": 11
+  }
+]

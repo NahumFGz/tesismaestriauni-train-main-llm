@@ -1,0 +1,76 @@
+[
+  {
+    "id": "intermediate_44",
+    "question": "Puedes darme la cantidad de contratos, cantidad de ordenes de servicio y el monto total de los contratos y ordenes de servicio de los ministerios del estado peruano?",
+    "query": "SELECT COUNT(CASE WHEN tipo_contrato = 'CONTRATO' THEN 1 END) as cantidad_contratos, COUNT(CASE WHEN tipo_contrato = 'ORDEN SERVICIO' THEN 1 END) as cantidad_ordenes_servicio, SUM(CASE WHEN tipo_contrato = 'CONTRATO' THEN monto ELSE 0 END) as monto_total_contratos, SUM(CASE WHEN tipo_contrato = 'ORDEN SERVICIO' THEN monto ELSE 0 END) as monto_total_ordenes_servicio, SUM(monto) as monto_total_general FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MINISTERIO%'",
+    "expected": {
+      "columns": [
+        "cantidad_contratos",
+        "cantidad_ordenes_servicio",
+        "monto_total_contratos",
+        "monto_total_ordenes_servicio",
+        "monto_total_general"
+      ],
+      "rows": [
+        [
+          44962.0,
+          518211.0,
+          33497601744.000034,
+          6649090509.640013,
+          40146692253.63978
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 5
+    },
+    "baseline_template": {
+      "sql_query": "-- No baseline rule matched --",
+      "columns": [],
+      "rows": [],
+      "row_count": 0,
+      "column_count": 0
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT COUNT(CASE WHEN co.tipo_contrato = 'CONTRATO' THEN 1 END) AS cantidad_contratos, COUNT(CASE WHEN co.tipo_contrato = 'ORDEN SERVICIO' THEN 1 END) AS cantidad_ordenes_servicio, SUM(co.monto) AS monto_total FROM contratos_orden_servicio co WHERE co.entidad_contratante ILIKE '%ministerio%'",
+      "columns": [
+        "cantidad_contratos",
+        "cantidad_ordenes_servicio",
+        "monto_total"
+      ],
+      "rows": [
+        [
+          44962.0,
+          518211.0,
+          40146692253.6399
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 3
+    },
+    "our_agent": {
+      "sql_query": "SELECT COUNT(CASE WHEN tipo_contrato = 'CONTRATO' THEN 1 END) as cantidad_contratos, COUNT(CASE WHEN tipo_contrato = 'ORDEN SERVICIO' THEN 1 END) as cantidad_ordenes_servicio, SUM(CASE WHEN tipo_contrato = 'CONTRATO' THEN monto ELSE 0 END) as monto_total_contratos, SUM(CASE WHEN tipo_contrato = 'ORDEN SERVICIO' THEN monto ELSE 0 END) as monto_total_ordenes_servicio, SUM(monto) as monto_total_general FROM contratos_orden_servicio WHERE UPPER(entidad_contratante) LIKE '%MINISTERIO%'",
+      "columns": [
+        "cantidad_contratos",
+        "cantidad_ordenes_servicio",
+        "monto_total_contratos",
+        "monto_total_ordenes_servicio",
+        "monto_total_general"
+      ],
+      "rows": [
+        [
+          44962,
+          518211,
+          33497601743.999985,
+          6649090509.639992,
+          40146692253.63976
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 5
+    },
+    "complexity_level": "intermediate",
+    "question_type": "intermediate",
+    "generated_at": "2025-09-17T09:34:52.794789",
+    "execution_id": 44
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "basic_36",
+    "question": "Cual es la fecha de inicio de actividades del proveedor con RUC 20483851171",
+    "query": "SELECT fecha_de_inicio_de_actividades FROM transparencia_sunat WHERE ruc_proveedor = '20483851171';",
+    "expected": {
+      "columns": [
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "2001-11-05"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_template": {
+      "sql_query": "SELECT fecha_de_inicio_de_actividades FROM transparencia_sunat WHERE ruc_proveedor = '20483851171' LIMIT 1;",
+      "columns": [
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "2001-11-05"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "baseline_agent_simple": {
+      "sql_query": "SELECT fecha_de_inicio_de_actividades FROM transparencia_sunat WHERE ruc_proveedor = '20483851171';",
+      "columns": [
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "2001-11-05"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "our_agent": {
+      "sql_query": "SELECT fecha_de_inicio_de_actividades FROM transparencia_sunat WHERE ruc_proveedor = '20483851171';",
+      "columns": [
+        "fecha_de_inicio_de_actividades"
+      ],
+      "rows": [
+        [
+          "2001-11-05"
+        ]
+      ],
+      "row_count": 1,
+      "column_count": 1
+    },
+    "complexity_level": "basic",
+    "question_type": "basic",
+    "generated_at": "2025-09-11T03:51:06.540244",
+    "execution_id": 36
+  }
+]
